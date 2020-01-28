@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Widgets/custom_drawer.dart';
+import 'package:knctu/widgets/custom_drawer.dart';
+import 'package:knctu/widgets/add_question.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         endDrawer: CustomDrawer(),
-        body: Center(
-          child: Text('knctU'),
+        body: Column(
+          children: <Widget>[
+           AddQuestion(),
+          ],
         ),
       ),
     );
