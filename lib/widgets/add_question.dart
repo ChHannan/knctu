@@ -34,7 +34,6 @@ class AddQuestion extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(20.0),
               ),
               width: width * 0.8,
@@ -45,8 +44,9 @@ class AddQuestion extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: Colors.black12,
                   ),
-                  GestureDetector(
+                  InkWell(
                       onTap: () => Navigator.of(context).push(_createRoute()),
+                      borderRadius: BorderRadius.circular(20),
                       child: Container(
                           width: width * 0.55,
                           height: height * 0.05,
