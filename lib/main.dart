@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:knctu/widgets/Drawer/drawer_shape.dart';
 import 'package:knctu/widgets/Drawer/drawer_slider.dart';
 import 'file:///C:/Users/CH.HANNAN/Desktop/knctU/lib/widgets/Drawer/custom_drawer.dart';
 
@@ -98,21 +99,21 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-//        Center(
-//          child: CustomPaint(
-//            painter: DrawerShape(heightPosition: deviceHeight),
-//            child: Container(
-//              width: 90,
-//            ),
-//          ),
-//        ),
+        Center(
+          child: CustomPaint(
+            painter: DrawerShape(heightPosition: deviceHeight),
+            child: Container(
+              width: 90,
+            ),
+          ),
+        ),
         Positioned(
           right: 0,
           top: deviceHeight * 0.7,
           child: CustomPaint(
             painter: DrawerSlider(),
             child: Container(
-              height: 100,
+              height: deviceHeight * 0.14,
               width: 20,
               child: Icon(
                 Icons.arrow_left,
