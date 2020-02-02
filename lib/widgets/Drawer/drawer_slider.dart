@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class DrawerSlider extends StatelessWidget {
   const DrawerSlider({
     Key key,
@@ -15,7 +14,7 @@ class DrawerSlider extends StatelessWidget {
       painter: DrawerSliderPainter(),
       child: Container(
         height: deviceHeight * 0.14,
-        width: 20,
+        width: 19,
         child: Icon(
           Icons.arrow_left,
           color: Colors.white,
@@ -29,13 +28,17 @@ class DrawerSliderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Colors.blue
+      ..color = Colors.blue[400]
       ..style = PaintingStyle.fill;
 
     Path path = new Path();
     path.moveTo(size.width, 0);
     path.quadraticBezierTo(
-        size.width - 35, size.height / 2, size.width, size.height);
+      size.width - 30,
+      size.height / 2,
+      size.width,
+      size.height,
+    );
     canvas.drawPath(path, paint);
   }
 

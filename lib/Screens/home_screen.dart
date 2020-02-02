@@ -17,12 +17,21 @@ class HomeScreen extends StatelessWidget {
               children: <Widget>[
                 Header(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.fromLTRB(
+                    18,
+                    15,
+                    0,
+                    0,
+                  ),
                   child: Text(
                     'Recommended',
                     style: TextStyle(fontStyle: FontStyle.italic),
                   ),
                 ),
+                QuestionBlock(),
+                QuestionBlock(),
+                QuestionBlock(),
+                QuestionBlock(),
                 QuestionBlock(),
               ],
             ),

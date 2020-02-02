@@ -17,15 +17,11 @@ class QuestionBlock extends StatelessWidget {
         children: <Widget>[
           Text(
             'Sit amet dictum sit amet justo donec enim diam?',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           Text(
             'Lorem ipsum dolor sit amet, consectetur adipiscing '
-                'elit sed do eiusmod tempor incididunt ut labore '
-                'et dolore magna aliqua.',
+            'elit sed do eiusmod tempor incididunt ut labore ',
           ),
           Row(
             children: <Widget>[
