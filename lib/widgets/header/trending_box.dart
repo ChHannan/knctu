@@ -8,9 +8,9 @@ class TrendingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 115,
-      padding: const EdgeInsets.all(
-        8.0,
+      height: 130,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -21,12 +21,23 @@ class TrendingBox extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
             'Lorem ipsum dolor sit amet, consectetur adip '
-            'elit sed do eiusmod tempor incididunt ut labore?',
-            style: TextStyle(fontSize: 15),
+            'elit sed do eiusmod temp?',
+            style: TextStyle(fontSize: 16),
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                'Answer . ',
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+              Text('The Internet')
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +53,12 @@ class TrendingBox extends StatelessWidget {
                       ),
                       radius: 15,
                     ),
-                    Text('Lorem ipsum'),
+                    Text(
+                      'Lorem ipsum',
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
                 ),
               ),

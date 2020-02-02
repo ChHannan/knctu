@@ -7,7 +7,7 @@ class CustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 270,
       padding: EdgeInsets.symmetric(
         horizontal: 18,
         vertical: 5,
