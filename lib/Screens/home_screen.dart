@@ -12,43 +12,53 @@ class HomeScreen extends StatelessWidget {
       body: Builder(
         builder: (context) => Stack(
           children: <Widget>[
-            Column(
+            ListView(
               children: <Widget>[
                 Header(),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text('Lorem Ipsum'),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Recommended',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    height: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          'Sit amet dictum sit amet justo donec enim diam?',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                Container(
+                  height: 150,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        'Sit amet dictum sit amet justo donec enim diam?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing '
+                        'elit sed do eiusmod tempor incididunt ut labore '
+                        'et dolore magna aliqua.',
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.arrow_upward,
                           ),
-                        ),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing '
-                          'elit sed do eiusmod tempor incididunt ut labore '
-                          'et dolore magna aliqua.',
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Icon(Icons.arrow_upward),
-                            Text(
-                              ' Upvote ',
-                            ),
-                            Text('1k')
-                          ],
-                        )
-                      ],
-                    ),
+                          Text(
+                            '  ' + '1k' + '   ',
+                          ),
+                          Icon(
+                            Icons.reply,
+                          ),
+                          Text(
+                            '  ' + '200',
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ],

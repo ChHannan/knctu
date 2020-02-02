@@ -6,7 +6,7 @@ class Header extends StatelessWidget {
     return Container(
       height: 250,
       padding: EdgeInsets.symmetric(
-        horizontal: 20,
+        horizontal: 18,
         vertical: 5,
       ),
       color: Colors.blue,
@@ -78,7 +78,7 @@ class Header extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing '
+                  'Lorem ipsum dolor sit amet, consectetur adip '
                   'elit sed do eiusmod tempor incididunt ut labore?',
                   style: TextStyle(fontSize: 15),
                 ),
