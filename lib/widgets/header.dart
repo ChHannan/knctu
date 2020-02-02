@@ -5,7 +5,10 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 250,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 5,
+      ),
       color: Colors.blue,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,6 +40,7 @@ class Header extends StatelessWidget {
                 'Top picks for you',
                 style: TextStyle(
                   color: Colors.white,
+                  fontSize: 16,
                 ),
               ),
               Container(
@@ -58,7 +62,10 @@ class Header extends StatelessWidget {
             ],
           ),
           Container(
-            height: 120,
+            height: 115,
+            padding: const EdgeInsets.all(
+              8.0,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(
@@ -68,24 +75,31 @@ class Header extends StatelessWidget {
               ),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing '
-                    'elit sed do eiusmod tempor incididunt ut labore ',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing '
+                  'elit sed do eiusmod tempor incididunt ut labore?',
+                  style: TextStyle(fontSize: 15),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/images/default_avatar.jpg',
+                    Container(
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundImage: AssetImage(
+                              'assets/images/default_avatar.jpg',
+                            ),
+                            radius: 15,
+                          ),
+                          Text('Lorem ipsum'),
+                        ],
                       ),
-                      radius: 15,
                     ),
-                    Text('Lorem ipsum'),
                     Container(
                       padding: EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
@@ -98,7 +112,10 @@ class Header extends StatelessWidget {
                       ),
                       child: Text(
                         'Trending',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ],
