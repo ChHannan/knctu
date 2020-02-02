@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/widgets/Drawer/custom_drawer.dart';
 import 'package:knctu/widgets/Drawer/drawer_slider.dart';
-import 'package:knctu/widgets/header.dart';
+import 'package:knctu/widgets/header/custom_header.dart';
 import 'package:knctu/widgets/question_block.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             ListView(
               children: <Widget>[
-                Header(),
+                CustomHeader(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(
                     18,
