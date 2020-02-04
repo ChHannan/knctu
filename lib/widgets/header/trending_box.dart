@@ -68,7 +68,7 @@ class TrendingBox extends StatelessWidget {
                   color: Colors.blue,
                   borderRadius: BorderRadius.all(
                     Radius.circular(
-                      3,
+                      2.0,
                     ),
                   ),
                 ),

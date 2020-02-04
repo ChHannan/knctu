@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
 
 void main() => runApp(MyApp());

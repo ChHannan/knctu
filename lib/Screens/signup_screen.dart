@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Screens/home_screen.dart';
+import 'package:knctu/Screens/login_screen.dart';
+
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -63,7 +64,7 @@ class SignUpScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
+                              builder: (context) => LoginScreen(),
                             ),
                           );
                         },
