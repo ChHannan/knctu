@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Screens/chatlist_screen.dart';
 import 'package:knctu/widgets/Drawer/drawer_action.dart';
 import 'package:knctu/widgets/Drawer/drawer_shape.dart';
 
@@ -32,10 +33,21 @@ class CustomDrawer extends StatelessWidget {
               actionIcon: Icons.group,
               actionText: 'Group',
             ),
-            DrawerAction(
-              actionIcon: Icons.message,
-              actionText: 'Message',
+
+            GestureDetector(
+               onTap: () => Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                            builder: (context) => ChatlistScreen()
+                                          )),
+
+              child: DrawerAction(
+                actionIcon: Icons.message,
+                actionText: 'Message',
+               
+              ),
             ),
+            
             DrawerAction(
               actionIcon: Icons.public,
               actionText: 'Public',
