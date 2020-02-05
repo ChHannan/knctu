@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ChatlistScreen(),
+      home: QuestionDetailScreen(),
     );
   }
 }

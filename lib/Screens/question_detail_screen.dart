@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/widgets/card/question_detail_card.dart';
+import 'package:knctu/widgets/question/question_detail_card.dart';
 
 class QuestionDetailScreen extends StatelessWidget {
   final widgets = [
@@ -23,6 +23,18 @@ class QuestionDetailScreen extends StatelessWidget {
       starCounter: 9000,
       isStarred: true,
       text: 'No.',
+      comments: [
+        {
+          'name': 'Harris Amir',
+          'text':
+              'An extremely insightful answer! I felt my mind blowing after reading this. The amount of information contained in this answer can only be explained and understood if you have Einstein\'s IQ.',
+          'replies': [
+            {'name': 'Ramish Amir', 'text': 'I second this. I have run out of stuff to say, just checking if text overflow is catered for.'},
+            {'name': 'Maaz Bin Tahir Saeed', 'text': 'XD'}
+          ]
+        },
+        {'name': 'Maaz Bin Tahir Saeed', 'text': 'No you.', 'replies': []}
+      ],
     ),
     QuestionDetailCard(
       name: 'Ramish Amir',
@@ -31,13 +43,12 @@ class QuestionDetailScreen extends StatelessWidget {
       text: 'Let\'s play badminton',
     ),
     QuestionDetailCard(
-      name: 'Eesha Arif',
-      title: 'Master of all trades',
-      starCounter: 499,
-      text:
-          'With meticulous planning and a good business plan, you can easily nail it!',
-      isLast: true
-    )
+        name: 'Eesha Arif',
+        title: 'Master of all trades',
+        starCounter: 499,
+        text:
+            'With meticulous planning and a good business plan, you can easily nail it!',
+        isLast: true)
   ];
 
   @override
