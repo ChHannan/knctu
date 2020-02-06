@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:knctu/Screens/chat_screen.dart';
-import 'package:knctu/Screens/chatlist_screen.dart';
-import 'package:knctu/Screens/question_detail_screen.dart';
+import 'file:///C:/Users/CH.HANNAN/Desktop/knctU/lib/Screens/screen_controller.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +10,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: QuestionDetailScreen(),
+      home: ScreenController(),
     );
   }
 }
