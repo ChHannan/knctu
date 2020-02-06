@@ -11,8 +11,8 @@ const drawerItems = [
     actionText: 'Message',
   ),
   DrawerAction(
-    actionIcon: Icons.public,
-    actionText: 'Public',
+    actionIcon: Icons.rss_feed,
+    actionText: 'Feed',
   ),
   DrawerAction(
     actionIcon: Icons.question_answer,

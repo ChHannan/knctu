@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Screens/chatlist_screen.dart';
+import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Utils/constants.dart';
 import 'package:knctu/widgets/Drawer/custom_drawer.dart';
@@ -21,7 +22,7 @@ class ScreenControllerState extends State<ScreenController> {
       case 1:
         return ChatListScreen();
       case 2:
-        return Text('Public');
+        return FeedScreen();
       case 3:
         return Text('Questions');
       default:
