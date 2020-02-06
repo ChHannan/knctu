@@ -33,21 +33,20 @@ class CustomDrawer extends StatelessWidget {
               actionIcon: Icons.group,
               actionText: 'Group',
             ),
-
             GestureDetector(
-               onTap: () => Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                            builder: (context) => ChatlistScreen()
-                                          )),
-
+              onTap: () {
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                    builder: (context) => ChatListScreen(),
+                  ),
+                );
+              },
               child: DrawerAction(
                 actionIcon: Icons.message,
                 actionText: 'Message',
-               
               ),
             ),
-            
             DrawerAction(
               actionIcon: Icons.public,
               actionText: 'Public',

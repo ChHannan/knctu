@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/widgets/question/question_toolbar.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
+import 'package:knctu/widgets/question/question_toolbar.dart';
 
 class QuestionDetailCard extends StatelessWidget {
   final isQuestion;
@@ -42,17 +42,19 @@ class QuestionDetailCard extends StatelessWidget {
                       height: 40,
                       width: 10,
                       color: Colors.lightBlue,
-                    )),
+                    ),
+                  ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Card(
                   margin: EdgeInsets.only(top: 4),
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                          color: isQuestion ? Colors.blueAccent : Colors.white,
-                          width: 1.5),
-                      borderRadius: BorderRadius.circular(10)),
+                    side: BorderSide(
+                        color: isQuestion ? Colors.blueAccent : Colors.white,
+                        width: 1.5),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   elevation: 3,
                   child: Container(
                     width: size.width * 0.9,
@@ -62,26 +64,33 @@ class QuestionDetailCard extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(
-                              left: size.width * 0.8 * 0.2, top: 8),
+                            left: size.width * 0.8 * 0.2,
+                            top: 8,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: const EdgeInsets.only(
+                                  left: 8.0,
+                                ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
                                       name,
                                       style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     Text(
                                       title,
                                       style: TextStyle(
-                                          fontSize: 12, color: Colors.grey),
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -91,10 +100,15 @@ class QuestionDetailCard extends StatelessWidget {
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 5),
+                                      padding: const EdgeInsets.only(
+                                        right: 5,
+                                      ),
                                       child: isStarred
-                                          ? Icon(Icons.star,
-                                              size: 20, color: Colors.amber)
+                                          ? Icon(
+                                              Icons.star,
+                                              size: 20,
+                                              color: Colors.amber,
+                                            )
                                           : Icon(
                                               Icons.star_border,
                                               size: 20,
@@ -103,7 +117,9 @@ class QuestionDetailCard extends StatelessWidget {
                                     Text(
                                       '($starCounter)',
                                       style: TextStyle(
-                                          fontSize: 12, color: Colors.grey),
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -118,7 +134,9 @@ class QuestionDetailCard extends StatelessWidget {
                           ),
                         ),
                         QuestionToolbar(
-                            modalCall: showCommentModal, isQuestion: isQuestion)
+                          modalCall: showCommentModal,
+                          isQuestion: isQuestion,
+                        )
                       ],
                     ),
                   ),
@@ -129,7 +147,10 @@ class QuestionDetailCard extends StatelessWidget {
                         child: Align(
                           alignment: Alignment(-0.815, -1),
                           child: Container(
-                              width: 10, height: 30, color: Colors.lightBlue),
+                            width: 10,
+                            height: 30,
+                            color: Colors.lightBlue,
+                          ),
                         ),
                       )
                     : Padding(
@@ -150,13 +171,14 @@ class QuestionDetailCard extends StatelessWidget {
                               Text(
                                 '  Got Answer?',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      )
+                      ),
               ],
             ),
             SizedBox(
@@ -174,11 +196,15 @@ class QuestionDetailCard extends StatelessWidget {
 
   void showCommentModal(context) {
     showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-        builder: (context) => CommentModal(comments: comments));
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      builder: (context) => CommentModal(comments: comments),
+    );
   }
 }

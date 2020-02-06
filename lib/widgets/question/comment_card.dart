@@ -5,9 +5,12 @@ class CommentCard extends StatelessWidget {
   final canExpand;
   final function;
 
-  const CommentCard(
-      {Key key, @required this.comment, this.function, this.canExpand = false})
-      : super(key: key);
+  const CommentCard({
+    Key key,
+    @required this.comment,
+    this.function,
+    this.canExpand = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,9 @@ class CommentCard extends StatelessWidget {
           Container(
             width: size.width,
             decoration: BoxDecoration(
-                color: Colors.black12.withAlpha(10),
-                borderRadius: BorderRadius.circular(10)),
+              color: Colors.black12.withAlpha(10),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Column(
               children: <Widget>[
                 Row(
@@ -39,9 +43,13 @@ class CommentCard extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               comment['name'],
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Text(comment['text'])
+                            Text(
+                              comment['text'],
+                            ),
                           ],
                         ),
                       ),
@@ -54,7 +62,10 @@ class CommentCard extends StatelessWidget {
                     FlatButton(
                       onPressed: () {},
                       child: Row(
-                        children: <Widget>[Icon(Icons.reply), Text(' Reply')],
+                        children: <Widget>[
+                          Icon(Icons.reply),
+                          Text(' Reply'),
+                        ],
                       ),
                     ),
                     FlatButton(
@@ -101,24 +112,26 @@ class CommentCard extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.only(left: 10),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                                comment['replies'][index]['name'],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15
-                                            ),),
+                                              comment['replies'][index]['name'],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                            ),
                                             Text(
                                               comment['replies'][index]['text'],
                                               style: TextStyle(
-                                                fontSize: 14
+                                                fontSize: 14,
                                               ),
                                             )
                                           ],
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -147,7 +160,9 @@ class CommentCard extends StatelessWidget {
                               padding: EdgeInsets.only(left: 8),
                               child: Text(
                                 comment['replies'][0]['name'],
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Expanded(

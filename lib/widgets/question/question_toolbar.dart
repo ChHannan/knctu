@@ -4,35 +4,41 @@ class QuestionToolbar extends StatelessWidget {
   final bool isQuestion;
   final Function modalCall;
 
-  final upvotes;
+  final upVotes;
   final comments;
   final shares;
   final answers;
   final views;
 
-  final _infoTextStyle = const TextStyle(fontSize: 13, color: Colors.black54);
+  final _infoTextStyle = const TextStyle(
+    fontSize: 13,
+    color: Colors.black54,
+  );
 
-  const QuestionToolbar(
-      {Key key,
-      @required this.modalCall,
-      this.isQuestion = false,
-      this.upvotes,
-      this.comments,
-      this.shares,
-      this.answers,
-      this.views})
-      : super(key: key);
+  const QuestionToolbar({
+    Key key,
+    @required this.modalCall,
+    this.isQuestion = false,
+    this.upVotes,
+    this.comments,
+    this.shares,
+    this.answers,
+    this.views,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _noInfo = upvotes == null &&
+    final _noInfo = upVotes == null &&
         comments == null &&
         shares == null &&
         answers == null &&
         views == null;
     return Column(
       children: <Widget>[
-        Container(color: Colors.grey.withAlpha(30), height: _noInfo ? 0 : 1),
+        Container(
+          color: Colors.grey.withAlpha(30),
+          height: _noInfo ? 0 : 1,
+        ),
         _noInfo
             ? Container()
             : Padding(
@@ -40,9 +46,9 @@ class QuestionToolbar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    upvotes != null
+                    upVotes != null
                         ? Text(
-                            '$upvotes upvotes',
+                            '$upVotes upvotes',
                             style: _infoTextStyle,
                           )
                         : Container(),
@@ -50,8 +56,10 @@ class QuestionToolbar extends StatelessWidget {
                       children: <Widget>[
                         isQuestion
                             ? answers != null
-                                ? Text('$answers answers',
-                                    style: _infoTextStyle)
+                                ? Text(
+                                    '$answers answers',
+                                    style: _infoTextStyle,
+                                  )
                                 : Container()
                             : comments != null
                                 ? Text(
@@ -83,13 +91,16 @@ class QuestionToolbar extends StatelessWidget {
                                     '$views views',
                                     style: _infoTextStyle,
                                   )
-                                : Container()
+                                : Container(),
                       ],
                     )
                   ],
                 ),
               ),
-        Container(color: Colors.grey.withAlpha(30), height: 1),
+        Container(
+          color: Colors.grey.withAlpha(30),
+          height: 1,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -130,13 +141,13 @@ class QuestionToolbarOption extends StatelessWidget {
   final function;
   final _size = 15.0;
 
-  const QuestionToolbarOption(
-      {Key key,
-      @required this.icon,
-      @required this.text,
-      @required this.function,
-      this.iconColor = Colors.black38})
-      : super(key: key);
+  const QuestionToolbarOption({
+    Key key,
+    @required this.icon,
+    @required this.text,
+    @required this.function,
+    this.iconColor = Colors.black38,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +162,10 @@ class QuestionToolbarOption extends StatelessWidget {
           ),
           Text(
             ' $text',
-            style: TextStyle(fontSize: _size, color: Colors.black38),
+            style: TextStyle(
+              fontSize: _size,
+              color: Colors.black38,
+            ),
           )
         ],
       ),

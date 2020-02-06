@@ -4,7 +4,10 @@ import 'package:knctu/widgets/question/comment_card.dart';
 class CommentModal extends StatefulWidget {
   final comments;
 
-  const CommentModal({Key key, this.comments}) : super(key: key);
+  const CommentModal({
+    Key key,
+    this.comments,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CommentModalState();
@@ -19,6 +22,12 @@ class CommentModalState extends State<CommentModal>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   replyTab() {
@@ -57,7 +66,9 @@ class CommentModalState extends State<CommentModal>
                           Text(
                             '9000 Upvotes',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           ),
                           Icon(Icons.star, color: Colors.amber)
                         ],
@@ -67,22 +78,33 @@ class CommentModalState extends State<CommentModal>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _tabController.index = 0;
-                                });
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                              )),
-                          Text('Replies',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15)),
-                          Icon(Icons.star, color: Colors.amber)
+                            onTap: () {
+                              setState(() {
+                                _tabController.index = 0;
+                              });
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                            ),
+                          ),
+                          Text(
+                            'Replies',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          )
                         ],
                       ),
               ),
-              Container(color: Colors.grey.withAlpha(30), height: 1),
+              Container(
+                color: Colors.grey.withAlpha(30),
+                height: 1,
+              ),
               Expanded(
                 child: TabBarView(
                   physics: NeverScrollableScrollPhysics(),
@@ -91,16 +113,24 @@ class CommentModalState extends State<CommentModal>
                     ListView.builder(
                       physics: ScrollPhysics(),
                       itemBuilder: (context, index) => CommentCard(
-                          comment: widget.comments[index], function: replyTab),
+                        comment: widget.comments[index],
+                        function: replyTab,
+                      ),
                       itemCount: widget.comments.length,
                     ),
-                    replyIndex < widget.comments.length ? CommentCard(comment: widget.comments[replyIndex], canExpand: true) : Container()
+                    replyIndex < widget.comments.length
+                        ? CommentCard(
+                            comment: widget.comments[replyIndex],
+                            canExpand: true,
+                          )
+                        : Container(),
                   ],
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   color: Colors.white,
@@ -112,7 +142,9 @@ class CommentModalState extends State<CommentModal>
                             // To capitalize the first letter
                             onChanged: (value) {},
                             decoration: InputDecoration.collapsed(
-                              hintText: _tabController.index == 0 ? 'Write a comment...' : 'Write a reply...',
+                              hintText: _tabController.index == 0
+                                  ? 'Write a comment...'
+                                  : 'Write a reply...',
                             )),
                       ),
                       IconButton(

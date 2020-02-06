@@ -26,10 +26,16 @@ class QuestionDetailScreen extends StatelessWidget {
       comments: [
         {
           'name': 'Harris Amir',
-          'text':
-              'An extremely insightful answer! I felt my mind blowing after reading this. The amount of information contained in this answer can only be explained and understood if you have Einstein\'s IQ.',
+          'text': 'An extremely insightful answer! I felt my mind blowing '
+              'after reading this. The amount of information contained in '
+              'this answer can only be explained and understood if you have '
+              'Einstein\'s IQ.',
           'replies': [
-            {'name': 'Ramish Amir', 'text': 'I second this. I have run out of stuff to say, just checking if text overflow is catered for.'},
+            {
+              'name': 'Ramish Amir',
+              'text': 'I second this. I have run out of '
+                  'stuff to say, just checking if text overflow is catered for.'
+            },
             {'name': 'Maaz Bin Tahir Saeed', 'text': 'XD'}
           ]
         },
@@ -43,12 +49,13 @@ class QuestionDetailScreen extends StatelessWidget {
       text: 'Let\'s play badminton',
     ),
     QuestionDetailCard(
-        name: 'Eesha Arif',
-        title: 'Master of all trades',
-        starCounter: 499,
-        text:
-            'With meticulous planning and a good business plan, you can easily nail it!',
-        isLast: true)
+      name: 'Eesha Arif',
+      title: 'Master of all trades',
+      starCounter: 499,
+      text: 'With meticulous planning and a good business plan, you can easily '
+          'nail it!',
+      isLast: true,
+    ),
   ];
 
   @override
@@ -70,7 +77,7 @@ class QuestionDetailScreen extends StatelessWidget {
               },
               itemCount: widgets.length,
             ),
-          )
+          ),
         ],
       ),
     );

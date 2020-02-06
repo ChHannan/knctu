@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/models/user_model.dart';
 import 'package:knctu/models/message_model.dart';
+import 'package:knctu/models/user_model.dart';
 
 class ChatScreen extends StatefulWidget {
   final User user; // chat room id when applying backend
@@ -60,7 +60,9 @@ class _ChatScreenState extends State<ChatScreen> {
               right: 60.0,
             ),
       padding: EdgeInsets.symmetric(
-          horizontal: _width * 0.069, vertical: _height * 0.02),
+        horizontal: _width * 0.069,
+        vertical: _height * 0.02,
+      ),
       decoration: BoxDecoration(
         color: isMe ? Color(0xFFFFF9BF) : Color(0xFFFFEFEE),
         borderRadius: isMe
@@ -139,28 +141,34 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Expanded(
               child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(_width * 0.0553),
-                        topRight: Radius.circular(_width * 0.0553)),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(_width * 0.0553),
+                    topRight: Radius.circular(_width * 0.0553),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(_width * 0.0553),
-                        topRight: Radius.circular(_width * 0.0553)),
-                    child: ListView.builder(
-                        reverse: true,
-                        //mesages start from the bottom and then rises up
-                        padding: EdgeInsets.only(top: _height * 0.025),
-                        itemCount: messages.length,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          final Message message = messages[index];
-                          final bool isMe = message.sender.id == currentUser.id;
-                          return _buildMessage(message, isMe);
-                        }),
-                  )),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(_width * 0.0553),
+                    topRight: Radius.circular(_width * 0.0553),
+                  ),
+                  child: ListView.builder(
+                      reverse: true,
+                      //messages start from the bottom and then rises up
+                      padding: EdgeInsets.only(top: _height * 0.025),
+                      itemCount: messages.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        final Message message = messages[index];
+                        final bool isMe = message.sender.id == currentUser.id;
+                        return _buildMessage(
+                          message,
+                          isMe,
+                        );
+                      }),
+                ),
+              ),
             ),
             _buildMessageComposer(),
           ],
