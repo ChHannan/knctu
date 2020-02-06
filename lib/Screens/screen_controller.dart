@@ -61,22 +61,24 @@ class ScreenControllerState extends State<ScreenController> {
         deviceHeight: deviceHeight,
         drawerOptions: drawerOptions,
       ),
-      body: Stack(
-        children: <Widget>[
-          _getScreen(_screenIndex),
-          Positioned(
-            right: 0,
-            top: deviceHeight * 0.7,
-            child: GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-              child: DrawerSlider(
-                deviceHeight: deviceHeight,
+      body: Builder(
+        builder: (context) => Stack(
+          children: <Widget>[
+            _getScreen(_screenIndex),
+            Positioned(
+              right: 0,
+              top: deviceHeight * 0.7,
+              child: GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+                child: DrawerSlider(
+                  deviceHeight: deviceHeight,
+                ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
