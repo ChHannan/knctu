@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Screens/home_screen.dart';
+import 'package:knctu/Screens/screen_controller.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -147,7 +147,7 @@ class LoginScreen extends StatelessWidget {
                             Navigator.push (
                               context ,
                               MaterialPageRoute (
-                                builder: (context) => HomeScreen() ,
+                                builder: (context) => ScreenController() ,
                               ), );
                               
                               },
