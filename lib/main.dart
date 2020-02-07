@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-     // home: ScreenController(),
-      home: SignUpScreen(),
+      home: ScreenController(),
+     // home: SignUpScreen(),
     );
   }
 }

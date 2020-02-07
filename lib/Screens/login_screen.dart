@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                   children: <Widget>[
                      Padding(
                         padding: EdgeInsets.symmetric(horizontal:  0.165 * deviceWidth,/* 60.0,*/),
-                        child: FadeAnimation(1.5,Container(
+                        child: FadeAnimation(1.3,Container(
                            padding:EdgeInsets.all(deviceHeight*0.0085),
                                 decoration: BoxDecoration(
                                   border:Border(bottom: BorderSide(color: Color.fromRGBO(11, 108, 173, .4)))

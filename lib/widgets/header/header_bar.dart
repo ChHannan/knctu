@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Screens/signup_screen.dart';
 
 class HeaderBar extends StatelessWidget {
   const HeaderBar({
@@ -18,11 +19,23 @@ class HeaderBar extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        CircleAvatar(
-          backgroundImage: AssetImage(
-            'assets/images/default_avatar.jpg',
+        GestureDetector(
+          onTap: () {
+                            Navigator.push (
+                              context ,
+                              MaterialPageRoute (
+                                builder: (context) => SignUpScreen() ,
+                              ), 
+                              ); 
+                              
+                              },
+
+                  child: CircleAvatar(
+            backgroundImage: AssetImage(
+              'assets/images/default_avatar.jpg',
+            ),
+            radius: 22,
           ),
-          radius: 22,
         ),
       ],
     );
