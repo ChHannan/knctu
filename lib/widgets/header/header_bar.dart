@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HeaderBar extends StatelessWidget {
   const HeaderBar({
     Key key,
@@ -19,12 +18,11 @@ class HeaderBar extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        CircleAvatar(
-            backgroundImage: AssetImage(
-              'assets/images/default_avatar.jpg',
-            ),
-            radius: 22,
-          ),
+        Icon(
+          Icons.search,
+          color: Colors.white,
+          size: 30,
+        ),
       ],
     );
   }

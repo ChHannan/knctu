@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:knctu/Screens/chatlist_screen.dart';
 import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
+import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/Utils/constants.dart';
 import 'package:knctu/widgets/Drawer/custom_drawer.dart';
 import 'package:knctu/widgets/Drawer/drawer_slider.dart';
@@ -24,7 +25,7 @@ class ScreenControllerState extends State<ScreenController> {
       case 2:
         return FeedScreen();
       case 3:
-        return Text('Questions');
+        return QuestionDetailScreen();
       default:
         return HomeScreen();
     }

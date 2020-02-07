@@ -16,7 +16,11 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      padding: const EdgeInsets.only(
+        top: 10,
+        left: 10,
+        right: 10,
+      ),
       child: Column(
         children: <Widget>[
           Container(
@@ -31,13 +35,19 @@ class CommentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 8, top: 8),
+                      padding: EdgeInsets.only(
+                        left: 8,
+                        top: 8,
+                      ),
                       child: CircleAvatar(),
                     ),
                     Expanded(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 8, left: 8, right: 8),
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          left: 8,
+                          right: 8,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -89,10 +99,11 @@ class CommentCard extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.only(
-                                top: 8,
-                                right: 8,
-                                bottom: 8,
-                                left: size.width * 0.15),
+                              top: 8,
+                              right: 8,
+                              bottom: 8,
+                              left: size.width * 0.15,
+                            ),
                             child: Container(
                               width: size.width,
                               decoration: BoxDecoration(
@@ -110,7 +121,9 @@ class CommentCard extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: 10),
+                                        padding: EdgeInsets.only(
+                                          left: 10,
+                                        ),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,

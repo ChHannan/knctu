@@ -13,17 +13,17 @@ class QuestionDetailCard extends StatelessWidget {
   final comments;
   final icon = 15.0;
 
-  const QuestionDetailCard(
-      {Key key,
-      this.isQuestion = false,
-      @required this.name,
-      @required this.title,
-      this.isStarred = false,
-      this.starCounter = 0,
-      @required this.text,
-      this.isLast = false,
-      this.comments = const []})
-      : super(key: key);
+  const QuestionDetailCard({
+    Key key,
+    this.isQuestion = false,
+    @required this.name,
+    @required this.title,
+    this.isStarred = false,
+    this.starCounter = 0,
+    @required this.text,
+    this.isLast = false,
+    this.comments = const [],
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,10 @@ class QuestionDetailCard extends StatelessWidget {
                 ? Container()
                 : Container(
                     width: size.width * 0.9,
-                    alignment: Alignment(-0.815, -1),
+                    alignment: Alignment(
+                      -0.815,
+                      -1,
+                    ),
                     child: Container(
                       height: 40,
                       width: 10,
@@ -145,7 +148,10 @@ class QuestionDetailCard extends StatelessWidget {
                     ? Container(
                         width: size.width * 0.9,
                         child: Align(
-                          alignment: Alignment(-0.815, -1),
+                          alignment: Alignment(
+                            -0.815,
+                            -1,
+                          ),
                           child: Container(
                             width: 10,
                             height: 30,
@@ -154,13 +160,19 @@ class QuestionDetailCard extends StatelessWidget {
                         ),
                       )
                     : Padding(
-                        padding: EdgeInsets.only(top: 20, bottom: 20),
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          bottom: 20,
+                        ),
                         child: Container(
                           width: size.width * 0.6,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.lightBlue,
-                              borderRadius: BorderRadius.circular(20)),
+                            color: Colors.lightBlue,
+                            borderRadius: BorderRadius.circular(
+                              20,
+                            ),
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

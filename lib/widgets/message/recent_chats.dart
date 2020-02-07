@@ -27,15 +27,25 @@ class RecentChats extends StatelessWidget {
                   ),
                 ),
                 child: Container(
-                  margin: EdgeInsets.only(top: 5.0, bottom: 5.0, right: 20.0),
+                  margin: EdgeInsets.only(
+                    top: 5.0,
+                    bottom: 5.0,
+                    right: 20.0,
+                  ),
                   padding: EdgeInsets.symmetric(
-                      horizontal: _width * 0.05532, vertical: _height * 0.015),
+                    horizontal: _width * 0.05532,
+                    vertical: _height * 0.015,
+                  ),
                   decoration: BoxDecoration(
                     // 0x7CA8D611 a pretty green
                     color: chat.unread ? Color(0x7CA8D6EE) : Colors.white,
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(_width * 0.05532),
-                      bottomRight: Radius.circular(_width * 0.05532),
+                      topRight: Radius.circular(
+                        _width * 0.05532,
+                      ),
+                      bottomRight: Radius.circular(
+                        _width * 0.05532,
+                      ),
                     ),
                   ),
                   child: Row(
@@ -45,9 +55,13 @@ class RecentChats extends StatelessWidget {
                         children: <Widget>[
                           CircleAvatar(
                             radius: _width * 0.083,
-                            backgroundImage: AssetImage(chat.sender.imageUrl),
+                            backgroundImage: AssetImage(
+                              chat.sender.imageUrl,
+                            ),
                           ),
-                          SizedBox(width: _width * 0.027),
+                          SizedBox(
+                            width: _width * 0.027,
+                          ),
                           Column(
                             // Aligns name to left-side
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +73,9 @@ class RecentChats extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: _height * 0.0085),
+                              SizedBox(
+                                height: _height * 0.0085,
+                              ),
                               Container(
                                 // for overflow //width restriction
                                 width: MediaQuery.of(context).size.width * 0.45,

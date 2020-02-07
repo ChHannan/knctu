@@ -24,22 +24,13 @@ class CustomDrawer extends StatelessWidget {
             Container(
               height: deviceHeight * 0.25,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage(
+                      'assets/images/customer-1.jpg',
+                    ),
                     radius: 24,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.blue,
-                    ),
                   ),
                 ],
               ),

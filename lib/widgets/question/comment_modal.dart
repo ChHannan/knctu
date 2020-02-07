@@ -70,7 +70,10 @@ class CommentModalState extends State<CommentModal>
                               fontSize: 15,
                             ),
                           ),
-                          Icon(Icons.star, color: Colors.amber)
+                          Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
                         ],
                       )
                     : Row(
@@ -132,7 +135,9 @@ class CommentModalState extends State<CommentModal>
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                  ),
                   color: Colors.white,
                   child: Row(
                     children: <Widget>[
