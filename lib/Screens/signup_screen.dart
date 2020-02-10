@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Screens/login_screen.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -61,11 +60,9 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         color: Colors.blue,
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacementNamed(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
+                            '/login',
                           );
                         },
                       )

@@ -155,12 +155,7 @@ class LoginScreen extends StatelessWidget {
                         1.9,
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ScreenController(),
-                              ),
-                            );
+                            Navigator.pushReplacementNamed(context, '/home');
                           },
                           child: Container(
                             height: deviceHeight * 0.06,

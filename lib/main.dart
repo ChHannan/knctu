@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:knctu/Screens/home_screen.dart';
+import 'package:knctu/Screens/login_screen.dart';
+import 'package:knctu/Screens/question_detail_screen.dart';
+import 'package:knctu/models/question.dart';
 
 import 'Screens/signup_screen.dart';
 
@@ -17,6 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SignUpScreen(),
+      routes: <String, WidgetBuilder> {
+        '/signup': (context) => SignUpScreen(),
+        '/login': (context) => LoginScreen(),
+        '/home': (context) => HomeScreen()
+      },
     );
   }
 }

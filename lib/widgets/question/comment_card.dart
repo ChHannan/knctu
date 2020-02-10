@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/models/comment.dart';
 
 class CommentCard extends StatelessWidget {
-  final comment;
+  final Comment comment;
   final canExpand;
   final function;
 
@@ -52,13 +53,13 @@ class CommentCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              comment['name'],
+                              comment.user.name,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              comment['text'],
+                              comment.text,
                             ),
                           ],
                         ),
@@ -92,7 +93,7 @@ class CommentCard extends StatelessWidget {
               ],
             ),
           ),
-          comment.containsKey('replies') && comment['replies'].length != 0
+          comment.replies != null && comment.replies.length != 0
               ? canExpand
                   ? Expanded(
                       child: ListView.builder(
@@ -129,14 +130,14 @@ class CommentCard extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              comment['replies'][index]['name'],
+                                              comment.replies[index].user.name,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
                                               ),
                                             ),
                                             Text(
-                                              comment['replies'][index]['text'],
+                                              comment.replies[index].text,
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
@@ -151,7 +152,7 @@ class CommentCard extends StatelessWidget {
                             ),
                           );
                         },
-                        itemCount: comment['replies'].length,
+                        itemCount: comment.replies.length,
                       ),
                     )
                   : InkWell(
@@ -172,7 +173,7 @@ class CommentCard extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(left: 8),
                               child: Text(
-                                comment['replies'][0]['name'],
+                                comment.replies[0].user.name,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -183,7 +184,7 @@ class CommentCard extends StatelessWidget {
                                 padding: EdgeInsets.only(left: 8),
                                 child: Container(
                                   child: Text(
-                                    comment['replies'][0]['text'],
+                                    comment.replies[0].text,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                   ),

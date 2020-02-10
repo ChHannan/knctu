@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Screens/chatlist_screen.dart';
 import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/question_detail_screen.dart';
@@ -20,8 +19,6 @@ class ScreenControllerState extends State<ScreenController> {
     switch (index) {
       case 0:
         return HomeScreen();
-      case 1:
-        return ChatListScreen();
       case 2:
         return FeedScreen();
       case 3:

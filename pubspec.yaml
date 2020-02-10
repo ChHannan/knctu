@@ -21,6 +21,10 @@ dependencies:
     sdk: flutter
   page_transition: ^1.1.5
   carousel_slider: ^1.4.1
+  json_annotation:
+  uuid:
+  http:
+  web_socket_channel:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -30,6 +34,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   simple_animations: ^1.3.3
+  json_serializable:
+  build_runner:
 
 
 # For information on the generic Dart part of this file, see the

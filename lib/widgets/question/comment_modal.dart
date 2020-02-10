@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/widgets/question/comment_card.dart';
+import 'package:knctu/models/comment.dart';
 
 class CommentModal extends StatefulWidget {
-  final comments;
+  final List<Comment> comments;
 
   const CommentModal({
     Key key,
