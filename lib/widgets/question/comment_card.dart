@@ -3,8 +3,8 @@ import 'package:knctu/models/comment.dart';
 
 class CommentCard extends StatelessWidget {
   final Comment comment;
-  final canExpand;
-  final function;
+  final bool canExpand;
+  final Function function;
 
   const CommentCard({
     Key key,

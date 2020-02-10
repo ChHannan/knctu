@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Screens/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -17,8 +16,10 @@ class SignUpScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'knctU',
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       'Welcome',
@@ -36,20 +37,26 @@ class SignUpScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Name'),
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Email'),
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                          ),
                           keyboardType: TextInputType.emailAddress,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          decoration: InputDecoration(labelText: 'Password'),
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                          ),
                           obscureText: true,
                         ),
                       ),

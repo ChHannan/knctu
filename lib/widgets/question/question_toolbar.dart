@@ -10,7 +10,6 @@ class QuestionToolbar extends StatelessWidget {
   final answers;
   final views;
 
-
   const QuestionToolbar({
     Key key,
     @required this.modalCall,
@@ -26,8 +25,12 @@ class QuestionToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        InfoPanel(upvotes: upvotes, comments: comments, shares: shares,
-        views: views, answers: answers),
+        InfoPanel(
+            upvotes: upvotes,
+            comments: comments,
+            shares: shares,
+            views: views,
+            answers: answers),
         Container(
           color: Colors.grey.withAlpha(30),
           height: 1,
@@ -42,17 +45,17 @@ class QuestionToolbar extends StatelessWidget {
             ),
             isQuestion
                 ? QuestionToolbarOption(
-              icon: Icons.edit,
-              text: 'Answer',
-              function: null,
-            )
+                    icon: Icons.edit,
+                    text: 'Answer',
+                    function: null,
+                  )
                 : QuestionToolbarOption(
-              icon: Icons.comment,
-              text: 'Comments',
-              function: () {
-                modalCall(context);
-              },
-            ),
+                    icon: Icons.comment,
+                    text: 'Comments',
+                    function: () {
+                      modalCall(context);
+                    },
+                  ),
             QuestionToolbarOption(
               icon: Icons.share,
               text: 'Share',
@@ -117,9 +120,15 @@ class InfoPanel extends StatelessWidget {
     color: Colors.black54,
   );
 
-  const InfoPanel(
-      {Key key, this.upvotes, this.comments, this.isQuestion, this.shares, this.answers, this.views})
-      : super(key: key);
+  const InfoPanel({
+    Key key,
+    this.upvotes,
+    this.comments,
+    this.isQuestion,
+    this.shares,
+    this.answers,
+    this.views,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,61 +146,61 @@ class InfoPanel extends StatelessWidget {
         _noInfo
             ? Container()
             : Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              upvotes != null
-                  ? Text(
-                '$upvotes upvotes',
-                style: _infoTextStyle,
-              )
-                  : Container(),
-              Row(
-                children: <Widget>[
-                  isQuestion
-                      ? answers != null
-                      ? Text(
-                    '$answers answers',
-                    style: _infoTextStyle,
-                  )
-                      : Container()
-                      : comments != null
-                      ? Text(
-                    '$comments comments',
-                    style: _infoTextStyle,
-                  )
-                      : Container(),
-                  (comments != null || answers != null) && shares != null
-                      ? Text(
-                    ' · $shares shares',
-                    style: _infoTextStyle,
-                  )
-                      : shares != null
-                      ? Text(
-                    '$shares shares',
-                    style: _infoTextStyle,
-                  )
-                      : Container(),
-                  (comments != null ||
-                      answers != null ||
-                      shares != null) &&
-                      views != null
-                      ? Text(
-                    ' · $views views',
-                    style: _infoTextStyle,
-                  )
-                      : views != null
-                      ? Text(
-                    '$views views',
-                    style: _infoTextStyle,
-                  )
-                      : Container(),
-                ],
-              )
-            ],
-          ),
-        ),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    upvotes != null
+                        ? Text(
+                            '$upvotes upvotes',
+                            style: _infoTextStyle,
+                          )
+                        : Container(),
+                    Row(
+                      children: <Widget>[
+                        isQuestion
+                            ? answers != null
+                                ? Text(
+                                    '$answers answers',
+                                    style: _infoTextStyle,
+                                  )
+                                : Container()
+                            : comments != null
+                                ? Text(
+                                    '$comments comments',
+                                    style: _infoTextStyle,
+                                  )
+                                : Container(),
+                        (comments != null || answers != null) && shares != null
+                            ? Text(
+                                ' · $shares shares',
+                                style: _infoTextStyle,
+                              )
+                            : shares != null
+                                ? Text(
+                                    '$shares shares',
+                                    style: _infoTextStyle,
+                                  )
+                                : Container(),
+                        (comments != null ||
+                                    answers != null ||
+                                    shares != null) &&
+                                views != null
+                            ? Text(
+                                ' · $views views',
+                                style: _infoTextStyle,
+                              )
+                            : views != null
+                                ? Text(
+                                    '$views views',
+                                    style: _infoTextStyle,
+                                  )
+                                : Container(),
+                      ],
+                    )
+                  ],
+                ),
+              ),
       ],
     );
   }

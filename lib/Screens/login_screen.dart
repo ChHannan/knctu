@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Screens/screen_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
