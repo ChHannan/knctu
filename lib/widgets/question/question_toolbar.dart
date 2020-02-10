@@ -5,7 +5,7 @@ class QuestionToolbar extends StatelessWidget {
   final Function modalCall;
 
   final upvotes;
-  final comments;
+  final commentsCount;
   final shares;
   final answers;
   final views;
@@ -15,7 +15,7 @@ class QuestionToolbar extends StatelessWidget {
     @required this.modalCall,
     this.isQuestion = false,
     this.upvotes,
-    this.comments,
+    this.commentsCount,
     this.shares,
     this.answers,
     this.views,
@@ -27,7 +27,7 @@ class QuestionToolbar extends StatelessWidget {
       children: <Widget>[
         InfoPanel(
             upvotes: upvotes,
-            comments: comments,
+            commentsCount: commentsCount,
             shares: shares,
             views: views,
             answers: answers),
@@ -109,7 +109,7 @@ class QuestionToolbarOption extends StatelessWidget {
 
 class InfoPanel extends StatelessWidget {
   final upvotes;
-  final comments;
+  final commentsCount;
   final isQuestion;
   final shares;
   final answers;
@@ -120,20 +120,20 @@ class InfoPanel extends StatelessWidget {
     color: Colors.black54,
   );
 
-  const InfoPanel({
-    Key key,
-    this.upvotes,
-    this.comments,
-    this.isQuestion,
-    this.shares,
-    this.answers,
-    this.views,
-  }) : super(key: key);
+  const InfoPanel(
+      {Key key,
+      this.upvotes,
+      this.commentsCount,
+      this.isQuestion = false,
+      this.shares,
+      this.answers,
+      this.views})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _noInfo = upvotes == null &&
-        comments == null &&
+        commentsCount == 0 &&
         shares == null &&
         answers == null &&
         views == null;
@@ -165,13 +165,14 @@ class InfoPanel extends StatelessWidget {
                                     style: _infoTextStyle,
                                   )
                                 : Container()
-                            : comments != null
+                            : commentsCount != null
                                 ? Text(
-                                    '$comments comments',
+                                    '$commentsCount comments',
                                     style: _infoTextStyle,
                                   )
                                 : Container(),
-                        (comments != null || answers != null) && shares != null
+                        (commentsCount != null || answers != null) &&
+                                shares != null
                             ? Text(
                                 ' · $shares shares',
                                 style: _infoTextStyle,
@@ -182,7 +183,7 @@ class InfoPanel extends StatelessWidget {
                                     style: _infoTextStyle,
                                   )
                                 : Container(),
-                        (comments != null ||
+                        (commentsCount != null ||
                                     answers != null ||
                                     shares != null) &&
                                 views != null

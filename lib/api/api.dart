@@ -25,14 +25,15 @@ Future<http.Response> getQuestions() {
   });
 }
 
-Future<http.Response> login() {
-  return http.get('${apiUrl}token/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  });
+Future<http.Response> login(email, pass) {
+  return http.post('${apiUrl}token/',
+      body: jsonEncode({'email': email, 'password': pass}),
+      headers: {
+        HttpHeaders.contentTypeHeader: _contentType
+      });
 }
 
-Future<http.Response> user() {
+Future<http.Response> getUser() {
   return http.get('${apiUrl}api/user/', headers: {
     HttpHeaders.authorizationHeader: _token,
     HttpHeaders.contentTypeHeader: _contentType

@@ -20,6 +20,7 @@ Answer _$AnswerFromJson(Map<String, dynamic> json) {
     json['user'] == null
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
+    json['comments_count'] as int,
   );
 }
 
@@ -27,6 +28,7 @@ Map<String, dynamic> _$AnswerToJson(Answer instance) => <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
       'created_at': instance.createdAt?.toIso8601String(),
+      'comments_count': instance.commentsCount,
       'comments': instance.comments?.map((e) => e?.toJson())?.toList(),
       'user': instance.user?.toJson(),
     };
