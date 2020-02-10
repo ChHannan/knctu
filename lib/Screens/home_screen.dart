@@ -20,10 +20,10 @@ class HomeScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(
-                18,
+                10,
                 15,
                 0,
-                10,
+                5,
               ),
               child: Text(
                 'Recommended',
@@ -39,10 +39,10 @@ class HomeScreen extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var questions = List<Question>();
+
                 for (var data in jsonDecode(snapshot.data.body)) {
                   questions.add(Question.fromJson(data));
                 }
-                print(questions[2]);
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) => QuestionAnswer(

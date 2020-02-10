@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/widgets/question/comment_card.dart';
 import 'package:knctu/models/comment.dart';
+import 'package:knctu/widgets/question/comment_card.dart';
 
 class CommentModal extends StatefulWidget {
   final List<Comment> comments;
@@ -22,7 +22,10 @@ class CommentModalState extends State<CommentModal>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
   }
 
   @override

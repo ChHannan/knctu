@@ -8,12 +8,12 @@ class QuestionDetailCard extends StatelessWidget {
   final int index;
   final bool isLast;
 
-  const QuestionDetailCard(
-      {Key key,
-      @required this.question,
-      @required this.index,
-      @required this.isLast})
-      : super(key: key);
+  const QuestionDetailCard({
+    Key key,
+    @required this.question,
+    @required this.index,
+    @required this.isLast,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,8 @@ class QuestionDetailCard extends StatelessWidget {
                         QuestionToolbar(
                           modalCall: showCommentModal,
                           isQuestion: _isQuestion,
-                          commentsCount: _isQuestion ? null: _answer.commentsCount,
+                          commentsCount:
+                              _isQuestion ? null : _answer.commentsCount,
                         )
                       ],
                     ),
@@ -193,7 +194,10 @@ class QuestionDetailCard extends StatelessWidget {
             SizedBox(
               width: _size.width * 0.9,
               child: Align(
-                alignment: Alignment(-0.9, -1),
+                alignment: Alignment(
+                  -0.9,
+                  -1,
+                ),
                 child: CircleAvatar(),
               ),
             ),
@@ -213,8 +217,9 @@ class QuestionDetailCard extends StatelessWidget {
           topRight: Radius.circular(15),
         ),
       ),
-      builder: (context) =>
-          CommentModal(comments: question.answers[index - 1].comments),
+      builder: (context) => CommentModal(
+        comments: question.answers[index - 1].comments,
+      ),
     );
   }
 }

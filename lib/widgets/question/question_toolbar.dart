@@ -73,7 +73,7 @@ class QuestionToolbarOption extends StatelessWidget {
   final iconColor;
   final text;
   final function;
-  final _size = 15.0;
+  final _size = 14.0;
 
   const QuestionToolbarOption({
     Key key,

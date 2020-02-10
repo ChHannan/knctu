@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.grey[50],
+        systemNavigationBarColor: Colors.white,
         statusBarColor: Colors.blue,
       ),
     );
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
-        '/home': (context) => HomeScreen()
+        '/home': (context) => HomeScreen(),
       },
     );
   }

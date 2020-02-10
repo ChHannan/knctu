@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:knctu/api/api.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/question_detail_card.dart';
@@ -9,19 +8,26 @@ import 'package:knctu/widgets/question/question_detail_card.dart';
 class QuestionDetailScreen extends StatelessWidget {
   final Question question;
 
-  const QuestionDetailScreen({Key key, @required this.question})
-      : super(key: key);
+  const QuestionDetailScreen({
+    Key key,
+    @required this.question,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: subscribe({'model': 'forum.question', 'id': question.id}),
+          stream: subscribe(
+            {'model': 'forum.question', 'id': question.id},
+          ),
           builder: (context, snapshot) {
             if (snapshot.hasData && !snapshot.hasError) {
               final data = jsonDecode(snapshot.data);
               if (data['type'] == 'UPDATE_QUESTION') {
-                return _getColumn(Question.fromJson(data['payload']), context);
+                return _getColumn(
+                  Question.fromJson(data['payload']),
+                  context,
+                );
               }
             }
             return _getColumn(question, context);
