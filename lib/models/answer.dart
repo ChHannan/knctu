@@ -13,10 +13,14 @@ class Answer {
   @JsonKey(name: 'created_at')
   DateTime createdAt;
 
+  @JsonKey(name: 'comments_count')
+  int commentsCount;
+
   List<Comment> comments;
   User user;
 
-  Answer(this.id, this.text, this.createdAt, this.comments, this.user);
+  Answer(this.id, this.text, this.createdAt, this.comments, this.user,
+      this.commentsCount);
 
   factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
 

@@ -135,6 +135,7 @@ class QuestionDetailCard extends StatelessWidget {
                         QuestionToolbar(
                           modalCall: showCommentModal,
                           isQuestion: _isQuestion,
+                          commentsCount: _isQuestion ? null: _answer.commentsCount,
                         )
                       ],
                     ),

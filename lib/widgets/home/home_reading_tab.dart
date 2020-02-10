@@ -10,7 +10,10 @@ class HomeReadingTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(itemBuilder: (context, index) {
-      return QuestionAnswer(question: questions[index]);
+      if (questions[index].answers.length != 0) {
+        return QuestionAnswer(question: questions[index]);
+      }
+      return Container();
     }, itemCount: questions.length);
   }
 }
