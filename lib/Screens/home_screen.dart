@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
 import 'package:knctu/api/api.dart';
+
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/header/custom_header.dart';
 import 'package:knctu/widgets/home/question_answer.dart';
@@ -11,6 +13,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(title: Text('knctU'), actions: <Widget>[
+        Icon(Icons.search)
+      ],),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
@@ -78,17 +83,14 @@ class CustomAppBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: CustomHeader(),
-    );
+    return CustomHeader();
   }
 
   @override
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => 70;
+  double get minExtent => 0;
 
   @override
   bool shouldRebuild(CustomAppBar oldDelegate) {

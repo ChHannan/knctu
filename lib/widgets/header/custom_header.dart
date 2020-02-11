@@ -25,10 +25,6 @@ class _CustomHeaderState extends State<CustomHeader> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: HeaderBar(),
-          ),
-          Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
               'Top picks for you',
