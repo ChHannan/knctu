@@ -31,7 +31,7 @@ class _CustomHeaderState extends State<CustomHeader> {
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
-              'Top picks for you',
+              'Trending',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -53,9 +53,15 @@ class _CustomHeaderState extends State<CustomHeader> {
                 });
               },
               items: <Widget>[
-                const TrendingBox(),
-                const TrendingBox(),
-                const TrendingBox(),
+                const TrendingBox(
+                  tagName: 'Nust',
+                ),
+                const TrendingBox(
+                  tagName: 'Giki',
+                ),
+                const TrendingBox(
+                  tagName: 'Uet',
+                ),
               ],
             ),
           ),

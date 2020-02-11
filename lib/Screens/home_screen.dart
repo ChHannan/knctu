@@ -26,10 +26,10 @@ class HomeScreen extends StatelessWidget {
                 5,
               ),
               child: Text(
-                'Recommended',
+                'Top picks for you',
                 style: TextStyle(
-                  fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w500,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -39,15 +39,18 @@ class HomeScreen extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var questions = List<Question>();
-
                 for (var data in jsonDecode(snapshot.data.body)) {
                   questions.add(Question.fromJson(data));
                 }
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) => QuestionAnswer(
-                      question: questions[index],
-                    ),
+                    (context, index) {
+                      return questions[index].answers.length != 0
+                          ? QuestionAnswer(
+                              question: questions[index],
+                            )
+                          : Container();
+                    },
                     childCount: questions.length,
                   ),
                 );
