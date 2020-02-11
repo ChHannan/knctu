@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:knctu/api/api.dart';
+
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/login_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
@@ -15,6 +18,7 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.blue,
       ),
     );
+    openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SignUpScreen(),

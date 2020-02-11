@@ -12,10 +12,15 @@ const String _contentType = 'application/json';
 
 void setToken(String token) => _rawToken = token;
 
+IOWebSocketChannel subscribeChannel;
+
+void openConnection() {
+  subscribeChannel = IOWebSocketChannel.connect('$wsURL?authorization=$_rawToken');
+}
+
 Stream subscribe(data) {
-  final channel = IOWebSocketChannel.connect('$wsURL?authorization=$_rawToken');
-  channel.sink.add(jsonEncode(data));
-  return channel.stream;
+  subscribeChannel.sink.add(jsonEncode(data));
+  return subscribeChannel.stream;
 }
 
 Future<http.Response> getQuestions() {
@@ -33,6 +38,13 @@ Future<http.Response> login(email, pass) {
 
 Future<http.Response> getUser() {
   return http.get('${apiUrl}user/', headers: {
+    HttpHeaders.authorizationHeader: _token,
+    HttpHeaders.contentTypeHeader: _contentType
+  });
+}
+
+Future<http.Response> getChatRooms() {
+  return http.get('${apiUrl}api/chat/room/', headers: {
     HttpHeaders.authorizationHeader: _token,
     HttpHeaders.contentTypeHeader: _contentType
   });

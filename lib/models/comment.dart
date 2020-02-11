@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:knctu/models/user.dart';
 import 'package:knctu/models/reply.dart';
 
