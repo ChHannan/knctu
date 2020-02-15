@@ -6,6 +6,7 @@ import 'package:knctu/api/api.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/login_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
+
 import 'package:knctu/Screens/profile_screen.dart';
 
 
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
         '/home': (context) => ProfileScreen(),
+        '/home': (context) => HomeScreen(),
+
       },
     );
   }

@@ -104,14 +104,14 @@ class QuestionAnswer extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, bottom: 3),
-              child: question.answers.length > 0
-                  ? Text(
-                      question.answers[0].text.length > 107
-                          ? question.answers[0].text.substring(0, 107) + '...'
-                          : question.answers[0].text,
-                      style: TextStyle(fontSize: 16),
-                    )
-                  : Text('No Answer'),
+              child: Text(
+                question.answers[0].text.length > 107
+                    ? question.answers[0].text.substring(0, 107) + '...'
+                    : question.answers[0].text,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,8 +142,8 @@ class QuestionAnswer extends StatelessWidget {
   List<Widget> _getTags() {
     List<Widget> _tagWidgets = List();
     for (int counter = 0;
-        counter < (tags.length > 3 ? 3 : tags.length);
-        counter++) {
+    counter < (tags.length > 3 ? 3 : tags.length);
+    counter++) {
       _tagWidgets.add(
         Text(
           counter == 0 ? tags[counter] : ' · ${tags[counter]}',

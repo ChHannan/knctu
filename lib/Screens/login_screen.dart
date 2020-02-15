@@ -1,332 +1,142 @@
-import 'package:flutter/material.dart';
-import 'package:knctu/Animation/FadeAnimation.dart';
+import 'dart:convert';
 
-class LoginScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:knctu/api/api.dart';
+import 'package:knctu/models/user.dart';
+
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
-    /*   final Shader linearGradient = LinearGradient(
-  colors: <Color>[
-                                Color.fromRGBO(11, 108, 173, .9),
-                                Color.fromRGBO(11, 108, 173, .2),],
-).createShader(Rect.fromLTWH(30.0, 300.0, 200.0, 0.0));
-*/
     final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+    //final deviceWidth = MediaQuery.of(context).size.width;
+    return SafeArea(
       child: Scaffold(
-          //  resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
-          body: Container(
-            child: ListView(
+        body: Builder(
+          builder: (context) => SingleChildScrollView(
+            child: Column(
               children: <Widget>[
-                FadeAnimation(
-                  1.0,
-                  Container(
-                    height: deviceHeight * 0.48,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/blue-white.jpg',
+                Container(
+                  height: deviceHeight * 0.30,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        'knctU',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
                         ),
-                        fit: BoxFit.fill,
                       ),
-                    ),
-                    child: Stack(
+                      Text(
+                        'Welcome',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: deviceHeight * 0.65,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 0.165 * deviceWidth, /* 60.0,*/
-                          ),
-                          child: FadeAnimation(
-                            1.3,
-                            Container(
-                              padding: EdgeInsets.all(deviceHeight * 0.0085),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Color.fromRGBO(
-                                      11,
-                                      108,
-                                      173,
-                                      .4,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  "KnctU",
-                                  style: TextStyle(
-                                    fontSize: deviceHeight * 0.04 /*35.0*/,
-                                    color: Color.fromRGBO(
-                                      11,
-                                      108,
-                                      173,
-                                      .6,
-                                    ),
-                                    //  foreground: Paint()..shader = linearGradient,
-                                  ),
-                                ),
-                              ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            validator: (value) => validEmail(value),
+                            decoration: InputDecoration(
+                              labelText: 'Email',
                             ),
+                            keyboardType: TextInputType.emailAddress,
+                            onSaved: (value) => email = value,
                           ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            validator: (value) => validPassword(value),
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                            ),
+                            obscureText: true,
+                            onSaved: (value) => password = value,
+                          ),
+                        ),
+                        FlatButton(
+                          child: Text(
+                            'Log in',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Colors.blue,
+                          onPressed: () async {
+                            final FormState form = _formKey.currentState;
+                            if (form.validate()) {
+                              form.save();
+                              if (await loginProcess(email, password)) {
+                                Navigator.pushReplacementNamed(
+                                    context, '/home');
+                              } else {
+                                Scaffold.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Please provide valid credenrials',
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(
-                    deviceHeight * 0.035, /*30.0*/
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      FadeAnimation(
-                        1.6,
-                        Container(
-                          padding: EdgeInsets.all(
-                            deviceHeight * 0.0065, /*5.0*/
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.017, /*10.0*/
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .3,
-                                ),
-                                blurRadius: 20.0,
-                                offset: Offset(
-                                  2,
-                                  10,
-                                ),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(
-                                  deviceHeight * 0.01,
-                                ),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.grey[200],
-                                    ),
-                                  ),
-                                ),
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Enter username",
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey[300],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(deviceHeight * 0.01),
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Enter password",
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey[300],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: deviceHeight * 0.03),
-                      FadeAnimation(
-                        1.9,
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(context, '/home');
-                          },
-                          child: Container(
-                            height: deviceHeight * 0.06,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                deviceHeight * 0.015,
-                              ),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(
-                                    11,
-                                    108,
-                                    173,
-                                    .2,
-                                  ),
-                                  Color.fromRGBO(
-                                    11,
-                                    108,
-                                    173,
-                                    .9,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: deviceHeight * 0.0065,
-                      ),
-                      FadeAnimation(
-                        2.1,
-                        Container(
-                          height: deviceHeight * 0.06,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.015,
-                            ),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .2,
-                                ),
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .7,
-                                ),
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: deviceHeight * 0.025,
-                      ),
-                      FadeAnimation(
-                        2.3,
-                        Text(
-                          "Forgot password?",
-                          style: TextStyle(
-                            color: Color.fromRGBO(
-                              11,
-                              108,
-                              173,
-                              .5,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
-          )
-
-          /* child: Scaffold (
-          body: SingleChildScrollView (
-            child: Column (
-              children: <Widget>[
-                Container (
-                  height: deviceHeight * 0.30 ,
-                  child: Column (
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
-                    children: <Widget>[
-                      Text (
-                        'knctU' ,
-                        style:
-                        TextStyle (
-                            fontSize: 40 , fontWeight: FontWeight.bold) ,
-                      ) ,
-                      Text (
-                        'Welcome' ,
-                        style: TextStyle (
-                            fontSize: 20) ,
-                      ) ,
-                    ] ,
-                  ) ,
-                ) ,
-                Container (
-                  height: deviceHeight * 0.65 ,
-                  child: Form (
-                    child: Column (
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
-                      children: <Widget>[
-                        Padding (
-                          padding: const EdgeInsets.all(
-                              8.0) ,
-                          child: TextFormField (
-                            decoration: InputDecoration (
-                                labelText: 'Email') ,
-                            keyboardType: TextInputType.emailAddress ,
-                          ) ,
-                        ) ,
-                        Padding (
-                          padding: const EdgeInsets.all(
-                              8.0) ,
-                          child: TextFormField (
-                            decoration: InputDecoration (
-                                labelText: 'Password') ,
-                            obscureText: true ,
-                          ) ,
-                        ) ,
-                        FlatButton (
-                          child: Text (
-                            'Login' ,
-                            style: TextStyle (
-                                color: Colors.white) ,
-                          ) ,
-                          color: Colors.blue ,
-                          onPressed: () {
-                            Navigator.push (
-                              context ,
-                              MaterialPageRoute (
-                                builder: (context) => HomeScreen() ,
-                              ) ,
-                            );
-                          } ,
-                        )
-                      ] ,
-                    ) ,
-                  ) ,
-                ) ,
-              ] ,
-            ) ,
-          ) ,
-        ) ,*/
-
           ),
+        ),
+      ),
     );
+  }
+
+  String validEmail(String input) {
+    final RegExp regex = new RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@"
+    r"[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:"
+    r"[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
+    return regex.hasMatch(input) ? null : 'Please enter a valid email address';
+  }
+
+  String validPassword(String input) {
+    if (input.length < 5) {
+      return 'Password should have at least 5 characters';
+    } else if (input.length > 20) {
+      return 'Password cannot exceed 20 characters';
+    } else {
+      return null;
+    }
+  }
+
+  Future<bool> loginProcess(String email, String password) async {
+    var _token = await login(email, password);
+    if (_token.statusCode == 200) {
+      setToken(jsonDecode(_token.body)['token']);
+      var _user = await getUser();
+      if (_user.statusCode == 200) {
+        var _userData = User.fromJson(jsonDecode(_user.body));
+        print(_userData.name);
+        return true;
+      }
+    }
+    return false;
   }
 }

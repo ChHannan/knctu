@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TrendingBox extends StatelessWidget {
+  final String tagName;
   const TrendingBox({
     Key key,
+    this.tagName,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class TrendingBox extends StatelessWidget {
         children: <Widget>[
           Text(
             'Lorem ipsum dolor sit amet, consectetur adip '
-            'elit sed do eiusmod temp?',
+                'elit sed do eiusmod temp?',
             style: TextStyle(fontSize: 16),
           ),
           Row(
@@ -62,6 +64,7 @@ class TrendingBox extends StatelessWidget {
                 ),
               ),
               Container(
+                width: 60,
                 padding: EdgeInsets.all(5.0),
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -71,11 +74,13 @@ class TrendingBox extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Text(
-                  'Trending',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
+                child: Center(
+                  child: Text(
+                    '$tagName',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ),

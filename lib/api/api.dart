@@ -33,13 +33,11 @@ Future<http.Response> getQuestions() {
 Future<http.Response> login(email, pass) {
   return http.post('${apiUrl}token/',
       body: jsonEncode({'email': email, 'password': pass}),
-      headers: {
-        HttpHeaders.contentTypeHeader: _contentType
-      });
+      headers: {HttpHeaders.contentTypeHeader: _contentType});
 }
 
 Future<http.Response> getUser() {
-  return http.get('${apiUrl}api/user/', headers: {
+  return http.get('${apiUrl}user/', headers: {
     HttpHeaders.authorizationHeader: _token,
     HttpHeaders.contentTypeHeader: _contentType
   });

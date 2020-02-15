@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:knctu/knct_u_icons.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return LayoutBuilder(builder: (context, constraints)
     {
       return Scaffold(
