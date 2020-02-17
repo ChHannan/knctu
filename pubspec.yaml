@@ -56,6 +56,9 @@ flutter:
     - family: KnctU
       fonts:
         - asset: Icons/KnctU.ttf
+    - family: KnctUU
+      fonts:
+          - asset: Icons/KnctUU.ttf
 
   #assets:
 

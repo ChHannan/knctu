@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Scaffold.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Please provide valid credenrials',
+                                      'Please provide valid credentials',
                                     ),
                                   ),
                                 );
