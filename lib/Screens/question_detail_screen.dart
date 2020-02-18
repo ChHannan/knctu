@@ -17,21 +17,22 @@ class QuestionDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: subscribe(
-            {'model': 'forum.question', 'id': question.id},
-          ),
-          builder: (context, snapshot) {
-            if (snapshot.hasData && !snapshot.hasError) {
-              final data = jsonDecode(snapshot.data);
-              if (data['type'] == 'UPDATE_QUESTION') {
-                return _getColumn(
-                  Question.fromJson(data['payload']),
-                  context,
-                );
-              }
+        stream: subscribe(
+          {'model': 'forum.question', 'id': question.id},
+        ),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && !snapshot.hasError) {
+            final data = jsonDecode(snapshot.data);
+            if (data['type'] == 'UPDATE_QUESTION') {
+              return _getColumn(
+                Question.fromJson(data['payload']),
+                context,
+              );
             }
-            return _getColumn(question, context);
-          }),
+          }
+          return _getColumn(question, context);
+        },
+      ),
     );
   }
 

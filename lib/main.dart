@@ -9,6 +9,7 @@ import 'package:knctu/Screens/signup_screen.dart';
 
 import 'package:knctu/Screens/profile_screen.dart';
 
+import 'Screens/screen_controller.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,13 +25,12 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
+      home: ScreenController(),
       routes: <String, WidgetBuilder>{
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
-        '/home': (context) => ProfileScreen(),
+        '/profile': (context) => ProfileScreen(),
         '/home': (context) => HomeScreen(),
-
       },
     );
   }

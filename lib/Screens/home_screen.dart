@@ -13,9 +13,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(title: Text('knctU'), actions: <Widget>[
-        Icon(Icons.search)
-      ],),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverPersistentHeader(
@@ -49,11 +46,11 @@ class HomeScreen extends StatelessWidget {
                 }
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                    (context, index) {
                       return questions[index].answers.length != 0
                           ? QuestionAnswer(
-                        question: questions[index],
-                      )
+                              question: questions[index],
+                            )
                           : Container();
                     },
                     childCount: questions.length,
@@ -86,14 +83,17 @@ class CustomAppBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return CustomHeader();
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: CustomHeader(),
+    );
   }
 
   @override
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => 0;
+  double get minExtent => 70;
 
   @override
   bool shouldRebuild(CustomAppBar oldDelegate) {

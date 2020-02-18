@@ -23,7 +23,10 @@ class DrawerAction extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(actionIcon),
+          Icon(
+            actionIcon,
+            color: Colors.blue,
+          ),
           Text(
             actionText,
             style: TextStyle(fontSize: 10),
