@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class DrawerAction extends StatelessWidget {
   final IconData actionIcon;
   final String actionText;
+  final size;
 
   const DrawerAction({
     @required this.actionIcon,
-    @required this.actionText,
+    @required this.actionText, this.size = 30.0,
   });
 
   @override
@@ -17,7 +18,7 @@ class DrawerAction extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
-          Radius.circular(8.0),
+          Radius.circular(50),
         ),
       ),
       child: Column(
@@ -25,12 +26,9 @@ class DrawerAction extends StatelessWidget {
         children: <Widget>[
           Icon(
             actionIcon,
+            size: size,
             color: Colors.blue,
           ),
-          Text(
-            actionText,
-            style: TextStyle(fontSize: 10),
-          )
         ],
       ),
     );

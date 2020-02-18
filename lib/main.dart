@@ -25,8 +25,9 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ScreenController(),
+      home: LoginScreen(),
       routes: <String, WidgetBuilder>{
+        '/screencontroller': (context) => ScreenController(),
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
         '/profile': (context) => ProfileScreen(),
