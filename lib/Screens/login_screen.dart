@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        //  resizeToAvoidBottomInset: false,
+          //  resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
           body: Container(
             child: ListView(
@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
                         1.9,
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, '/screencontroller');
+                            Navigator.pushNamed(context, '/tagsScreen');
                           },
                           child: Container(
                             height: deviceHeight * 0.06,
@@ -254,7 +254,7 @@ class LoginScreen extends StatelessWidget {
             ),
           )
 
-        /* child: Scaffold (
+          /* child: Scaffold (
           body: SingleChildScrollView (
             child: Column (
               children: <Widget>[
@@ -326,7 +326,7 @@ class LoginScreen extends StatelessWidget {
           ) ,
         ) ,*/
 
-      ),
+          ),
     );
   }
 }

@@ -71,6 +71,24 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Select tags'),
+          actions: <Widget>[
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/screenController');
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Text(
+                    'Next',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         body: Column(
           children: <Widget>[
@@ -91,44 +109,49 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
                 ],
               ),
             ),
-            _selectedTags.length == 0 ? Container() : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Align(
-                child: Text(
-                  'SELECTED',
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
-                alignment: Alignment.centerLeft,
-              ),
-            ),
-            _selectedTags.length == 0 ? Container() : Container(
-              child: Tags(
-                key: _tagStateKey,
-                columns: 3,
-                runSpacing: 10,
-                itemCount: _selectedTags.length,
-                itemBuilder: (index) {
-                  return ItemTags(
-                    key: Key(index.toString()),
-                    index: index,
-                    title: _selectedTags[index]['name'],
-                    removeButton: ItemTagsRemoveButton(),
-                    activeColor: Colors.blue,
-                    pressEnabled: false,
-                    onRemoved: () {
-                      setState(() {
-                        _selectedTags[index]['isChecked'] = false;
-                        _tags.add(_selectedTags[index]);
-                        _selectedTags.removeAt(index);
-                      });
-                    },
-                  );
-                },
-              ),
-            ),
+            _selectedTags.length == 0
+                ? Container()
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Align(
+                      child: Text(
+                        'SELECTED',
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      alignment: Alignment.centerLeft,
+                    ),
+                  ),
+            _selectedTags.length == 0
+                ? Container()
+                : Container(
+                    child: Tags(
+                      key: _tagStateKey,
+                      columns: 3,
+                      runSpacing: 10,
+                      itemCount: _selectedTags.length,
+                      itemBuilder: (index) {
+                        return ItemTags(
+                          key: Key(index.toString()),
+                          index: index,
+                          title: _selectedTags[index]['name'],
+                          removeButton: ItemTagsRemoveButton(),
+                          activeColor: Colors.blue,
+                          pressEnabled: false,
+                          onRemoved: () {
+                            setState(() {
+                              _selectedTags[index]['isChecked'] = false;
+                              _tags.add(_selectedTags[index]);
+                              _selectedTags.removeAt(index);
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Align(

@@ -13,28 +13,18 @@ class _ChatListScreenState extends State<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text(
-          'Chats',
+          'KnctU',
           style: TextStyle(
             fontSize: _width * 0.0553,
             fontWeight: FontWeight.bold,
           ),
         ),
-
-        elevation: 15.0, //elevated appbar by default
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            iconSize: _width * 0.069,
-            color: Colors.white,
-            onPressed: () {},
-          ),
-        ],
+        elevation: 0, //elevated appbar by default
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
