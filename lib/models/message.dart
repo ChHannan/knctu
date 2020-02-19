@@ -19,5 +19,9 @@ class Message {
 
   Message(this.id, this.text, this.user, this.createdAt,
       this.messageUsers);
+
+  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MessageToJson(this);
 }
 */

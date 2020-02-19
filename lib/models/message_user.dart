@@ -12,4 +12,9 @@ class MessageUser {
   bool isRead;
 
   MessageUser(this.id, this.user, this.isRead);
+
+  factory MessageUser.fromJson(Map<String, dynamic> json) => _$MessageUserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MessageUserToJson(this);
+
 }

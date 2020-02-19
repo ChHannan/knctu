@@ -9,7 +9,6 @@ import 'package:knctu/Screens/login_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
 
 import 'package:knctu/Screens/profile_screen.dart';
-import 'package:knctu/widgets/message/favorite_contacts.dart';
 
 import 'Screens/chatlist_screen.dart';
 import 'Screens/screen_controller.dart';
@@ -22,13 +21,17 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
-        statusBarColor: Colors.blue,
+        statusBarColor: Colors.black,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light
       ),
     );
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ChatListScreen(),
+
+      home: SignUpScreen(),
+
       routes: <String, WidgetBuilder>{
         '/screencontroller': (context) => ScreenController(),
         '/signup': (context) => SignUpScreen(),
