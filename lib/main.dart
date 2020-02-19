@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:knctu/Screens/walkthrough_tag_screen.dart';
 
 import 'package:knctu/api/api.dart';
 
@@ -8,6 +9,7 @@ import 'package:knctu/Screens/login_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
 
 import 'package:knctu/Screens/profile_screen.dart';
+import 'package:knctu/widgets/message/favorite_contacts.dart';
 
 
 void main() => runApp(MyApp());
@@ -24,13 +26,11 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
+      home: FavoriteContacts(),
       routes: <String, WidgetBuilder>{
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
-        '/home': (context) => ProfileScreen(),
         '/home': (context) => HomeScreen(),
-
       },
     );
   }

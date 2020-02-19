@@ -5,7 +5,7 @@ import 'package:knctu/api/api.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/question_detail_card.dart';
 
-class QuestionDetailScreen extends StatelessWidget {
+class QuestionDetailScreen extends StatefulWidget {
   final Question question;
 
   const QuestionDetailScreen({
@@ -14,12 +14,27 @@ class QuestionDetailScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _QuestionDetailScreenState createState() => _QuestionDetailScreenState();
+}
+
+class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
+
+  Stream stream;
+
+  @override
+  void initState() {
+    super.initState();
+    stream = subscribe(
+      {'model': 'forum.question', 'id': widget.question.id},
+    );
+    stream = stream.asBroadcastStream();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-          stream: subscribe(
-            {'model': 'forum.question', 'id': question.id},
-          ),
+          stream: stream,
           builder: (context, snapshot) {
             if (snapshot.hasData && !snapshot.hasError) {
               final data = jsonDecode(snapshot.data);
@@ -30,7 +45,7 @@ class QuestionDetailScreen extends StatelessWidget {
                 );
               }
             }
-            return _getColumn(question, context);
+            return _getColumn(widget.question, context);
           }),
     );
   }

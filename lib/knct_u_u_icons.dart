@@ -20,11 +20,14 @@ class KnctUU {
 
   static const _kFontFam = 'KnctUU';
 
-  static const IconData add_question = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData add_question = const IconData(
+      0xe800, fontFamily: _kFontFam);
   static const IconData email_2 = const IconData(0xe801, fontFamily: _kFontFam);
   static const IconData email_3 = const IconData(0xe802, fontFamily: _kFontFam);
   static const IconData home = const IconData(0xe803, fontFamily: _kFontFam);
   static const IconData home_3 = const IconData(0xe804, fontFamily: _kFontFam);
-  static const IconData trending = const IconData(0xe805, fontFamily: _kFontFam);
-  static const IconData trending_2 = const IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData trending = const IconData(
+      0xe805, fontFamily: _kFontFam);
+  static const IconData trending_2 = const IconData(
+      0xe806, fontFamily: _kFontFam);
 }

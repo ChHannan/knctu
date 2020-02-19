@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -15,12 +16,15 @@ void setToken(String token) => _rawToken = token;
 IOWebSocketChannel subscribeChannel;
 
 void openConnection() {
-  subscribeChannel = IOWebSocketChannel.connect('$wsURL?authorization=$_rawToken');
+  subscribeChannel =
+      IOWebSocketChannel.connect('$wsURL?authorization=$_rawToken');
 }
 
 Stream subscribe(data) {
   subscribeChannel.sink.add(jsonEncode(data));
-  return subscribeChannel.stream;
+  return subscribeChannel
+      .changeStream((Stream stream) => StreamController.broadcast().stream)
+      .stream;
 }
 
 Future<http.Response> getQuestions() {
@@ -44,7 +48,7 @@ Future<http.Response> getUser() {
 }
 
 Future<http.Response> getChatRooms() {
-  return http.get('${apiUrl}api/chat/room/', headers: {
+  return http.get('${apiUrl}chat/room/', headers: {
     HttpHeaders.authorizationHeader: _token,
     HttpHeaders.contentTypeHeader: _contentType
   });
