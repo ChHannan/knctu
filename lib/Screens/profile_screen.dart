@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:knctu/knct_u_icons.dart';
-import 'package:knctu/knct_u_u_icons.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -96,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                           FittedBox(
                             child:IconButton(
                               icon: Icon(
-                                KnctU.chat,
+                                KnctUIcon.chat,
                                 color: Colors.black,
                               ),
                               iconSize: 30,
@@ -120,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                           FittedBox(
                             child:IconButton(
                               icon: Icon(
-                                KnctU.answers,
+                                KnctUIcon.answers,
                                 color: Colors.black,
                               ),
                               iconSize: 30,
@@ -144,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                           FittedBox(
                             child:IconButton(
                                       icon: Icon(
-                                          KnctU.questions,
+                                          KnctUIcon.questions,
                                           color: Colors.black,
                                       ),
                                       iconSize: 30,
@@ -202,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
                       FittedBox(
                         child: IconButton(
                             icon: Icon(
-                              KnctU.school,
+                              KnctUIcon.education,
                               color: Colors.black,
                               size: 30,
                             ),
@@ -230,7 +229,7 @@ class ProfileScreen extends StatelessWidget {
                       FittedBox(
                         child: IconButton(
                             icon: Icon(
-                              KnctU.location,
+                              KnctUIcon.location,
                               color: Colors.black,
                               size: 30,
                             ),
@@ -258,7 +257,7 @@ class ProfileScreen extends StatelessWidget {
                       FittedBox(
                         child: IconButton(
                             icon: Icon(
-                              KnctUU.email_3,
+                              KnctUIcon.email_3,
                               color: Colors.black,
                               size: 30,
                             ),

@@ -26,11 +26,16 @@ class CustomDrawer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: AssetImage(
-                      'assets/images/customer-1.jpg',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(
+                        'assets/images/customer-1.jpg',
+                      ),
+                      radius: 24,
                     ),
-                    radius: 24,
                   ),
                 ],
               ),

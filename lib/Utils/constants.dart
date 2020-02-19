@@ -1,27 +1,27 @@
 import 'package:knctu/widgets/Drawer/drawer_action.dart';
 import 'package:knctu/knct_u_icons.dart';
-import 'package:knctu/knct_u_u_icons.dart';
 
 
 const drawerItems = [
   DrawerAction(
-    actionIcon: KnctUU.home_3,
+    actionIcon: KnctUIcon.home,
     actionText: 'Home',
+    size: 33.0
   ),
   DrawerAction(
-    actionIcon: KnctU.chat,
-    actionText: 'Message',
-  ),
-  DrawerAction(
-    actionIcon: KnctUU.trending_2,
+    actionIcon: KnctUIcon.trending_2,
     actionText: 'Feed',
   ),
   DrawerAction(
-    actionIcon: KnctU.questions,
+    actionIcon: KnctUIcon.chat,
+    actionText: 'Message',
+  ),
+  DrawerAction(
+    actionIcon: KnctUIcon.questions,
     actionText: 'Questions',
   ),
   DrawerAction(
-    actionIcon: KnctUU.add_question,
+    actionIcon: KnctUIcon.add_question,
     actionText: 'Add',
   ),
 ];
