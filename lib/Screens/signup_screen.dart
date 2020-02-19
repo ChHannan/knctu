@@ -16,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        //  resizeToAvoidBottomInset: false,
+          //  resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
           body: Container(
             child: ListView(
@@ -237,7 +237,8 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: Icon(Icons.arrow_forward, color: Colors.white),
+                                    child: Icon(Icons.arrow_forward,
+                                        color: Colors.white),
                                   )
                                 ],
                               ),
@@ -268,7 +269,7 @@ class SignUpScreen extends StatelessWidget {
             ),
           )
 
-        /* child: Scaffold (
+          /* child: Scaffold (
           body: SingleChildScrollView (
             child: Column (
               children: <Widget>[
@@ -340,7 +341,7 @@ class SignUpScreen extends StatelessWidget {
           ) ,
         ) ,*/
 
-      ),
+          ),
     );
   }
 }
