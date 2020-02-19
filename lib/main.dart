@@ -10,6 +10,7 @@ import 'package:knctu/Screens/signup_screen.dart';
 
 import 'package:knctu/Screens/profile_screen.dart';
 
+import 'Screens/chatlist_screen.dart';
 import 'Screens/screen_controller.dart';
 
 void main() => runApp(MyApp());

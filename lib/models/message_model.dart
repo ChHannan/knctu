@@ -1,12 +1,12 @@
 import 'package:knctu/models/user_model.dart';
 
-class Message {
+class Message1 {
   final User sender;
   final String time; //DateTime or Timestamp
   final String text;
   final bool unread; 
 
-Message({
+Message1({
   this.sender,
   this.time,
   this.text,
@@ -48,96 +48,96 @@ List<User> favorites = [sara,tayyab,kenna,sara,tayyab,kenna];
 
 // TEXT chat on home screen
 
-List<Message> chats= [
-  Message(
+List<Message1> chats= [
+  Message1(
     sender:kenna,
     time: '5:30 PM',
-    text: "Lorem ipsum dolor sit amet, ",
-    unread:true,
+    text: "I'll check into it, just give me some more information",
+    unread:false,
 
   ),
-  Message(
+  Message1(
     sender: sara,
     time:'4:30 PM',
-    text: 'consectetur adipiscing Ut enim ad minim veniam, qui',
+    text: "That'll be great, thankyou",
     unread:false,
   ),
-  Message(
+  Message1(
     sender: tayyab,
     time:'3:00 PM',
-    text:' elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    text:'Where did you apply?',
     unread: true,
 
 
   ),
-   Message(
+   Message1(
     sender:kenna,
     time: '3:00 PM',
-    text: "Lorem ipsum dolor sit amet, ",
-    unread:true,
+    text: "Check these links I have provided",
+    unread:false,
 
   ),
-  Message(
+  Message1(
     sender: sara,
     time:'2:30 PM',
-    text: 'consectetur adipiscing Ut enim ad minim veniam, qui',
-    unread:false,
+    text: 'okay',
+    unread:true,
   ),
-  Message(
+  /*Message1(
     sender: tayyab,
     time:'2:00 PM',
     text:' elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     unread: false,
 
 
-  )
+  )*/
 ];
 
 
 // Messages on an individual chat screen
 
-List<Message> messages = [
+List<Message1> messages = [
 
-  Message(
+ /* Message1(
     sender: currentUser,
     time:'4:30 PM',
     text: 'consectetur adipiscing Ut enim ad minim veniam, qui',
     unread:true,
-  ),
-    Message(
-    sender:kenna,
+  ),*/
+    Message1(
+    sender:currentUser,
     time: '4:30 PM',
-    text: "Lorem ipsum dolor sit amet, ",
+    text: "That'll be great, thankyou",
     unread:false,
 
   ),
-  Message(
-    sender: kenna,
-    time:'3:30 PM',
-    text:' elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  Message1(
+    sender: sara,
+    time:'3:27 PM',
+    text:"Sure, I could give you all the information you need on NUST and could refer you to a friend of mine who could guide you better related to FAST",
     unread: false,
 
 
   ),
-  Message(
+  Message1(
     sender: currentUser,
     time:'3:00 PM',
-    text:' elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    text:'Its been alright, I was wondering if you could give me some insight on the pros and cons of CS in FAST and in NUST',
     unread: false,
 
 
   ),
    
-    Message(
-    sender: kenna,
+  Message1(
+    sender: sara,
     time:'2:00 PM',
-    text: 'consectetur adipiscing Ut enim ad minim veniam, qui',
+    text: "It's been great and yours?" ,
     unread:false,
   ),
-  Message(
+  Message1(
     sender: currentUser,
     time:'2:00 PM',
-    text:' elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    text:'Hey!!! how has your day been?',
     unread: false,
 
 

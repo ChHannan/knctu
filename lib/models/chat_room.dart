@@ -1,4 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
+/*import 'package:json_annotation/json_annotation.dart';
 
 import 'package:knctu/models/user.dart';
 import 'package:knctu/models/message.dart';
@@ -16,3 +16,4 @@ class ChatRoom {
   ChatRoom(this.id, this.name, this.users, this.messages);
 }
 
+*/

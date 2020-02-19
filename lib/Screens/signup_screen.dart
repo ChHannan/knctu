@@ -248,6 +248,19 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(
                         height: deviceHeight * 0.025,
                       ),
+                      FlatButton(
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.blue,
+                        onPressed: () {
+                         Navigator.pushReplacementNamed(
+                            context,
+                            '/login',
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-
+/*
 part of 'message.dart';
 
 // **************************************************************************
@@ -30,3 +30,4 @@ Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
       'created_at': instance.createdAt?.toIso8601String(),
       'message_users': instance.messageUsers?.map((e) => e?.toJson())?.toList(),
     };
+*/

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/models/message_model.dart';
 import 'package:knctu/screens/chat_screen.dart';
 
 class RecentChats extends StatelessWidget {
@@ -15,7 +16,7 @@ class RecentChats extends StatelessWidget {
           child: ListView.builder(
             itemCount: chats.length,
             itemBuilder: (BuildContext context, int index) {
-              final Message chat = chats[index];
+              final Message1 chat = chats[index];
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,

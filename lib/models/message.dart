@@ -1,4 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
+/*import 'package:json_annotation/json_annotation.dart';
 
 import 'package:knctu/models/user.dart';
 import 'package:knctu/models/message_user.dart';
@@ -24,3 +24,4 @@ class Message {
 
   Map<String, dynamic> toJson() => _$MessageToJson(this);
 }
+*/
