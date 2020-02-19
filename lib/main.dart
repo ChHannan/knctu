@@ -28,13 +28,14 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
+      home: LoginScreen(),
       routes: <String, WidgetBuilder>{
         '/screencontroller': (context) => ScreenController(),
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
         '/profile': (context) => ProfileScreen(),
         '/home': (context) => HomeScreen(),
+        '/select_tags': (context) => WalkthroughTagScreen()
       },
     );
   }

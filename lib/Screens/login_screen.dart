@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Animation/FadeAnimation.dart';
+import 'package:knctu/knct_u_icons.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -57,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
-                                  "KnctU",
+                                  "Login to KnctU",
                                   style: TextStyle(
                                     fontSize: deviceHeight * 0.04 /*35.0*/,
                                     color: Color.fromRGBO(
@@ -126,7 +127,8 @@ class LoginScreen extends StatelessWidget {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: "Enter username",
+                                    prefixIcon: Icon(KnctUIcon.email_3),
+                                    hintText: "Enter email",
                                     hintStyle: TextStyle(
                                       color: Colors.blueGrey[300],
                                     ),
@@ -139,6 +141,7 @@ class LoginScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Enter password",
+                                    prefixIcon: Icon(Icons.lock_outline),
                                     hintStyle: TextStyle(
                                       color: Colors.blueGrey[300],
                                     ),
@@ -195,36 +198,41 @@ class LoginScreen extends StatelessWidget {
                         height: deviceHeight * 0.0065,
                       ),
                       FadeAnimation(
-                        2.1,
-                        Container(
-                          height: deviceHeight * 0.06,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.015,
+                        1.9,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
+                          child: Container(
+                            height: deviceHeight * 0.06,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                deviceHeight * 0.015,
+                              ),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromRGBO(
+                                    11,
+                                    108,
+                                    173,
+                                    .2,
+                                  ),
+                                  Color.fromRGBO(
+                                    11,
+                                    108,
+                                    173,
+                                    .9,
+                                  ),
+                                ],
+                              ),
                             ),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .2,
+                            child: Center(
+                              child: Text(
+                                'Signup',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .7,
-                                ),
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
