@@ -46,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  _buildMessage(Message message, bool isMe) {
+  _buildMessage(Message1 message, bool isMe) {
     return Container(
       margin: isMe
           ? EdgeInsets.only(
@@ -160,7 +160,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       itemCount: messages.length,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
-                        final Message message = messages[index];
+                        final Message1 message = messages[index];
                         final bool isMe = message.sender.id == currentUser.id;
                         return _buildMessage(
                           message,

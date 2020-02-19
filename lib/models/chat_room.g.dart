@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-
+/*
 part of 'chat_room.dart';
 
 // **************************************************************************
@@ -27,3 +27,4 @@ Map<String, dynamic> _$ChatRoomToJson(ChatRoom instance) => <String, dynamic>{
       'messages': instance.messages?.map((e) => e?.toJson())?.toList(),
       'users': instance.users?.map((e) => e?.toJson())?.toList(),
     };
+*/

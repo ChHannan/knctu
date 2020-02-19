@@ -1,4 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
+/*import 'package:json_annotation/json_annotation.dart';
 
 import 'package:knctu/models/user.dart';
 import 'package:knctu/models/message_user.dart';
@@ -20,3 +20,4 @@ class Message {
   Message(this.id, this.text, this.user, this.createdAt,
       this.messageUsers);
 }
+*/

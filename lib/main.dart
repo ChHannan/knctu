@@ -11,6 +11,7 @@ import 'package:knctu/Screens/signup_screen.dart';
 import 'package:knctu/Screens/profile_screen.dart';
 import 'package:knctu/widgets/message/favorite_contacts.dart';
 
+import 'Screens/chatlist_screen.dart';
 import 'Screens/screen_controller.dart';
 
 void main() => runApp(MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WalkthroughTagScreen(),
+      home: ChatListScreen(),
       routes: <String, WidgetBuilder>{
         '/screencontroller': (context) => ScreenController(),
         '/signup': (context) => SignUpScreen(),
