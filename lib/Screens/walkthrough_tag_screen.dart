@@ -96,6 +96,14 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: <Widget>[
+
+                ],
+              )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
                   Expanded(
                       child: TextFormField(
                     decoration: InputDecoration(

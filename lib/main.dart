@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:knctu/Screens/add_question.dart';
 import 'package:knctu/Screens/walkthrough_tag_screen.dart';
 
 import 'package:knctu/api/api.dart';
@@ -11,6 +10,7 @@ import 'package:knctu/Screens/signup_screen.dart';
 
 import 'package:knctu/Screens/profile_screen.dart';
 
+import 'Screens/chatlist_screen.dart';
 import 'Screens/screen_controller.dart';
 
 void main() => runApp(MyApp());
@@ -20,23 +20,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          systemNavigationBarColor: Colors.white,
-          statusBarColor: Colors.black,
-          statusBarBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.light),
+        systemNavigationBarColor: Colors.white,
+        statusBarColor: Colors.black,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light
+      ),
     );
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      home: LoginScreen(),
       routes: <String, WidgetBuilder>{
-        '/screenController': (context) => ScreenController(),
+        '/screencontroller': (context) => ScreenController(),
         '/signup': (context) => SignUpScreen(),
         '/login': (context) => LoginScreen(),
         '/profile': (context) => ProfileScreen(),
         '/home': (context) => HomeScreen(),
-        '/addQuestion': (context) => AddQuestion(),
-        '/tagsScreen': (context) => WalkthroughTagScreen(),
+        '/select_tags': (context) => WalkthroughTagScreen()
       },
     );
   }
