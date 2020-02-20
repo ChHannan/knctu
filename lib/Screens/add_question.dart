@@ -35,7 +35,7 @@ class AddQuestion extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
-              color: Colors.blue,
+              color: Color(0xFF19b7c6),
               child: Text(
                 'Add',
                 style: TextStyle(

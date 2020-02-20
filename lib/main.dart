@@ -13,19 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.white,
-        statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
         statusBarColor: Color(0xFF19b7c6),
+        systemNavigationBarColor: Colors.white,
       ),
     );
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: LoginScreen()
-      ),
+          value: SystemUiOverlayStyle.light, child: LoginScreen()),
       theme: ThemeData(
         primaryColor: Color(0xFF19b7c6),
         pageTransitionsTheme: PageTransitionsTheme(

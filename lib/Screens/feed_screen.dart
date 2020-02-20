@@ -40,7 +40,11 @@ class FeedScreen extends StatelessWidget {
             );
           }
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Color(0xFF19b7c6),
+              ),
+            ),
           );
         },
       ),

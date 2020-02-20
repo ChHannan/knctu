@@ -63,7 +63,11 @@ class HomeScreen extends StatelessWidget {
                     top: deviceHeight * 0.23,
                   ),
                   child: Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Color(0xFF19b7c6),
+                      ),
+                    ),
                   ),
                 ),
               );
