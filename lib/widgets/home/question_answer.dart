@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/models/question.dart';
+import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
 class QuestionAnswer extends StatefulWidget {
@@ -20,16 +21,19 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
+    final _size = MediaQuery
+        .of(context)
+        .size;
     return GestureDetector(
       //behavior: HitTestBehavior.translucent,
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => QuestionDetailScreen(
-              question: widget.question,
-            ),
+            builder: (context) =>
+                QuestionDetailScreen(
+                  question: widget.question,
+                ),
           ),
         );
       },
@@ -123,19 +127,28 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 QuestionToolbarOption(
-                  icon: widget.question.answers[0].hasUpvoted ? Icons.star : Icons.star_border,
-                  text: widget.question.answers[0].hasUpvoted ? 'Upvoted' : 'Upvote',
-                  iconColor: widget.question.answers[0].hasUpvoted ? Colors.amber : Colors.black38,
+                  icon: widget.question.answers[0].hasUpvoted
+                      ? Icons.star
+                      : Icons.star_border,
+                  text: widget.question.answers[0].hasUpvoted
+                      ? 'Upvoted'
+                      : 'Upvote',
+                  iconColor: widget.question.answers[0].hasUpvoted
+                      ? Colors.amber
+                      : Colors.black38,
                   function: () {
                     setState(() {
-                      widget.question.answers[0].hasUpvoted = !widget.question.answers[0].hasUpvoted;
+                      widget.question.answers[0].hasUpvoted =
+                      !widget.question.answers[0].hasUpvoted;
                     });
                   },
                 ),
                 QuestionToolbarOption(
                   icon: Icons.comment,
                   text: 'Comment',
-                  function: () {},
+                  function: () {
+                    showCommentModal(context, widget.question);
+                  },
                 ),
                 QuestionToolbarOption(
                   icon: Icons.share,
@@ -166,5 +179,22 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
       );
     }
     return _tagWidgets;
+  }
+
+  void showCommentModal(context, question) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      builder: (context) =>
+          CommentModal(
+            comments: question.answers[0].comments,
+          ),
+    );
   }
 }

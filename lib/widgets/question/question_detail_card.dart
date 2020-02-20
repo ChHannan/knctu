@@ -104,16 +104,11 @@ class QuestionDetailCard extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                         right: 5,
                                       ),
-                                      child: true
-                                          ? Icon(
+                                      child: Icon(
                                               Icons.star,
                                               size: 20,
                                               color: Colors.amber,
                                             )
-                                          : Icon(
-                                              Icons.star_border,
-                                              size: 20,
-                                            ),
                                     ),
                                     Text(
                                       Random().nextInt(500).toString(),
@@ -159,38 +154,42 @@ class QuestionDetailCard extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Padding(
-                        padding: EdgeInsets.only(
-                          top: 20,
-                          bottom: 20,
+                    : Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 20,
+                        bottom: 20,
+                      ),
+                      child: Container(
+                        width: _size.width * 0.6,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                            20,
+                          ),
                         ),
-                        child: Container(
-                          width: _size.width * 0.6,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.lightBlue,
-                            borderRadius: BorderRadius.circular(
-                              20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.edit,
+                              color: Colors.white,
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.edit,
+                            Text(
+                              '  Got Answer?',
+                              style: TextStyle(
                                 color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                '  Got Answer?',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
+                    ),
+                  ],
+                ),
               ],
             ),
             SizedBox(
