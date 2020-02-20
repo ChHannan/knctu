@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
@@ -31,9 +32,12 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
           context,
           MaterialPageRoute(
             builder: (context) =>
-                QuestionDetailScreen(
-                  question: widget.question,
-                ),
+                AnnotatedRegion<SystemUiOverlayStyle>(
+                    value: SystemUiOverlayStyle.light,
+                    child: QuestionDetailScreen(
+                      question: widget.question,
+                    )
+                )
           ),
         );
       },

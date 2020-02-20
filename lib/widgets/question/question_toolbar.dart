@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Icons/knct_u_icons.dart';
 
 class QuestionToolbar extends StatelessWidget {
   final bool isQuestion;
@@ -46,12 +47,12 @@ class QuestionToolbar extends StatelessWidget {
             ),
             isQuestion
                 ? QuestionToolbarOption(
-                    icon: Icons.edit,
+                    icon: KnctUIcon.answers,
                     text: 'Answer',
                     function: null,
                   )
                 : QuestionToolbarOption(
-                    icon: Icons.comment,
+                    icon: KnctUIcon.chat,
                     text: 'Comments',
                     function: () {
                       modalCall();

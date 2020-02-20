@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Animation/FadeAnimation.dart';
 import 'package:knctu/Icons/knct_u_icons.dart';
+import 'package:knctu/Screens/screen_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -158,10 +159,10 @@ class LoginScreen extends StatelessWidget {
                       1.9,
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            '/home',
-                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ScreenController()));
                         },
                         child: Container(
                           height: deviceHeight * 0.06,
@@ -177,12 +178,7 @@ class LoginScreen extends StatelessWidget {
                                   173,
                                   .2,
                                 ),
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .9,
-                                ),
+                                Color(0xFF19b7c6),
                               ],
                             ),
                           ),
@@ -224,12 +220,7 @@ class LoginScreen extends StatelessWidget {
                                   173,
                                   .2,
                                 ),
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .9,
-                                ),
+                                Color(0xFF19b7c6),
                               ],
                             ),
                           ),

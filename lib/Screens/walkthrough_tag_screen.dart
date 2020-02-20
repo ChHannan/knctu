@@ -69,7 +69,11 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select tags'),
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        title: Text('Select tags', style: TextStyle(color: Colors.white),),
         actions: <Widget>[
           InkWell(
             onTap: () {
@@ -87,6 +91,7 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
                   'Next',
                   style: TextStyle(
                     fontSize: 18,
+                    color: Colors.white
                   ),
                 ),
               ),

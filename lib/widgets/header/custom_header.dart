@@ -19,7 +19,7 @@ class _CustomHeaderState extends State<CustomHeader> {
         horizontal: 18,
         //vertical: 5,
       ),
-      color: Colors.blue,
+      color: Color(0xFF19b7c6),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
