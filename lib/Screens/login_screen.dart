@@ -160,9 +160,11 @@ class LoginScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScreenController()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ScreenController(),
+                            ),
+                          );
                         },
                         child: Container(
                           height: deviceHeight * 0.06,
@@ -184,7 +186,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              'Login',
+                              'LOGIN',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -226,7 +228,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              'Signup',
+                              'SIGN UP',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

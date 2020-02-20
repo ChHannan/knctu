@@ -69,11 +69,11 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(
-          color: Colors.white
+        title: Text(
+          'Select tags',
+          style: TextStyle(color: Colors.white),
         ),
-        title: Text('Select tags', style: TextStyle(color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
         actions: <Widget>[
           InkWell(
             onTap: () {
@@ -85,13 +85,14 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
               );
             },
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 13),
               child: Center(
                 child: Text(
                   'Next',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.white
+                    color: Colors.white,
                   ),
                 ),
               ),
