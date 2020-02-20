@@ -30,13 +30,14 @@ class QuestionToolbar extends StatelessWidget {
             commentsCount: commentsCount,
             shares: shares,
             views: views,
-            answers: answers),
+            answers: answers,
+            isQuestion: isQuestion),
         Container(
           color: Colors.grey.withAlpha(30),
           height: 1,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             QuestionToolbarOption(
               icon: Icons.star_border,
@@ -141,7 +142,7 @@ class InfoPanel extends StatelessWidget {
       children: <Widget>[
         Container(
           color: Colors.grey.withAlpha(30),
-          height: _noInfo ? 0 : 1,
+          height: (_noInfo || isQuestion) ? 0 : 1,
         ),
         _noInfo
             ? Container()
