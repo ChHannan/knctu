@@ -29,7 +29,7 @@ class SearchBar extends StatelessWidget {
           ),
           child: Icon(
             Icons.search,
-            color: Colors.blue,
+            color: Color(0xFF19b7c6),
           ),
         ),
       ],

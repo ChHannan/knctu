@@ -168,12 +168,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .2,
-                                ),
+                                Color(0xFFbce4ea),
                                 Color(0xFF19b7c6),
                               ],
                             ),
@@ -210,12 +205,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .2,
-                                ),
+                                Color(0xFFbce4ea),
                                 Color(0xFF19b7c6),
                               ],
                             ),
