@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class QuestionToolbar extends StatefulWidget {
+class QuestionToolbar extends StatelessWidget {
   final bool isQuestion;
   final Function modalCall;
 
@@ -22,35 +22,29 @@ class QuestionToolbar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _QuestionToolbarState createState() => _QuestionToolbarState();
-}
-
-class _QuestionToolbarState extends State<QuestionToolbar> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         InfoPanel(
-            upvotes: widget.upvotes,
-            commentsCount: widget.commentsCount,
-            shares: widget.shares,
-            views: widget.views,
-            answers: widget.answers),
+            upvotes: upvotes,
+            commentsCount: commentsCount,
+            shares: shares,
+            views: views,
+            answers: answers,
+            isQuestion: isQuestion),
         Container(
           color: Colors.grey.withAlpha(30),
           height: 1,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             QuestionToolbarOption(
               icon: Icons.star_border,
               text: 'Upvote',
-              function: () {
-                setState(() {});
-              },
+              function: null,
             ),
-            widget.isQuestion
+            isQuestion
                 ? QuestionToolbarOption(
                     icon: Icons.edit,
                     text: 'Answer',
@@ -60,7 +54,7 @@ class _QuestionToolbarState extends State<QuestionToolbar> {
                     icon: Icons.comment,
                     text: 'Comments',
                     function: () {
-                      widget.modalCall(context);
+                      modalCall(context);
                     },
                   ),
             QuestionToolbarOption(
@@ -148,7 +142,7 @@ class InfoPanel extends StatelessWidget {
       children: <Widget>[
         Container(
           color: Colors.grey.withAlpha(30),
-          height: _noInfo ? 0 : 1,
+          height: (_noInfo || isQuestion) ? 0 : 1,
         ),
         _noInfo
             ? Container()

@@ -21,12 +21,14 @@ Answer _$AnswerFromJson(Map<String, dynamic> json) {
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
     json['comments_count'] as int,
+    json['hasUpvoted'] as bool ?? false,
   );
 }
 
 Map<String, dynamic> _$AnswerToJson(Answer instance) => <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
+      'hasUpvoted': instance.hasUpvoted,
       'created_at': instance.createdAt?.toIso8601String(),
       'comments_count': instance.commentsCount,
       'comments': instance.comments?.map((e) => e?.toJson())?.toList(),

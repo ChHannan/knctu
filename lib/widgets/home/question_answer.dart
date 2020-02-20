@@ -3,14 +3,20 @@ import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
-class QuestionAnswer extends StatelessWidget {
-  final List<String> tags = const ['NUST', 'COMSATS', 'Engineering'];
+class QuestionAnswer extends StatefulWidget {
   final Question question;
 
   const QuestionAnswer({
     Key key,
     @required this.question,
   }) : super(key: key);
+
+  @override
+  _QuestionAnswerState createState() => _QuestionAnswerState();
+}
+
+class _QuestionAnswerState extends State<QuestionAnswer> {
+  final List<String> tags = const ['NUST', 'COMSATS', 'Engineering'];
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class QuestionAnswer extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => QuestionDetailScreen(
-              question: question,
+              question: widget.question,
             ),
           ),
         );
@@ -53,7 +59,7 @@ class QuestionAnswer extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 8, bottom: 8),
               child: Text(
-                question.text,
+                widget.question.text,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -78,7 +84,7 @@ class QuestionAnswer extends StatelessWidget {
                           vertical: 2.0,
                         ),
                         child: Text(
-                          question?.user?.name,
+                          widget.question?.user?.name,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -90,7 +96,7 @@ class QuestionAnswer extends StatelessWidget {
                           vertical: 2.0,
                         ),
                         child: Text(
-                          question?.user?.title,
+                          widget.question?.user?.title,
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 12,
@@ -105,9 +111,9 @@ class QuestionAnswer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8, bottom: 3),
               child: Text(
-                question.answers[0].text.length > 107
-                    ? question.answers[0].text.substring(0, 107) + '...'
-                    : question.answers[0].text,
+                widget.question.answers[0].text.length > 107
+                    ? widget.question.answers[0].text.substring(0, 107) + '...'
+                    : widget.question.answers[0].text,
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -117,9 +123,14 @@ class QuestionAnswer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 QuestionToolbarOption(
-                  icon: Icons.star_border,
-                  text: 'Upvote',
-                  function: () {},
+                  icon: widget.question.answers[0].hasUpvoted ? Icons.star : Icons.star_border,
+                  text: widget.question.answers[0].hasUpvoted ? 'Upvoted' : 'Upvote',
+                  iconColor: widget.question.answers[0].hasUpvoted ? Colors.amber : Colors.black38,
+                  function: () {
+                    setState(() {
+                      widget.question.answers[0].hasUpvoted = !widget.question.answers[0].hasUpvoted;
+                    });
+                  },
                 ),
                 QuestionToolbarOption(
                   icon: Icons.comment,

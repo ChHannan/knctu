@@ -10,6 +10,9 @@ class Answer {
   String id;
   String text;
 
+  @JsonKey(required: false, defaultValue: false)
+  bool hasUpvoted;
+
   @JsonKey(name: 'created_at')
   DateTime createdAt;
 
@@ -20,7 +23,7 @@ class Answer {
   User user;
 
   Answer(this.id, this.text, this.createdAt, this.comments, this.user,
-      this.commentsCount);
+      this.commentsCount, this.hasUpvoted);
 
   factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
 
