@@ -50,7 +50,7 @@ class TrendingBox extends StatelessWidget {
                   children: <Widget>[
                     CircleAvatar(
                       backgroundImage: AssetImage(
-                        'assets/images/default_avatar.jpg',
+                        'assets/images/Profile Avatar Final.jpg',
                       ),
                       radius: 15,
                     ),
