@@ -147,14 +147,16 @@ class CommentModalState extends State<CommentModal>
                     children: <Widget>[
                       Expanded(
                         child: TextField(
-                            textCapitalization: TextCapitalization.sentences,
-                            // To capitalize the first letter
-                            onChanged: (value) {},
-                            decoration: InputDecoration.collapsed(
-                              hintText: _tabController.index == 0
-                                  ? 'Write a comment...'
-                                  : 'Write a reply...',
-                            )),
+                          autofocus: true,
+                          textCapitalization: TextCapitalization.sentences,
+                          // To capitalize the first letter
+                          onChanged: (value) {},
+                          decoration: InputDecoration.collapsed(
+                            hintText: _tabController.index == 0
+                                ? 'Write a comment...'
+                                : 'Write a reply...',
+                          ),
+                        ),
                       ),
                       IconButton(
                         icon: Icon(Icons.add_comment),

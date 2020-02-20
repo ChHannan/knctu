@@ -18,7 +18,6 @@ class QuestionDetailScreen extends StatefulWidget {
 }
 
 class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
-
   Stream stream;
 
   @override
@@ -33,6 +32,16 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          'knctU',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: StreamBuilder(
           stream: stream,
           builder: (context, snapshot) {
@@ -52,27 +61,25 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
 
   Widget _getColumn(question, context) {
     final _size = MediaQuery.of(context).size;
-    return Column(
-      children: <Widget>[
-        // AppBar Space
-        Container(
-          color: Colors.blue,
-          height: _size.height * 0.1,
-        ),
-        Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.only(top: 10),
-            itemBuilder: (context, index) {
-              return QuestionDetailCard(
-                question: question,
-                index: index,
-                isLast: question.answers.length == index,
-              );
-            },
-            itemCount: question.answers.length + 1,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.only(top: 10),
+              itemBuilder: (context, index) {
+                return QuestionDetailCard(
+                  question: question,
+                  index: index,
+                  isLast: question.answers.length == index,
+                );
+              },
+              itemCount: question.answers.length + 1,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

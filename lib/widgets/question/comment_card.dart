@@ -161,10 +161,11 @@ class CommentCard extends StatelessWidget {
                       },
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: 8,
-                            left: size.width * 0.15,
-                            right: 8,
-                            bottom: 8),
+                          top: 8,
+                          left: size.width * 0.15,
+                          right: 8,
+                          bottom: 8,
+                        ),
                         child: Row(
                           children: <Widget>[
                             CircleAvatar(

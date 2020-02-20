@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/widgets/walkthrough/tag_grid.dart';
 import 'package:flutter_tags/tag.dart';
+import 'package:knctu/Screens/screen_controller.dart';
 
 class WalkthroughTagScreen extends StatefulWidget {
   @override
@@ -67,123 +67,159 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-
-                ],
-              )
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: TextFormField(
-                    decoration: InputDecoration(
-                        hintText: 'Search tags...',
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blueAccent),
-                          borderRadius: BorderRadius.circular(10),
-                        )),
-                  )),
-                ],
-              ),
-            ),
-            _selectedTags.length == 0 ? Container() : Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Align(
-                child: Text(
-                  'SELECTED',
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        title: Text('Select tags'),
+        actions: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => ScreenController(),
                 ),
-                alignment: Alignment.centerLeft,
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  'Next',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
               ),
             ),
-            _selectedTags.length == 0 ? Container() : Container(
-              child: Tags(
-                key: _tagStateKey,
-                columns: 3,
-                runSpacing: 10,
-                itemCount: _selectedTags.length,
-                itemBuilder: (index) {
-                  return ItemTags(
-                    key: Key(index.toString()),
-                    index: index,
-                    title: _selectedTags[index]['name'],
-                    removeButton: ItemTagsRemoveButton(),
-                    activeColor: Colors.blue,
-                    pressEnabled: false,
-                    onRemoved: () {
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              8.0,
+              20.0,
+              8.0,
+              8.0,
+            ),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Search tags...',
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueAccent),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _selectedTags.length == 0
+              ? Container()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Align(
+                    child: Text(
+                      'SELECTED',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    alignment: Alignment.centerLeft,
+                  ),
+                ),
+          _selectedTags.length == 0
+              ? Container()
+              : Container(
+                  child: Tags(
+                    key: _tagStateKey,
+                    columns: 3,
+                    runSpacing: 10,
+                    itemCount: _selectedTags.length,
+                    itemBuilder: (index) {
+                      return ItemTags(
+                        key: Key(index.toString()),
+                        index: index,
+                        title: _selectedTags[index]['name'],
+                        removeButton: ItemTagsRemoveButton(),
+                        activeColor: Colors.blue,
+                        pressEnabled: false,
+                        onRemoved: () {
+                          setState(() {
+                            _selectedTags[index]['isChecked'] = false;
+                            _tags.add(_selectedTags[index]);
+                            _selectedTags.removeAt(index);
+                          });
+                        },
+                      );
+                    },
+                  ),
+                ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            child: Align(
+              child: Text(
+                'RESULTS',
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
+              ),
+              alignment: Alignment.centerLeft,
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: _tags.length,
+                itemBuilder: (context, index) {
+                  return CheckboxListTile(
+                    title: Text(_tags[index]['name']),
+                    value: _tags[index]['isChecked'],
+                    onChanged: (value) {
                       setState(() {
-                        _selectedTags[index]['isChecked'] = false;
-                        _tags.add(_selectedTags[index]);
-                        _selectedTags.removeAt(index);
+                        value = !value;
+                        _tags[index]['isChecked'] = !value;
+                        _selectedTags.add(_tags[index]);
+                        _tags.removeAt(index);
                       });
                     },
                   );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Align(
-                child: Text(
-                  'RESULTS',
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
-                alignment: Alignment.centerLeft,
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: _tags.length,
-                  itemBuilder: (context, index) {
-                    return CheckboxListTile(
-                      title: Text(_tags[index]['name']),
-                      value: _tags[index]['isChecked'],
-                      onChanged: (value) {
-                        setState(() {
-                          value = !value;
-                          _tags[index]['isChecked'] = !value;
-                          _selectedTags.add(_tags[index]);
-                          _tags.removeAt(index);
-                        });
-                      },
-                    );
-                  }),
-            )
-          ],
-        ));
+                }),
+          )
+        ],
+      ),
+    );
   }
 
-  _getRepr(String followers) {
-    if (followers.length > 3) {
-      if (followers.length % 3 == 0) {
-        return '${followers.substring(0, 3)} K+';
-      } else if (followers.length % 2 == 0) {
-        return '${followers.substring(0, 2)} K+';
-      } else {
-        if (followers.substring(1, 2) == '0') {
-          return '${followers.substring(0, 1)} K+';
-        } else {
-          return '${followers.substring(0, 1)}.${followers.substring(1, 2)} K+';
-        }
-      }
-    } else {
-      return followers;
-    }
-  }
+//  _getRepr(String followers) {
+//    if (followers.length > 3) {
+//      if (followers.length % 3 == 0) {
+//        return '${followers.substring(0, 3)} K+';
+//      } else if (followers.length % 2 == 0) {
+//        return '${followers.substring(0, 2)} K+';
+//      } else {
+//        if (followers.substring(1, 2) == '0') {
+//          return '${followers.substring(0, 1)} K+';
+//        } else {
+//          return '${followers.substring(0, 1)}.${followers.substring(1, 2)} K+';
+//        }
+//      }
+//    } else {
+//      return followers;
+//    }
+//  }
 }

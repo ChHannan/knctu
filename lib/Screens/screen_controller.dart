@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Screens/add_question.dart';
 import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Utils/constants.dart';
 import 'package:knctu/widgets/Drawer/custom_drawer.dart';
 import 'package:knctu/widgets/Drawer/drawer_slider.dart';
+
+import 'chatlist_screen.dart';
 
 class ScreenController extends StatefulWidget {
   @override
@@ -18,10 +21,12 @@ class ScreenControllerState extends State<ScreenController> {
     switch (index) {
       case 0:
         return HomeScreen();
+      case 1:
+        return ChatListScreen();
       case 2:
         return FeedScreen();
-      case 3:
-        return FeedScreen();
+      case 4:
+        return AddQuestion();
       default:
         return HomeScreen();
     }
