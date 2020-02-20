@@ -26,7 +26,7 @@ class TrendingBox extends StatelessWidget {
         children: <Widget>[
           Text(
             'Lorem ipsum dolor sit amet, consectetur adip '
-                'elit sed do eiusmod temp?',
+            'elit sed do eiusmod temp?',
             style: TextStyle(fontSize: 16),
           ),
           Row(

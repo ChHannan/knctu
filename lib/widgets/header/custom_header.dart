@@ -24,18 +24,12 @@ class _CustomHeaderState extends State<CustomHeader> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: HeaderBar(),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Text(
-              'Trending',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
+          HeaderBar(),
+          Text(
+            'Trending',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
             ),
           ),
           Padding(

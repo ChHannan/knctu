@@ -28,7 +28,7 @@ class DrawerSliderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Color(0xFF19b7c6)
+      ..color = Color(0xFF19b7c6).withOpacity(0.7)
       ..style = PaintingStyle.fill;
 
     Path path = new Path();

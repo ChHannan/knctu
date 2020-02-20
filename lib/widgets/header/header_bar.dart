@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HeaderBar extends StatelessWidget {
@@ -10,18 +11,26 @@ class HeaderBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          'knctU',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-            color: Colors.white,
+//        Text(
+//          'knctU',
+//          style: TextStyle(
+//            fontWeight: FontWeight.bold,
+//            fontSize: 30,
+//            color: Colors.white,
+//          ),
+//        ),
+        Image(
+          image: AssetImage(
+            'assets/images/appbar.png',
           ),
+          height: 56,
+          alignment: Alignment.centerLeft,
+          //fit: BoxFit.contain,
         ),
         Icon(
           Icons.search,
           color: Colors.white,
-          size: 30,
+          size: 24,
         ),
       ],
     );

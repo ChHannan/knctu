@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/models/question.dart';
-import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
 class QuestionAnswer extends StatefulWidget {
@@ -22,22 +20,16 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery
-        .of(context)
-        .size;
+    final _size = MediaQuery.of(context).size;
     return GestureDetector(
       //behavior: HitTestBehavior.translucent,
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                AnnotatedRegion<SystemUiOverlayStyle>(
-                    value: SystemUiOverlayStyle.light,
-                    child: QuestionDetailScreen(
-                      question: widget.question,
-                    )
-                )
+            builder: (context) => QuestionDetailScreen(
+              question: widget.question,
+            ),
           ),
         );
       },
@@ -143,7 +135,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   function: () {
                     setState(() {
                       widget.question.answers[0].hasUpvoted =
-                      !widget.question.answers[0].hasUpvoted;
+                          !widget.question.answers[0].hasUpvoted;
                     });
                   },
                 ),
@@ -154,14 +146,11 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            QuestionDetailScreen(
-                              question: widget.question,
-                              isPushed: true
-                            ),
+                        builder: (context) => QuestionDetailScreen(
+                            question: widget.question, isPushed: true),
                       ),
                     );
-                    },
+                  },
                 ),
                 QuestionToolbarOption(
                   icon: Icons.share,
@@ -179,8 +168,8 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
   List<Widget> _getTags() {
     List<Widget> _tagWidgets = List();
     for (int counter = 0;
-    counter < (tags.length > 3 ? 3 : tags.length);
-    counter++) {
+        counter < (tags.length > 3 ? 3 : tags.length);
+        counter++) {
       _tagWidgets.add(
         Text(
           counter == 0 ? tags[counter] : ' · ${tags[counter]}',

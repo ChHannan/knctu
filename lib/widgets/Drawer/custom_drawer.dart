@@ -35,9 +35,10 @@ class CustomDrawer extends StatelessWidget {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
-                            border: Border.all(color: Colors.black38.withAlpha(30), width: 2.0)
-                          ),
+                              borderRadius: BorderRadius.circular(50.0),
+                              border: Border.all(
+                                  color: Colors.black38.withAlpha(30),
+                                  width: 2.0)),
                           child: CircleAvatar(
                             backgroundImage: AssetImage(
                               'assets/images/profile-avatar.jpg',

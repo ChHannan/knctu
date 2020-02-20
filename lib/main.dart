@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
       ),
       theme: ThemeData(
         primaryColor: Color(0xFF19b7c6),
-        primaryColorBrightness: Brightness.light,
         pageTransitionsTheme: PageTransitionsTheme(
           builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
