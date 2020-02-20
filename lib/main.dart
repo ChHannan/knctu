@@ -22,7 +22,10 @@ class MyApp extends StatelessWidget {
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: LoginScreen()
+      ),
       theme: ThemeData(
         primaryColor: Color(0xFF19b7c6),
         primaryColorBrightness: Brightness.light,

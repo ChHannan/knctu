@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:knctu/Screens/add_question.dart';
 import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
@@ -64,25 +65,28 @@ class ScreenControllerState extends State<ScreenController> {
         deviceHeight: deviceHeight,
         drawerOptions: drawerOptions,
       ),
-      body: Builder(
-        builder: (context) => Stack(
-          children: <Widget>[
-            _getScreen(_screenIndex),
-            Positioned(
-              right: 0,
-              top: deviceHeight * 0.7,
-              child: GestureDetector(
-                onTap: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-                child: DrawerSlider(
-                  deviceHeight: deviceHeight,
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: Builder(
+            builder: (context) => Stack(
+              children: <Widget>[
+                _getScreen(_screenIndex),
+                Positioned(
+                  right: 0,
+                  top: deviceHeight * 0.7,
+                  child: GestureDetector(
+                    onTap: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                    child: DrawerSlider(
+                      deviceHeight: deviceHeight,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+      )
+      );
   }
 }

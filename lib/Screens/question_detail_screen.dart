@@ -34,7 +34,10 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
         title: Text(
           'knctU',
           style: TextStyle(

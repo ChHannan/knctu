@@ -13,8 +13,8 @@ class DrawerAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 50,
+      height: 55,
+      width: 55,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
@@ -34,15 +34,21 @@ class DrawerAction extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50.0),
-                border: Border.all(color: Colors.black38.withAlpha(30), width: 2.0),
+              borderRadius: BorderRadius.circular(50.0),
+              border: Border.all(color: Colors.white, width: 2.0),
             ),
-            height: 50,
-            child: Center(
-              child: Icon(
-                actionIcon,
-                size: size,
-                color: Color(0xFF19b7c6),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50.0),
+                  border: Border.all(color: Color(0xFF19b7c6), width: 2.0),
+              ),
+              height: 50,
+              child: Center(
+                child: Icon(
+                  actionIcon,
+                  size: size,
+                  color: Color(0xFF19b7c6),
+                ),
               ),
             ),
           ),

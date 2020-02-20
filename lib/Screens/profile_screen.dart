@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           height: constraints.maxHeight * 0.125,
-                          decoration: BoxDecoration(color: Colors.blue),
+                          decoration: BoxDecoration(color: Color(0xff19b7c6)),
                         ),
                         Align(
                           alignment: Alignment.center,
