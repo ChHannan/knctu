@@ -6,12 +6,6 @@ import 'package:knctu/Screens/screen_controller.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    /*   final Shader linearGradient = LinearGradient(
-  colors: <Color>[
-                                Color.fromRGBO(11, 108, 173, .9),
-                                Color.fromRGBO(11, 108, 173, .2),],
-).createShader(Rect.fromLTWH(30.0, 300.0, 200.0, 0.0));
-*/
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return GestureDetector(

@@ -6,12 +6,13 @@ class AddQuestion extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'KnctU',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
+        title: Image(
+          image: AssetImage(
+            'assets/images/appbar.png',
           ),
+          height: 60,
+          alignment: Alignment.centerLeft,
+          //fit: BoxFit.contain,
         ),
         elevation: 0,
       ),
