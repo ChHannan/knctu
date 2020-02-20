@@ -57,6 +57,17 @@ flutter:
     - family: KnctUIcon
       fonts:
         - asset: fonts/KnctUIcons.ttf
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+    - family: Roboto Bold
+      fonts:
+        - asset: fonts/Roboto-Bold.ttf
+        - weight: 700
+    - family: Roboto Thin
+      fonts:
+        - asset: fonts/Roboto-Thin.ttf
+        - weight: 100
 
   #assets:
 
