@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Screens/add_question.dart';
-import 'package:knctu/Screens/chat_screen.dart';
 import 'package:knctu/Screens/feed_screen.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Utils/constants.dart';

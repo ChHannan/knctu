@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class QuestionToolbar extends StatelessWidget {
+class QuestionToolbar extends StatefulWidget {
   final bool isQuestion;
   final Function modalCall;
 
@@ -22,15 +22,20 @@ class QuestionToolbar extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _QuestionToolbarState createState() => _QuestionToolbarState();
+}
+
+class _QuestionToolbarState extends State<QuestionToolbar> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         InfoPanel(
-            upvotes: upvotes,
-            commentsCount: commentsCount,
-            shares: shares,
-            views: views,
-            answers: answers),
+            upvotes: widget.upvotes,
+            commentsCount: widget.commentsCount,
+            shares: widget.shares,
+            views: widget.views,
+            answers: widget.answers),
         Container(
           color: Colors.grey.withAlpha(30),
           height: 1,
@@ -41,9 +46,11 @@ class QuestionToolbar extends StatelessWidget {
             QuestionToolbarOption(
               icon: Icons.star_border,
               text: 'Upvote',
-              function: null,
+              function: () {
+                setState(() {});
+              },
             ),
-            isQuestion
+            widget.isQuestion
                 ? QuestionToolbarOption(
                     icon: Icons.edit,
                     text: 'Answer',
@@ -53,7 +60,7 @@ class QuestionToolbar extends StatelessWidget {
                     icon: Icons.comment,
                     text: 'Comments',
                     function: () {
-                      modalCall(context);
+                      widget.modalCall(context);
                     },
                   ),
             QuestionToolbarOption(
