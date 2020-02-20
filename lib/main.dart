@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/profile': (context) => ProfileScreen(),
         '/home': (context) => HomeScreen(),
-        '/select_tags': (context) => WalkthroughTagScreen()
       },
     );
   }
