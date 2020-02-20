@@ -54,7 +54,7 @@ class QuestionToolbar extends StatelessWidget {
                     icon: Icons.comment,
                     text: 'Comments',
                     function: () {
-                      modalCall(context);
+                      modalCall();
                     },
                   ),
             QuestionToolbarOption(

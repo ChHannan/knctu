@@ -26,6 +26,7 @@ class QuestionDetailCard extends StatefulWidget {
 class _QuestionDetailCardState extends State<QuestionDetailCard> {
 
   bool isPushed = false;
+  String upvotes = Random().nextInt(500).toString();
 
   @override
   void initState() {
@@ -131,7 +132,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                                             )
                                     ),
                                     Text(
-                                      Random().nextInt(500).toString(),
+                                      upvotes,
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.grey,
@@ -240,6 +241,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
       ),
       builder: (context) => CommentModal(
         comments: widget.question.answers[widget.index - 1].comments,
+        upvotes: upvotes,
       ),
     );
   }

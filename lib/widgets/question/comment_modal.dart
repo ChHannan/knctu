@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Icons/knct_u_icons.dart';
 import 'package:knctu/models/comment.dart';
 import 'package:knctu/widgets/question/comment_card.dart';
 
 class CommentModal extends StatefulWidget {
   final List<Comment> comments;
+  final String upvotes;
 
   const CommentModal({
     Key key,
-    this.comments,
+    this.comments, this.upvotes = '10',
   }) : super(key: key);
 
   @override
@@ -68,7 +70,7 @@ class CommentModalState extends State<CommentModal>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            '9000 Upvotes',
+                            '${widget.upvotes} Upvotes',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
@@ -159,7 +161,7 @@ class CommentModalState extends State<CommentModal>
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.add_comment),
+                        icon: Icon(KnctUIcon.answers),
                         iconSize: _size.width * 0.069,
                         color: Theme.of(context).primaryColor,
                         onPressed: () {},
