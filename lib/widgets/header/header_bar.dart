@@ -23,7 +23,7 @@ class HeaderBar extends StatelessWidget {
           image: AssetImage(
             'assets/images/appbar.png',
           ),
-          height: 56,
+          height: 60,
           alignment: Alignment.centerLeft,
           //fit: BoxFit.contain,
         ),

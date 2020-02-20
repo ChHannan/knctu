@@ -11,7 +11,8 @@ class QuestionDetailScreen extends StatefulWidget {
 
   const QuestionDetailScreen({
     Key key,
-    @required this.question, this.isPushed = false,
+    @required this.question,
+    this.isPushed = false,
   }) : super(key: key);
 
   @override
@@ -35,15 +36,14 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.light,
-        iconTheme: IconThemeData(
-          color: Colors.white
-        ),
-        title: Text(
-          'knctU',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Image(
+          image: AssetImage(
+            'assets/images/appbar.png',
           ),
+          height: 60,
+          alignment: Alignment.centerLeft,
+          //fit: BoxFit.contain,
         ),
       ),
       body: StreamBuilder(
@@ -73,11 +73,10 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
               padding: EdgeInsets.only(top: 10),
               itemBuilder: (context, index) {
                 return QuestionDetailCard(
-                  question: question,
-                  index: index,
-                  isLast: question.answers.length == index,
-                  isPushed: index == 1 ? widget.isPushed : false
-                );
+                    question: question,
+                    index: index,
+                    isLast: question.answers.length == index,
+                    isPushed: index == 1 ? widget.isPushed : false);
               },
               itemCount: question.answers.length + 1,
             ),

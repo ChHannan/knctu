@@ -16,12 +16,13 @@ class _ChatListScreenState extends State<ChatListScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: Text(
-          'KnctU',
-          style: TextStyle(
-            fontSize: _width * 0.0553,
-            fontWeight: FontWeight.bold,
+        title: Image(
+          image: AssetImage(
+            'assets/images/appbar.png',
           ),
+          height: 60,
+          alignment: Alignment.centerLeft,
+          //fit: BoxFit.contain,
         ),
         elevation: 0, //elevated appbar by default
         automaticallyImplyLeading: false,
