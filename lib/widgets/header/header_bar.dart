@@ -19,13 +19,16 @@ class HeaderBar extends StatelessWidget {
 //            color: Colors.white,
 //          ),
 //        ),
-        Image(
-          image: AssetImage(
-            'assets/images/appbar.png',
+        Container(
+          height: 60,
+          child: Image(
+            image: AssetImage(
+              'assets/images/appbar.png',
+            ),
+            height: 60,
+            alignment: Alignment.centerLeft,
+            //fit: BoxFit.contain,
           ),
-          height: 56,
-          alignment: Alignment.centerLeft,
-          //fit: BoxFit.contain,
         ),
         Icon(
           Icons.search,

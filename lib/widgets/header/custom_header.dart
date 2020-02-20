@@ -21,7 +21,7 @@ class _CustomHeaderState extends State<CustomHeader> {
       ),
       color: Color(0xFF19b7c6),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           HeaderBar(),
@@ -48,13 +48,22 @@ class _CustomHeaderState extends State<CustomHeader> {
               },
               items: <Widget>[
                 const TrendingBox(
-                  tagName: 'Nust',
+                  question: 'I want to be an entreprenuer, which field do I choose?',
+                  answer: 'Software Engineering',
+                  tagName: 'UET',
+                  name: 'Maaz Bin Tahir'
                 ),
                 const TrendingBox(
-                  tagName: 'Giki',
+                  tagName: 'GIKI',
+                  question: 'Which field is the most profitable in 2020?',
+                  answer: 'The field you are interested in.',
+                  name: 'Eesha Arif'
                 ),
                 const TrendingBox(
-                  tagName: 'Uet',
+                  tagName: 'NUST',
+                  question: 'What is the acceptance rate in NUST',
+                  answer: 'Less than 10%',
+                  name: 'Harris Amir'
                 ),
               ],
             ),
