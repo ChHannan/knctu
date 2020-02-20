@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
@@ -114,7 +116,7 @@ class QuestionDetailCard extends StatelessWidget {
                                             ),
                                     ),
                                     Text(
-                                      '10',
+                                      Random().nextInt(500).toString(),
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.grey,
