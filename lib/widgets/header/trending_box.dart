@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class TrendingBox extends StatelessWidget {
   final String tagName;
+  final String question;
+  final String answer;
+  final String name;
+
   const TrendingBox({
     Key key,
-    this.tagName,
+    this.tagName, this.question, this.answer, this.name,
   }) : super(key: key);
 
   @override
@@ -23,21 +27,18 @@ class TrendingBox extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Lorem ipsum dolor sit amet, consectetur adip '
-            'elit sed do eiusmod temp?',
+            question,
             style: TextStyle(fontSize: 16),
           ),
           Row(
             children: <Widget>[
+              Text('  '),
               Text(
-                'Answer . ',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
+                answer,
               ),
-              Text('The Internet')
             ],
           ),
           Row(
@@ -55,7 +56,7 @@ class TrendingBox extends StatelessWidget {
                       radius: 15,
                     ),
                     Text(
-                      'Lorem ipsum',
+                      name,
                       style: TextStyle(
                         color: Colors.grey,
                       ),

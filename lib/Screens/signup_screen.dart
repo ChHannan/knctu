@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        'assets/images/blue-white.jpg',
+                        'assets/images/Login Page Background.jpg',
                       ),
                       fit: BoxFit.fill,
                     ),
@@ -53,15 +53,11 @@ class SignUpScreen extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Sign up to KnctU",
+                                "Sign Up",
                                 style: TextStyle(
+                                  fontFamily: 'OpenSans Bold',
                                   fontSize: deviceHeight * 0.04,
-                                  color: Color.fromRGBO(
-                                    11,
-                                    108,
-                                    173,
-                                    .6,
-                                  ),
+                                  color: Color(0xff19b7c6),
                                 ),
                               ),
                             ),
@@ -74,7 +70,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(
-                  deviceHeight * 0.035, /*30.0*/
+                    deviceHeight * 0.035,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -87,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(
-                            deviceHeight * 0.017, /*10.0*/
+                              deviceHeight * 0.017,
                           ),
                           boxShadow: [
                             BoxShadow(
