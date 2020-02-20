@@ -17,7 +17,7 @@ class CustomDrawer extends StatelessWidget {
       painter: DrawerShape(heightPosition: deviceHeight),
       child: Container(
         width: 80,
-        color: Colors.blue,
+        color: Color(0xFF19b7c6),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -33,11 +33,17 @@ class CustomDrawer extends StatelessWidget {
                         onTap: () {
                           Navigator.pushNamed(context, '/profile');
                         },
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(
-                            'assets/images/customer-1.jpg',
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.0),
+                            border: Border.all(color: Colors.black38.withAlpha(30), width: 2.0)
                           ),
-                          radius: 24,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(
+                              'assets/images/customer-1.jpg',
+                            ),
+                            radius: 24,
+                          ),
                         ),
                       ),
                     ],

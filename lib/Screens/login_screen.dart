@@ -160,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.pushNamed(
                             context,
-                            '/tagsScreen',
+                            '/home',
                           );
                         },
                         child: Container(

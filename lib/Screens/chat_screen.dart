@@ -64,7 +64,7 @@ class _ChatScreenState extends State<ChatScreen> {
         vertical: _height * 0.02,
       ),
       decoration: BoxDecoration(
-        color: isMe ? Color(0xFFFFF9BF) : Color(0xFFFFEFEE),
+        color: isMe ? Color(0xFF464646) : Color(0xFFF0F0F0),
         borderRadius: isMe
             ? BorderRadius.only(
                 topLeft: Radius.circular(15.0),
@@ -81,7 +81,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Text(
             message.text,
             style: TextStyle(
-              color: Colors.blueGrey,
+              color: isMe ? Colors.white : Colors.black,
               fontSize: _width * 0.0373,
               fontWeight: FontWeight.w600,
             ),
@@ -119,6 +119,8 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
+        brightness: Brightness.light,
+        backgroundColor: Color(0xFF19b7c6),
           title: Text(widget.user.name,
               style: TextStyle(
                 fontSize: _width * 0.0553,
