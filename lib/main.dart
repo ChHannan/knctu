@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
-        statusBarColor: Colors.blue,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Color(0xFF19b7c6),
       ),
     );
     openConnection();
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
       theme: ThemeData(
+        primaryColor: Color(0xFF19b7c6),
+        primaryColorBrightness: Brightness.light,
         pageTransitionsTheme: PageTransitionsTheme(
           builders: {
             TargetPlatform.android: CupertinoPageTransitionsBuilder(),
