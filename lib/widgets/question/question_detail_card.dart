@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:knctu/Icons/knct_u_icons.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
@@ -59,7 +60,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                     child: Container(
                       height: 40,
                       width: 10,
-                      color: Colors.lightBlue,
+                      color: Color(0xFF19b7c6),
                     ),
                   ),
             Column(
@@ -69,7 +70,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                   margin: EdgeInsets.only(top: 4),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
-                        color: _isQuestion ? Colors.blueAccent : Colors.white,
+                        color: _isQuestion ? Color(0xFF19b7c6) : Colors.white,
                         width: 1.5),
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -171,7 +172,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                           child: Container(
                             width: 10,
                             height: 30,
-                            color: Colors.lightBlue,
+                            color: Color(0xFF19b7c6),
                           ),
                         ),
                       )
@@ -186,7 +187,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                         width: _size.width * 0.6,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlue,
+                          color: Color(0xFF19b7c6),
                           borderRadius: BorderRadius.circular(
                             20,
                           ),
@@ -195,7 +196,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(
-                              Icons.edit,
+                              KnctUIcon.answers,
                               color: Colors.white,
                             ),
                             Text(
