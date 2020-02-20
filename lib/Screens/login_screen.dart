@@ -138,6 +138,7 @@ class LoginScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(deviceHeight * 0.01),
                               child: TextField(
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Enter password",
@@ -159,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.pushNamed(
                             context,
-                            '/tagsScreen',
+                            '/home',
                           );
                         },
                         child: Container(
