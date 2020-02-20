@@ -4,7 +4,6 @@ import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/login_screen.dart';
 import 'package:knctu/Screens/profile_screen.dart';
 import 'package:knctu/Screens/signup_screen.dart';
-import 'package:knctu/Screens/walkthrough_tag_screen.dart';
 import 'package:knctu/api/api.dart';
 
 void main() => runApp(MyApp());
