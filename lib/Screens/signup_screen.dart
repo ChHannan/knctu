@@ -145,6 +145,7 @@ class SignUpScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(deviceHeight * 0.01),
                               child: TextField(
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: Icon(Icons.lock_outline),
