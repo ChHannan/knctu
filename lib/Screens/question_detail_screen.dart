@@ -7,10 +7,11 @@ import 'package:knctu/widgets/question/question_detail_card.dart';
 
 class QuestionDetailScreen extends StatefulWidget {
   final Question question;
+  final bool isPushed;
 
   const QuestionDetailScreen({
     Key key,
-    @required this.question,
+    @required this.question, this.isPushed = false,
   }) : super(key: key);
 
   @override
@@ -60,7 +61,6 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
   }
 
   Widget _getColumn(question, context) {
-    final _size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
@@ -73,6 +73,7 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
                   question: question,
                   index: index,
                   isLast: question.answers.length == index,
+                  isPushed: index == 1 ? widget.isPushed : false
                 );
               },
               itemCount: question.answers.length + 1,

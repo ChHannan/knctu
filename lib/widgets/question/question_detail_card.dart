@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -5,23 +6,42 @@ import 'package:knctu/models/question.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
-class QuestionDetailCard extends StatelessWidget {
+class QuestionDetailCard extends StatefulWidget {
   final Question question;
   final int index;
   final bool isLast;
+  final bool isPushed;
 
   const QuestionDetailCard({
     Key key,
     @required this.question,
     @required this.index,
-    @required this.isLast,
+    @required this.isLast, this.isPushed = false,
   }) : super(key: key);
+
+  @override
+  _QuestionDetailCardState createState() => _QuestionDetailCardState();
+}
+
+class _QuestionDetailCardState extends State<QuestionDetailCard> {
+
+  bool isPushed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isPushed = widget.isPushed;
+    if (isPushed) {
+      Timer(Duration(milliseconds: 300), showCommentModal);
+    }
+    isPushed = false;
+  }
 
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
-    final _isQuestion = index == 0;
-    final _answer = _isQuestion ? null : question.answers[index - 1];
+    final _isQuestion = widget.index == 0;
+    final _answer = _isQuestion ? null : widget.question.answers[widget.index - 1];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -77,7 +97,7 @@ class QuestionDetailCard extends StatelessWidget {
                                   children: <Widget>[
                                     Text(
                                       _isQuestion
-                                          ? question.user.name
+                                          ? widget.question.user.name
                                           : _answer.user.name,
                                       style: TextStyle(
                                         fontSize: 14,
@@ -86,7 +106,7 @@ class QuestionDetailCard extends StatelessWidget {
                                     ),
                                     Text(
                                       _isQuestion
-                                          ? question.user.title
+                                          ? widget.question.user.title
                                           : _answer.user.title,
                                       style: TextStyle(
                                         fontSize: 12,
@@ -126,7 +146,7 @@ class QuestionDetailCard extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            _isQuestion ? question.text : _answer.text,
+                            _isQuestion ? widget.question.text : _answer.text,
                           ),
                         ),
                         QuestionToolbar(
@@ -139,7 +159,7 @@ class QuestionDetailCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                !isLast
+                !widget.isLast
                     ? Container(
                         width: _size.width * 0.9,
                         child: Align(
@@ -208,7 +228,7 @@ class QuestionDetailCard extends StatelessWidget {
     );
   }
 
-  void showCommentModal(context) {
+  void showCommentModal() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -219,7 +239,7 @@ class QuestionDetailCard extends StatelessWidget {
         ),
       ),
       builder: (context) => CommentModal(
-        comments: question.answers[index - 1].comments,
+        comments: widget.question.answers[widget.index - 1].comments,
       ),
     );
   }

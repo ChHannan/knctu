@@ -147,8 +147,17 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   icon: Icons.comment,
                   text: 'Comment',
                   function: () {
-                    showCommentModal(context, widget.question);
-                  },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            QuestionDetailScreen(
+                              question: widget.question,
+                              isPushed: true
+                            ),
+                      ),
+                    );
+                    },
                 ),
                 QuestionToolbarOption(
                   icon: Icons.share,
@@ -179,22 +188,5 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
       );
     }
     return _tagWidgets;
-  }
-
-  void showCommentModal(context, question) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-      ),
-      builder: (context) =>
-          CommentModal(
-            comments: question.answers[0].comments,
-          ),
-    );
   }
 }
