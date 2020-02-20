@@ -69,11 +69,16 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Select tags'),
-        ),
         body: Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+
+                ],
+              )
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

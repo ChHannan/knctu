@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Animation/FadeAnimation.dart';
+import 'package:knctu/Screens/walkthrough_tag_screen.dart';
 import 'package:knctu/knct_u_icons.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -199,7 +201,7 @@ class SignUpScreen extends StatelessWidget {
                         1.9,
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/select_tags');
+                            Navigator.push(context, PageTransition(type: PageTransitionType.leftToRightWithFade, child: WalkthroughTagScreen()));
                           },
                           child: Container(
                             height: deviceHeight * 0.06,
@@ -249,19 +251,6 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(
                         height: deviceHeight * 0.025,
                       ),
-                      FlatButton(
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        color: Colors.blue,
-                        onPressed: () {
-                         Navigator.pushReplacementNamed(
-                            context,
-                            '/login',
-                          );
-                        },
-                      )
                     ],
                   ),
                 ),
