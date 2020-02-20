@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tags/tag.dart';
 import 'package:knctu/Icons/knct_u_icons.dart';
 
 class ProfileScreen extends StatelessWidget {
+
+  final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+
+  final _tags = [
+    {
+      'name': 'Software Engineering',
+      'isChecked': false,
+      'followers': 98201,
+    },
+    {
+      'name': 'NUST',
+      'isChecked': false,
+      'followers': 120829,
+    },
+    {
+      'name': 'COMSATS',
+      'isChecked': false,
+      'followers': 70102,
+    },
+    {
+      'name': 'Programming',
+      'isChecked': false,
+      'followers': 200925,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -24,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           child: CircleAvatar(
                             backgroundImage: AssetImage(
-                              'assets/images/customer-1.jpg',
+                              'assets/images/profile-avatar.jpg',
                             ),
                             radius: constraints.maxHeight * 0.075,
                           ),
@@ -41,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5.0),
                     child: FittedBox(
                       child: Text(
-                        'Bruce Wayne',
+                        'Amamr Junaid',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -52,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 5.0),
                     child: FittedBox(
-                      child: Text('Billionare Playboy',
+                      child: Text('UI/UX Designer',
                           style: TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16,
@@ -77,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                '209',
+                                '0',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22,
@@ -101,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                '209',
+                                '0',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22,
@@ -125,7 +152,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                '209',
+                                '0',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22,
@@ -145,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Container(
                 padding:
-                    EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+                EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -161,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
                       height: constraints.maxHeight * 0.004,
                       child: Container(
                         width: 36,
-                        color: Colors.blue,
+                        color: Color(0xFF19b7c6),
                       ),
                     ),
                     SizedBox(
@@ -185,7 +212,7 @@ class ProfileScreen extends StatelessWidget {
                         Container(
                           child: FittedBox(
                             child: Text(
-                              'The University of Superheroes',
+                              'SEECS, NUST',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -213,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                         Container(
                           child: FittedBox(
                             child: Text(
-                              'Gotham, United States of America',
+                              'Islamabad, Pakistan',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -241,7 +268,7 @@ class ProfileScreen extends StatelessWidget {
                         Container(
                           child: FittedBox(
                             child: Text(
-                              'bosswayne@waynecorp.bat',
+                              'ammarj@gmail.com',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -271,12 +298,30 @@ class ProfileScreen extends StatelessWidget {
                       height: constraints.maxHeight * 0.004,
                       child: Container(
                         width: 36,
-                        color: Colors.blue,
+                        color: Color(0xFF19b7c6),
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Tags(
+                  key: _tagStateKey,
+                  columns: 3,
+                  runSpacing: 10,
+                  itemCount: _tags.length,
+                  itemBuilder: (index) {
+                    return ItemTags(
+                      key: Key(index.toString()),
+                      index: index,
+                      title: _tags[index]['name'],
+                      activeColor: Color(0xFF19b7c6),
+                      pressEnabled: false,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         );

@@ -158,7 +158,7 @@ class _WalkthroughTagScreenState extends State<WalkthroughTagScreen> {
                         index: index,
                         title: _selectedTags[index]['name'],
                         removeButton: ItemTagsRemoveButton(),
-                        activeColor: Colors.blue,
+                        activeColor: Color(0xFF19bc76),
                         pressEnabled: false,
                         onRemoved: () {
                           setState(() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Icons/knct_u_icons.dart';
 import 'package:knctu/models/message_model.dart';
 import 'package:knctu/models/user_model.dart';
 
@@ -20,12 +21,6 @@ class _ChatScreenState extends State<ChatScreen> {
       color: Colors.white,
       child: Row(
         children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.photo),
-            iconSize: _width * 0.069,
-            color: Theme.of(context).primaryColor,
-            onPressed: () {},
-          ),
           Expanded(
             child: TextField(
                 textCapitalization: TextCapitalization.sentences,
@@ -36,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 )),
           ),
           IconButton(
-            icon: Icon(Icons.send),
+            icon: Icon(KnctUIcon.answers),
             iconSize: _width * 0.069,
             color: Theme.of(context).primaryColor,
             onPressed: () {},
@@ -120,11 +115,11 @@ class _ChatScreenState extends State<ChatScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         brightness: Brightness.light,
-        backgroundColor: Color(0xFF19b7c6),
           title: Text(widget.user.name,
               style: TextStyle(
                 fontSize: _width * 0.0553,
                 fontWeight: FontWeight.bold,
+                color: Colors.white
               )),
           centerTitle: true,
           elevation: 0.0,
