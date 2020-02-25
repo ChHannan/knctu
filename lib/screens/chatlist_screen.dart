@@ -16,6 +16,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
         title: Image(
           image: AssetImage(
             'assets/images/appbar.png',

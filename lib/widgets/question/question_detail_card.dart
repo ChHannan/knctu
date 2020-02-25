@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
+import 'package:knctu/icons/knctu_icons.dart';
 import 'package:knctu/models/question.dart';
+import 'package:knctu/screens/profile_screen.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
@@ -17,7 +18,8 @@ class QuestionDetailCard extends StatefulWidget {
     Key key,
     @required this.question,
     @required this.index,
-    @required this.isLast, this.isPushed = false,
+    @required this.isLast,
+    this.isPushed = false,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,6 @@ class QuestionDetailCard extends StatefulWidget {
 }
 
 class _QuestionDetailCardState extends State<QuestionDetailCard> {
-
   bool isPushed = false;
   String upvotes = Random().nextInt(500).toString();
 
@@ -43,7 +44,8 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     final _isQuestion = widget.index == 0;
-    final _answer = _isQuestion ? null : widget.question.answers[widget.index - 1];
+    final _answer =
+        _isQuestion ? null : widget.question.answers[widget.index - 1];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -94,28 +96,40 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                                 padding: const EdgeInsets.only(
                                   left: 8.0,
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      _isQuestion
-                                          ? widget.question.user.name
-                                          : _answer.user.name,
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ProfileScreen(
+                                                id: _isQuestion
+                                                    ? widget.question.user.id
+                                                    : _answer.user.id)));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        _isQuestion
+                                            ? widget.question.user.name
+                                            : _answer.user.name,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      _isQuestion
-                                          ? widget.question.user.title
-                                          : _answer.user.title,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    )
-                                  ],
+                                      Text(
+                                        _isQuestion
+                                            ? widget.question.user.title
+                                            : _answer.user.title,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -123,15 +137,14 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 5,
-                                      ),
-                                      child: Icon(
-                                              Icons.star,
-                                              size: 20,
-                                              color: Colors.amber,
-                                            )
-                                    ),
+                                        padding: const EdgeInsets.only(
+                                          right: 5,
+                                        ),
+                                        child: Icon(
+                                          Icons.star,
+                                          size: 20,
+                                          color: Colors.amber,
+                                        )),
                                     Text(
                                       upvotes,
                                       style: TextStyle(
@@ -177,51 +190,62 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                         ),
                       )
                     : Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 20,
-                        bottom: 20,
-                      ),
-                      child: Container(
-                        width: _size.width * 0.6,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF19b7c6),
-                          borderRadius: BorderRadius.circular(
-                            20,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(
-                              KnctUIcon.answers,
-                              color: Colors.white,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                              bottom: 20,
                             ),
-                            Text(
-                              '  Got Answer?',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            child: Container(
+                              width: _size.width * 0.6,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF19b7c6),
+                                borderRadius: BorderRadius.circular(
+                                  20,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    KnctUIcon.answers,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    '  Got Answer?',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
               ],
             ),
-            SizedBox(
-              width: _size.width * 0.9,
-              child: Align(
-                alignment: Alignment(
-                  -0.9,
-                  -1,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileScreen(
+                            id: _isQuestion
+                                ? widget.question.user.id
+                                : _answer.user.id)));
+              },
+              child: SizedBox(
+                width: _size.width * 0.9,
+                child: Align(
+                  alignment: Alignment(
+                    -0.9,
+                    -1,
+                  ),
+                  child: CircleAvatar(),
                 ),
-                child: CircleAvatar(),
               ),
             ),
           ],

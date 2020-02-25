@@ -1,36 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_tags/tag.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
+import 'package:knctu/api/api.dart';
+import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/models/user.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final String id;
 
-  final GlobalKey<TagsState> _tagStateKey = GlobalKey<TagsState>();
+  const ProfileScreen({Key key, @required this.id}) : super(key: key);
 
-  final _tags = [
-    {
-      'name': 'Software Engineering',
-      'isChecked': false,
-      'followers': 98201,
-    },
-    {
-      'name': 'NUST',
-      'isChecked': false,
-      'followers': 120829,
-    },
-    {
-      'name': 'COMSATS',
-      'isChecked': false,
-      'followers': 70102,
-    },
-    {
-      'name': 'Programming',
-      'isChecked': false,
-      'followers': 200925,
-    },
-  ];
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildProfile(User user) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
@@ -51,7 +31,9 @@ class ProfileScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           child: CircleAvatar(
                             backgroundImage: AssetImage(
-                              'assets/images/profile-avatar.jpg',
+                              user.avatar == null
+                                  ? 'assets/images/profile-avatar.jpg'
+                                  : NetworkImage(user.avatar),
                             ),
                             radius: constraints.maxHeight * 0.075,
                           ),
@@ -68,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 5.0),
                     child: FittedBox(
                       child: Text(
-                        'Amamr Junaid',
+                        user.name,
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -79,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 5.0),
                     child: FittedBox(
-                      child: Text('UI/UX Designer',
+                      child: Text(user.title,
                           style: TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16,
@@ -172,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Container(
                 padding:
-                EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+                    EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -268,7 +250,7 @@ class ProfileScreen extends StatelessWidget {
                         Container(
                           child: FittedBox(
                             child: Text(
-                              'ammarj@gmail.com',
+                              user.email,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -304,28 +286,25 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Tags(
-                  key: _tagStateKey,
-                  columns: 3,
-                  runSpacing: 10,
-                  itemCount: _tags.length,
-                  itemBuilder: (index) {
-                    return ItemTags(
-                      key: Key(index.toString()),
-                      index: index,
-                      title: _tags[index]['name'],
-                      activeColor: Color(0xFF19b7c6),
-                      pressEnabled: false,
-                    );
-                  },
-                ),
-              ),
             ],
           ),
         );
       },
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: getUserFromId(id),
+        builder: (context, snapshot) {
+          if (snapshot.hasData && !snapshot.hasError) {
+            return _buildProfile(User.fromJson(jsonDecode(snapshot.data.body)));
+          } else {
+            return Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+        });
   }
 }

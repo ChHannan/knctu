@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
-import 'package:knctu/Screens/screen_controller.dart';
+import 'package:knctu/animation/fade_animation.dart';
+import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/screens/walkthrough_tag_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
               FadeAnimation(
                 1.0,
                 Container(
-                  height: deviceHeight * 0.48,
+                  height: deviceHeight * 0.3,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 0.165 * deviceWidth, /* 60.0,*/
+                          horizontal: 0.165 * deviceWidth,
                         ),
                         child: FadeAnimation(
                           1.3,
@@ -53,16 +53,11 @@ class LoginScreen extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Login to KnctU",
+                                "Sign Up",
                                 style: TextStyle(
-                                  fontSize: deviceHeight * 0.04 /*35.0*/,
-                                  color: Color.fromRGBO(
-                                    11,
-                                    108,
-                                    173,
-                                    .6,
-                                  ),
-                                  //  foreground: Paint()..shader = linearGradient,
+                                  fontFamily: 'OpenSans Bold',
+                                  fontSize: deviceHeight * 0.04,
+                                  color: Color(0xff19b7c6),
                                 ),
                               ),
                             ),
@@ -75,7 +70,7 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(
-                  deviceHeight * 0.035, /*30.0*/
+                    deviceHeight * 0.035,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -83,12 +78,12 @@ class LoginScreen extends StatelessWidget {
                       1.6,
                       Container(
                         padding: EdgeInsets.all(
-                          deviceHeight * 0.0065, /*5.0*/
+                          deviceHeight * 0.0065,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(
-                            deviceHeight * 0.017, /*10.0*/
+                              deviceHeight * 0.017,
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -122,6 +117,19 @@ class LoginScreen extends StatelessWidget {
                               child: TextField(
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
+                                  prefixIcon: Icon(Icons.perm_identity),
+                                  hintText: "Enter full name",
+                                  hintStyle: TextStyle(
+                                    color: Colors.blueGrey[300],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(deviceHeight * 0.01),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   prefixIcon: Icon(KnctUIcon.email_3),
                                   hintText: "Enter email",
                                   hintStyle: TextStyle(
@@ -136,8 +144,36 @@ class LoginScreen extends StatelessWidget {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Enter password",
                                   prefixIcon: Icon(Icons.lock_outline),
+                                  hintText: "Enter password",
+                                  hintStyle: TextStyle(
+                                    color: Colors.blueGrey[300],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(deviceHeight * 0.01),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(KnctUIcon.education),
+                                  hintText: "Enter your title, e.g: Student",
+                                  hintStyle: TextStyle(
+                                    color: Colors.blueGrey[300],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(
+                                deviceHeight * 0.01,
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(KnctUIcon.location),
+                                  hintText: "Enter your institution",
                                   hintStyle: TextStyle(
                                     color: Colors.blueGrey[300],
                                   ),
@@ -149,42 +185,6 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: deviceHeight * 0.03),
-                    FadeAnimation(
-                      1.9,
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenController(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          height: deviceHeight * 0.06,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.015,
-                            ),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFbce4ea),
-                                Color(0xFF19b7c6),
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'LOGIN',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                     SizedBox(
                       height: deviceHeight * 0.0065,
                     ),
@@ -192,9 +192,12 @@ class LoginScreen extends StatelessWidget {
                       1.9,
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
+                          Navigator.push(
                             context,
-                            '/signup',
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  WalkthroughTagScreen(),
+                            ),
                           );
                         },
                         child: Container(
@@ -211,12 +214,26 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           child: Center(
-                            child: Text(
-                              'SIGN UP',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 10.0,
+                                  ),
+                                  child: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
@@ -224,20 +241,6 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: deviceHeight * 0.025,
-                    ),
-                    FadeAnimation(
-                      2.3,
-                      Text(
-                        "Forgot password?",
-                        style: TextStyle(
-                          color: Color.fromRGBO(
-                            11,
-                            108,
-                            173,
-                            .5,
-                          ),
-                        ),
-                      ),
                     ),
                   ],
                 ),

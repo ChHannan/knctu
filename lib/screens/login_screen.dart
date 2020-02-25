@@ -1,13 +1,48 @@
-import 'package:flutter/material.dart';
-import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
-import 'package:knctu/Screens/walkthrough_tag_screen.dart';
+import 'dart:convert';
 
-class SignUpScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:knctu/animation/fade_animation.dart';
+import 'package:knctu/db/db.dart';
+import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/api/api.dart';
+import 'package:knctu/models/user.dart';
+import 'package:knctu/screens/screen_controller.dart';
+import 'package:provider/provider.dart';
+
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController;
+  TextEditingController passController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+    final deviceWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    final db = Provider.of<AppDB>(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -19,7 +54,7 @@ class SignUpScreen extends StatelessWidget {
               FadeAnimation(
                 1.0,
                 Container(
-                  height: deviceHeight * 0.3,
+                  height: deviceHeight * 0.48,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
@@ -32,7 +67,7 @@ class SignUpScreen extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 0.165 * deviceWidth,
+                          horizontal: 0.165 * deviceWidth, /* 60.0,*/
                         ),
                         child: FadeAnimation(
                           1.3,
@@ -53,11 +88,16 @@ class SignUpScreen extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "Sign Up",
+                                "Welcome to KnctU",
                                 style: TextStyle(
-                                  fontFamily: 'OpenSans Bold',
-                                  fontSize: deviceHeight * 0.04,
-                                  color: Color(0xff19b7c6),
+                                  fontSize: deviceHeight * 0.04 /*35.0*/,
+                                  color: Color.fromRGBO(
+                                    11,
+                                    108,
+                                    173,
+                                    .6,
+                                  ),
+                                  //  foreground: Paint()..shader = linearGradient,
                                 ),
                               ),
                             ),
@@ -70,7 +110,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(
-                    deviceHeight * 0.035,
+                  deviceHeight * 0.035, /*30.0*/
                 ),
                 child: Column(
                   children: <Widget>[
@@ -78,12 +118,12 @@ class SignUpScreen extends StatelessWidget {
                       1.6,
                       Container(
                         padding: EdgeInsets.all(
-                          deviceHeight * 0.0065,
+                          deviceHeight * 0.0065, /*5.0*/
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.017,
+                            deviceHeight * 0.017, /*10.0*/
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -115,19 +155,7 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                               ),
                               child: TextField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Icon(Icons.perm_identity),
-                                  hintText: "Enter full name",
-                                  hintStyle: TextStyle(
-                                    color: Colors.blueGrey[300],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(deviceHeight * 0.01),
-                              child: TextField(
+                                controller: emailController,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: Icon(KnctUIcon.email_3),
@@ -141,39 +169,12 @@ class SignUpScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(deviceHeight * 0.01),
                               child: TextField(
+                                controller: passController,
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  prefixIcon: Icon(Icons.lock_outline),
                                   hintText: "Enter password",
-                                  hintStyle: TextStyle(
-                                    color: Colors.blueGrey[300],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(deviceHeight * 0.01),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Icon(KnctUIcon.education),
-                                  hintText: "Enter your title, e.g: Student",
-                                  hintStyle: TextStyle(
-                                    color: Colors.blueGrey[300],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(
-                                deviceHeight * 0.01,
-                              ),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Icon(KnctUIcon.location),
-                                  hintText: "Enter your institution",
+                                  prefixIcon: Icon(Icons.lock_outline),
                                   hintStyle: TextStyle(
                                     color: Colors.blueGrey[300],
                                   ),
@@ -185,6 +186,62 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: deviceHeight * 0.03),
+                    FadeAnimation(
+                      1.9,
+                      GestureDetector(
+                        onTap: () async {
+                          var tokenResponse = await login(
+                              emailController.text, passController.text);
+                          if (tokenResponse.statusCode == 200) {
+                            var token = jsonDecode(tokenResponse.body)['token'];
+                            setToken(token);
+                            var userResponse = await getUser();
+                            var user = User.fromJson(
+                                jsonDecode(userResponse.body));
+                            db.userDao.insertUser(
+                                UserTableData(id: user.id,
+                                    avatar: user.avatar,
+                                    token: token,
+                                    email: user.email,
+                                    name: user.name)
+                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => ScreenController()
+                            ));
+                          } else {
+                            final snackBar = SnackBar(
+                              duration: Duration(milliseconds: 800),
+                              content: Text(
+                                  'Login failed! Please check your credentials.'),
+                            );
+                            Scaffold.of(context).showSnackBar(snackBar);
+                          }
+                        },
+                        child: Container(
+                          height: deviceHeight * 0.06,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              deviceHeight * 0.015,
+                            ),
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFFbce4ea),
+                                Color(0xFF19b7c6),
+                              ],
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'LOGIN',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: deviceHeight * 0.0065,
                     ),
@@ -192,12 +249,9 @@ class SignUpScreen extends StatelessWidget {
                       1.9,
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  WalkthroughTagScreen(),
-                            ),
+                            '/signup',
                           );
                         },
                         child: Container(
@@ -214,26 +268,12 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ),
                           child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  'Next',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 10.0,
-                                  ),
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              ],
+                            child: Text(
+                              'SIGN UP',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -241,6 +281,20 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: deviceHeight * 0.025,
+                    ),
+                    FadeAnimation(
+                      2.3,
+                      Text(
+                        "Forgot password?",
+                        style: TextStyle(
+                          color: Color.fromRGBO(
+                            11,
+                            108,
+                            173,
+                            .5,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

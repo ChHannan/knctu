@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:knctu/Screens/add_question.dart';
-import 'package:knctu/Screens/feed_screen.dart';
-import 'package:knctu/Screens/home_screen.dart';
-import 'package:knctu/Utils/constants.dart';
-import 'package:knctu/widgets/Drawer/custom_drawer.dart';
-import 'package:knctu/widgets/Drawer/drawer_slider.dart';
 
-import 'chatlist_screen.dart';
+import 'package:knctu/screens/add_question.dart';
+import 'package:knctu/screens/feed_screen.dart';
+import 'package:knctu/screens/home_screen.dart';
+import 'package:knctu/screens/chatlist_screen.dart';
+
+import 'package:knctu/utils/constants.dart';
+import 'package:knctu/widgets/drawer/custom_drawer.dart';
+import 'package:knctu/widgets/drawer/drawer_slider.dart';
+
+
 
 class ScreenController extends StatefulWidget {
   @override

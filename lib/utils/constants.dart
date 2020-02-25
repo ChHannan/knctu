@@ -1,4 +1,4 @@
-import 'package:knctu/Icons/knct_u_icons.dart';
+import 'package:knctu/icons/knctu_icons.dart';
 import 'package:knctu/widgets/Drawer/drawer_action.dart';
 
 const drawerItems = [
