@@ -8,7 +8,7 @@ class User {
   String name;
   String email;
   String title;
-  Uri avatar;
+  String avatar;
 
   User(this.id, this.name, this.email, this.title, this.avatar);
 

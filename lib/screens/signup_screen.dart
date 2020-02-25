@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
-import 'package:knctu/Screens/walkthrough_tag_screen.dart';
+import 'package:knctu/animation/fade_animation.dart';
+import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/screens/walkthrough_tag_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override

@@ -6,7 +6,7 @@ import 'package:web_socket_channel/io.dart';
 
 var apiUrl = 'http://api.knctu.com/api/';
 var wsURL = 'ws://api.knctu.com/ws/subscribe/';
-var _rawToken = '01f1f32dab5766f5981ceb336ebfbe6efb826f9e';
+var _rawToken = '';
 var _token = 'Token $_rawToken';
 
 const String _contentType = 'application/json';
@@ -46,6 +46,14 @@ Future<http.Response> getUser() {
     HttpHeaders.contentTypeHeader: _contentType
   });
 }
+
+Future<http.Response> getUserFromId(String id) {
+  return http.get('${apiUrl}user/$id/', headers: {
+    HttpHeaders.authorizationHeader: _token,
+    HttpHeaders.contentTypeHeader: _contentType
+  });
+}
+
 
 Future<http.Response> getChatRooms() {
   return http.get('${apiUrl}chat/room/', headers: {

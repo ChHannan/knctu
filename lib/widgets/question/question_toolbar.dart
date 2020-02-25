@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
+import 'package:knctu/icons/knctu_icons.dart';
 
 class QuestionToolbar extends StatelessWidget {
   final bool isQuestion;

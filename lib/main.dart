@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:knctu/Screens/home_screen.dart';
 import 'package:knctu/Screens/login_screen.dart';
-import 'package:knctu/Screens/profile_screen.dart';
+import 'package:knctu/Screens/screen_controller.dart';
 import 'package:knctu/Screens/signup_screen.dart';
 import 'package:knctu/api/api.dart';
+import 'package:knctu/db/db.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,22 +22,46 @@ class MyApp extends StatelessWidget {
       ),
     );
     openConnection();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-      theme: ThemeData(
-        primaryColor: Color(0xFF19b7c6),
-        pageTransitionsTheme: PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          },
+    return Provider(
+      create: (_) => AppDB(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: CurrentRoute(),
+        theme: ThemeData(
+          primaryColor: Color(0xFF19b7c6),
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            },
+          ),
         ),
+        routes: <String, WidgetBuilder>{
+          '/signup': (context) => SignUpScreen(),
+          '/login': (context) => LoginScreen(),
+          '/home': (context) => HomeScreen(),
+        },
       ),
-      routes: <String, WidgetBuilder>{
-        '/signup': (context) => SignUpScreen(),
-        '/login': (context) => LoginScreen(),
-        '/profile': (context) => ProfileScreen(),
-        '/home': (context) => HomeScreen(),
+    );
+  }
+}
+
+class CurrentRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final db = Provider.of<AppDB>(context);
+    return FutureBuilder(
+      future: db.userDao.getLoggedInUser(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && !snapshot.hasError) {
+          if (snapshot.data?.id != null) {
+            setToken(snapshot.data.token);
+            return ScreenController();
+          }
+          return LoginScreen();
+        }
+        return Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
       },
     );
   }

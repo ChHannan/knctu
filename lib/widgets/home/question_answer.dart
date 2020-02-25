@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/Screens/question_detail_screen.dart';
 import 'package:knctu/models/question.dart';
+import 'package:knctu/screens/profile_screen.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
 class QuestionAnswer extends StatefulWidget {
@@ -22,7 +23,6 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     return GestureDetector(
-      //behavior: HitTestBehavior.translucent,
       onTap: () {
         Navigator.push(
           context,
@@ -66,47 +66,58 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                 ),
               ),
             ),
-            Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 17,
-                  backgroundImage: AssetImage(
-                    'assets/images/customer-3.jpg',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfileScreen(
+                            id: widget.question?.answers[0]?.user?.id)));
+              },
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 17,
+                    backgroundImage: widget.question?.user?.avatar != null
+                        ? NetworkImage(widget.question?.user?.avatar)
+                        : AssetImage(
+                            'assets/images/profile-avatar.jpg',
+                          ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2.0,
-                        ),
-                        child: Text(
-                          widget.question?.user?.name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2.0,
+                          ),
+                          child: Text(
+                            widget.question?.answers[0]?.user?.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2.0,
-                        ),
-                        child: Text(
-                          widget.question?.user?.title,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2.0,
                           ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
+                          child: Text(
+                            widget.question?.answers[0]?.user?.title,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, bottom: 3),

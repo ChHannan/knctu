@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:knctu/Animation/FadeAnimation.dart';
-import 'package:knctu/Icons/knct_u_icons.dart';
 import 'package:knctu/Screens/screen_controller.dart';
+import 'package:knctu/animation/fade_animation.dart';
 import 'package:knctu/api/api.dart';
+import 'package:knctu/db/db.dart';
+import 'package:knctu/icons/knctu_icons.dart';
 import 'package:knctu/models/user.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,15 +16,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
   String email;
-
   String password;
 
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
+    final db = Provider.of<AppDB>(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -68,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
-                                  "Login to KnctU",
+                                  "Welcome to KnctU",
                                   style: TextStyle(
                                     fontSize: deviceHeight * 0.04 /*35.0*/,
                                     color: Color.fromRGBO(
@@ -95,76 +96,75 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       FadeAnimation(
                         1.6,
-                        Form(
-                          key: _formKey,
-                          child: Container(
-                            padding: EdgeInsets.all(
-                              deviceHeight * 0.0065, /*5.0*/
+                        Container(
+                          padding: EdgeInsets.all(
+                            deviceHeight * 0.0065, /*5.0*/
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(
+                              deviceHeight * 0.017, /*10.0*/
                             ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                deviceHeight * 0.017, /*10.0*/
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(
+                                  11,
+                                  108,
+                                  173,
+                                  .3,
+                                ),
+                                blurRadius: 20.0,
+                                offset: Offset(
+                                  2,
+                                  10,
+                                ),
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                    11,
-                                    108,
-                                    173,
-                                    .3,
-                                  ),
-                                  blurRadius: 20.0,
-                                  offset: Offset(
-                                    2,
-                                    10,
-                                  ),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.all(
+                                  deviceHeight * 0.01,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    deviceHeight * 0.01,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                  ),
-                                  child: TextFormField(
-                                    validator: (value) => validEmail(value),
-                                    decoration: InputDecoration(
-                                      errorStyle: TextStyle(),
-                                      border: InputBorder.none,
-                                      prefixIcon: Icon(KnctUIcon.email_3),
-                                      hintText: "Enter email",
-                                      hintStyle: TextStyle(
-                                        color: Colors.blueGrey[300],
-                                      ),
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey[200],
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.all(deviceHeight * 0.01),
-                                  child: TextFormField(
-                                    validator: (value) => validPassword(value),
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: "Enter password",
-                                      prefixIcon: Icon(Icons.lock_outline),
-                                      hintStyle: TextStyle(
-                                        color: Colors.blueGrey[300],
-                                      ),
+                                child: TextFormField(
+                                  validator: (value) => validEmail(value),
+                                  onSaved: (value) => email = value,
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    prefixIcon: Icon(KnctUIcon.email_3),
+                                    hintText: "Enter email",
+                                    hintStyle: TextStyle(
+                                      color: Colors.blueGrey[300],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(deviceHeight * 0.01),
+                                child: TextFormField(
+                                  validator: (value) => validPassword(value),
+                                  onSaved: (value) => password = value,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "Enter password",
+                                    prefixIcon: Icon(Icons.lock_outline),
+                                    hintStyle: TextStyle(
+                                      color: Colors.blueGrey[300],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -173,27 +173,52 @@ class _LoginScreenState extends State<LoginScreen> {
                         1.9,
                         GestureDetector(
                           onTap: () async {
-//                            final FormState form = _formKey.currentState;
-//                            if (form.validate()) {
-//                              form.save();
-//                              if (await loginProcess(email, password)) {
-//                                print('Done');
-//                              } else {
-//                                Scaffold.of(context).showSnackBar(
-//                                  SnackBar(
-//                                    content: Text(
-//                                      'Please provide valid credenrials',
-//                                    ),
-//                                  ),
-//                                );
-//                              }
-//                            }
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ScreenController(),
-                              ),
-                            );
+//                          var tokenResponse = await login(
+//                              emailController.text, passController.text);
+//                          if (tokenResponse.statusCode == 200) {
+//                            var token = jsonDecode(tokenResponse.body)['token'];
+//                            setToken(token);
+//                            var userResponse = await getUser();
+//                            var user =
+//                                User.fromJson(jsonDecode(userResponse.body));
+//                            db.userDao.insertUser(UserTableData(
+//                                id: user.id,
+//                                avatar: user.avatar,
+//                                token: token,
+//                                email: user.email,
+//                                name: user.name));
+//                            Navigator.push(
+//                                context,
+//                                MaterialPageRoute(
+//                                    builder: (context) => ScreenController()));
+//                          } else {
+//                            final snackBar = SnackBar(
+//                              duration: Duration(milliseconds: 800),
+//                              content: Text(
+//                                  'Login failed! Please check your credentials.'),
+//                            );
+//                            Scaffold.of(context).showSnackBar(snackBar);
+//                          }
+                            final FormState form = _formKey.currentState;
+                            if (form.validate()) {
+                              form.save();
+                              if (await loginProcess(email, password, db)) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ScreenController(),
+                                  ),
+                                );
+                              } else {
+                                Scaffold.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Please provide valid credenrials',
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
                           },
                           child: Container(
                             height: deviceHeight * 0.06,
@@ -302,14 +327,27 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<bool> loginProcess(String email, String password) async {
-    var _token = await login(email, password);
-    if (_token.statusCode == 200) {
-      setToken(jsonDecode(_token.body)['token']);
-      var _user = await getUser();
-      if (_user.statusCode == 200) {
-        var _userData = User.fromJson(jsonDecode(_user.body));
-        print(_userData.name);
+  Future<bool> loginProcess(String email, String password, var db) async {
+    var _tokenResponse = await login(email, password);
+    if (_tokenResponse.statusCode == 200) {
+      var _token = jsonDecode(_tokenResponse.body)['token'];
+      setToken(_token);
+      var _userResponse = await getUser();
+      if (_userResponse.statusCode == 200) {
+        var user = User.fromJson(
+          jsonDecode(
+            _userResponse.body,
+          ),
+        );
+        db.userDao.insertUser(
+          UserTableData(
+            id: user.id,
+            avatar: user.avatar,
+            token: _token,
+            email: user.email,
+            name: user.name,
+          ),
+        );
         return true;
       }
     }
