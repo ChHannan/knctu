@@ -8,7 +8,10 @@ class TrendingBox extends StatelessWidget {
 
   const TrendingBox({
     Key key,
-    this.tagName, this.question, this.answer, this.name,
+    this.tagName,
+    this.question,
+    this.answer,
+    this.name,
   }) : super(key: key);
 
   @override
@@ -35,7 +38,10 @@ class TrendingBox extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Text('  '),
+              Text(
+                'Ans. ',
+                style: TextStyle(color: Colors.grey),
+              ),
               Text(
                 answer,
               ),
@@ -45,9 +51,8 @@ class TrendingBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 120,
+                width: 150,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     CircleAvatar(
                       backgroundImage: AssetImage(
@@ -55,10 +60,13 @@ class TrendingBox extends StatelessWidget {
                       ),
                       radius: 15,
                     ),
-                    Text(
-                      name,
-                      style: TextStyle(
-                        color: Colors.grey,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        name,
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ],

@@ -23,12 +23,13 @@ class _ChatScreenState extends State<ChatScreen> {
         children: <Widget>[
           Expanded(
             child: TextField(
-                textCapitalization: TextCapitalization.sentences,
-                // To capitalize the first letter
-                onChanged: (value) {},
-                decoration: InputDecoration.collapsed(
-                  hintText: 'Enter a message',
-                )),
+              textCapitalization: TextCapitalization.sentences,
+              // To capitalize the first letter
+              onChanged: (value) {},
+              decoration: InputDecoration.collapsed(
+                hintText: 'Enter a message',
+              ),
+            ),
           ),
           IconButton(
             icon: Icon(KnctUIcon.answers),
@@ -114,23 +115,31 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        brightness: Brightness.light,
-          title: Text(widget.user.name,
-              style: TextStyle(
-                fontSize: _width * 0.0553,
-                fontWeight: FontWeight.bold,
-                color: Colors.white
-              )),
-          centerTitle: true,
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.more_horiz),
-              iconSize: _width * 0.0691,
-              color: Colors.white,
-              onPressed: () {},
-            )
-          ]),
+        //brightness: Brightness.light,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        title: Text(
+          widget.user.name,
+          style: TextStyle(
+            fontSize: _width * 0.0553,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.more_horiz,
+            ),
+            iconSize: _width * 0.0691,
+            color: Colors.white,
+            onPressed: () {},
+          )
+        ],
+      ),
       body: GestureDetector(
         // Minimizes keyboard on tap
         onTap: () => FocusScope.of(context).unfocus(),

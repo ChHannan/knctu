@@ -15,13 +15,14 @@ class MyApp extends StatelessWidget {
       SystemUiOverlayStyle(
         statusBarColor: Color(0xFF19b7c6),
         systemNavigationBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
       ),
     );
     openConnection();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light, child: LoginScreen()),
+      home: LoginScreen(),
       theme: ThemeData(
         primaryColor: Color(0xFF19b7c6),
         pageTransitionsTheme: PageTransitionsTheme(

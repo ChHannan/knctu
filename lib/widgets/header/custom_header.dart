@@ -48,30 +48,30 @@ class _CustomHeaderState extends State<CustomHeader> {
               },
               items: <Widget>[
                 const TrendingBox(
-                  question: 'I want to be an entreprenuer, which field do I choose?',
-                  answer: 'Software Engineering',
-                  tagName: 'UET',
-                  name: 'Maaz Bin Tahir'
-                ),
+                    question:
+                        'I want to be an entreprenuer, which field do I choose?',
+                    answer: 'Software Engineering',
+                    tagName: 'UET',
+                    name: 'Maaz Bin Tahir'),
                 const TrendingBox(
-                  tagName: 'GIKI',
-                  question: 'Which field is the most profitable in 2020?',
-                  answer: 'The field you are interested in.',
-                  name: 'Eesha Arif'
-                ),
+                    tagName: 'GIKI',
+                    question: 'Which field is the most profitable in 2020?',
+                    answer: 'The field you are interested in.',
+                    name: 'Eesha Arif'),
                 const TrendingBox(
-                  tagName: 'NUST',
-                  question: 'What is the acceptance rate in NUST',
-                  answer: 'Less than 10%',
-                  name: 'Harris Amir'
-                ),
+                    tagName: 'NUST',
+                    question: 'What is the acceptance rate in NUST?',
+                    answer: 'Less than 10%',
+                    name: 'Harris Amir'),
               ],
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              DotsIndicator(current: _current),
+              DotsIndicator(
+                current: _current,
+              ),
             ],
           ),
         ],

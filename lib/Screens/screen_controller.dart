@@ -61,32 +61,28 @@ class ScreenControllerState extends State<ScreenController> {
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      endDrawer: CustomDrawer(
-        deviceHeight: deviceHeight,
-        drawerOptions: drawerOptions,
-      ),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: Builder(
-            builder: (context) => Stack(
-              children: <Widget>[
-                _getScreen(_screenIndex),
-                Positioned(
-                  right: 0,
-                  top: deviceHeight * 0.7,
-                  child: GestureDetector(
-                    onTap: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                    child: DrawerSlider(
-                      deviceHeight: deviceHeight,
-                    ),
+        endDrawer: CustomDrawer(
+          deviceHeight: deviceHeight,
+          drawerOptions: drawerOptions,
+        ),
+        body: Builder(
+          builder: (context) => Stack(
+            children: <Widget>[
+              _getScreen(_screenIndex),
+              Positioned(
+                right: 0,
+                top: deviceHeight * 0.7,
+                child: GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                  child: DrawerSlider(
+                    deviceHeight: deviceHeight,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-      )
-      );
+        ));
   }
 }
