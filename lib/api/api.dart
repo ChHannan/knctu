@@ -54,7 +54,6 @@ Future<http.Response> getUserFromId(String id) {
   });
 }
 
-
 Future<http.Response> getChatRooms() {
   return http.get('${apiUrl}chat/room/', headers: {
     HttpHeaders.authorizationHeader: _token,
