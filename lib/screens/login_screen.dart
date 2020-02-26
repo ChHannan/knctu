@@ -18,7 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String email;
   String password;
-
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -96,75 +95,78 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       FadeAnimation(
                         1.6,
-                        Container(
-                          padding: EdgeInsets.all(
-                            deviceHeight * 0.0065, /*5.0*/
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                              deviceHeight * 0.017, /*10.0*/
+                        Form(
+                          key: _formKey,
+                          child: Container(
+                            padding: EdgeInsets.all(
+                              deviceHeight * 0.0065, /*5.0*/
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(
-                                  11,
-                                  108,
-                                  173,
-                                  .3,
-                                ),
-                                blurRadius: 20.0,
-                                offset: Offset(
-                                  2,
-                                  10,
-                                ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                deviceHeight * 0.017, /*10.0*/
                               ),
-                            ],
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(
-                                  deviceHeight * 0.01,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                    11,
+                                    108,
+                                    173,
+                                    .3,
+                                  ),
+                                  blurRadius: 20.0,
+                                  offset: Offset(
+                                    2,
+                                    10,
+                                  ),
                                 ),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.grey[200],
+                              ],
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.all(
+                                    deviceHeight * 0.01,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.grey[200],
+                                      ),
+                                    ),
+                                  ),
+                                  child: TextFormField(
+                                    validator: (value) => validEmail(value),
+                                    onSaved: (value) => email = value,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      prefixIcon: Icon(KnctUIcon.email_3),
+                                      hintText: "Enter email",
+                                      hintStyle: TextStyle(
+                                        color: Colors.blueGrey[300],
+                                      ),
                                     ),
                                   ),
                                 ),
-                                child: TextFormField(
-                                  validator: (value) => validEmail(value),
-                                  onSaved: (value) => email = value,
-                                  keyboardType: TextInputType.emailAddress,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    prefixIcon: Icon(KnctUIcon.email_3),
-                                    hintText: "Enter email",
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey[300],
+                                Container(
+                                  padding: EdgeInsets.all(deviceHeight * 0.01),
+                                  child: TextFormField(
+                                    validator: (value) => validPassword(value),
+                                    onSaved: (value) => password = value,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Enter password",
+                                      prefixIcon: Icon(Icons.lock_outline),
+                                      hintStyle: TextStyle(
+                                        color: Colors.blueGrey[300],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(deviceHeight * 0.01),
-                                child: TextFormField(
-                                  validator: (value) => validPassword(value),
-                                  onSaved: (value) => password = value,
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "Enter password",
-                                    prefixIcon: Icon(Icons.lock_outline),
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey[300],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -173,32 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         1.9,
                         GestureDetector(
                           onTap: () async {
-//                          var tokenResponse = await login(
-//                              emailController.text, passController.text);
-//                          if (tokenResponse.statusCode == 200) {
-//                            var token = jsonDecode(tokenResponse.body)['token'];
-//                            setToken(token);
-//                            var userResponse = await getUser();
-//                            var user =
-//                                User.fromJson(jsonDecode(userResponse.body));
-//                            db.userDao.insertUser(UserTableData(
-//                                id: user.id,
-//                                avatar: user.avatar,
-//                                token: token,
-//                                email: user.email,
-//                                name: user.name));
-//                            Navigator.push(
-//                                context,
-//                                MaterialPageRoute(
-//                                    builder: (context) => ScreenController()));
-//                          } else {
-//                            final snackBar = SnackBar(
-//                              duration: Duration(milliseconds: 800),
-//                              content: Text(
-//                                  'Login failed! Please check your credentials.'),
-//                            );
-//                            Scaffold.of(context).showSnackBar(snackBar);
-//                          }
+                            print(password);
                             final FormState form = _formKey.currentState;
                             if (form.validate()) {
                               form.save();

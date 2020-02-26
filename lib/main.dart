@@ -9,8 +9,6 @@ import 'package:knctu/db/db.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  var x = await getQuestions();
-  print(x.body);
   runApp(MyApp());
 }
 
