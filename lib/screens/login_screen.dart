@@ -18,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String email;
   String password;
+
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -175,7 +176,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         1.9,
                         GestureDetector(
                           onTap: () async {
-                            print(password);
                             final FormState form = _formKey.currentState;
                             if (form.validate()) {
                               form.save();

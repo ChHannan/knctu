@@ -50,38 +50,48 @@ Future<http.Response> getHomeQuestions() {
 }
 
 Future<http.Response> postQuestion(data) {
-  return http.post('${apiUrl}forum/question/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  }, body: jsonEncode(data));
+  return http.post('${apiUrl}forum/question/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> postAnswer(data) {
-  return http.post('${apiUrl}forum/answer/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  }, body: jsonEncode(data));
+  return http.post('${apiUrl}forum/answer/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> postComment(data) {
-  return http.post('${apiUrl}forum/comment/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  }, body: jsonEncode(data));
+  return http.post('${apiUrl}forum/comment/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> postReply(data) {
-  return http.post('${apiUrl}forum/reply/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  }, body: jsonEncode(data));
+  return http.post('${apiUrl}forum/reply/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> patchInfoUser(String id, data) {
-  return http.patch('${apiUrl}forum/info/user/$id/', headers: {
-    HttpHeaders.authorizationHeader: _token,
-    HttpHeaders.contentTypeHeader: _contentType
-  }, body: jsonEncode(data));
+  return http.patch('${apiUrl}forum/info/user/$id/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> login(email, pass) {

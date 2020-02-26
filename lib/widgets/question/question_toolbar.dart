@@ -62,15 +62,13 @@ class _QuestionToolbarState extends State<QuestionToolbar> {
           children: <Widget>[
             QuestionToolbarOption(
               icon: hasUpvoted ? Icons.star : Icons.star_border,
-              iconColor:
-                  hasUpvoted ? Colors.amber : Colors.black38,
+              iconColor: hasUpvoted ? Colors.amber : Colors.black38,
               text: hasUpvoted ? 'Upvoted' : 'Upvote',
               function: () async {
                 setState(() {
                   hasUpvoted = !widget.infoUser.hasUpvoted;
                 });
-                patchInfoUser(widget.infoUser.id,
-                    {'has_upvoted': hasUpvoted});
+                patchInfoUser(widget.infoUser.id, {'has_upvoted': hasUpvoted});
                 widget.notifyParent();
               },
             ),

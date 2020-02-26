@@ -51,7 +51,7 @@ class CurrentRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     final db = Provider.of<AppDB>(context);
     return FutureBuilder(
-      future: db.userDao.getLoggedInUser().timeout(Duration(seconds: 5)),
+      future: db.userDao.getLoggedInUser(),
       builder: (context, snapshot) {
         if (snapshot.hasData && !snapshot.hasError) {
           if (snapshot.data?.id != null) {

@@ -10,12 +10,9 @@ class CommentModal extends StatefulWidget {
   final List<Comment> comments;
   final String upvotes;
 
-  const CommentModal({
-    Key key,
-    this.comments,
-    this.upvotes = '10',
-    @required this.answer
-  }) : super(key: key);
+  const CommentModal(
+      {Key key, this.comments, this.upvotes = '10', @required this.answer})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CommentModalState();
