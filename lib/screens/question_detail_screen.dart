@@ -21,6 +21,7 @@ class QuestionDetailScreen extends StatefulWidget {
 
 class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
   Stream stream;
+  Question question;
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
       {'model': 'forum.question', 'id': widget.question.id},
     );
     stream = stream.asBroadcastStream();
+    question = widget.question;
   }
 
   @override
@@ -46,19 +48,36 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
           //fit: BoxFit.contain,
         ),
       ),
-      body: StreamBuilder(
-          stream: stream,
+      body: FutureBuilder(
+          future: getQuestionFromId(question.id),
           builder: (context, snapshot) {
             if (snapshot.hasData && !snapshot.hasError) {
-              final data = jsonDecode(snapshot.data);
-              if (data['type'] == 'UPDATE_QUESTION') {
-                return _getColumn(
-                  Question.fromJson(data['payload']),
-                  context,
-                );
-              }
+              question = Question.fromJson(jsonDecode(snapshot.data.body));
             }
-            return _getColumn(widget.question, context);
+            return StreamBuilder(
+                stream: stream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && !snapshot.hasError) {
+                    final data = jsonDecode(snapshot.data);
+                    if (data['type'] == 'UPDATE_QUESTION') {
+                      data['payload']['info_user'] = question.infoUser.toJson();
+                      for (int counter = 0;
+                          counter < question.answers.length;
+                          counter++) {
+                        data['payload']['answers'][counter]['info_user'] =
+                            widget.question.answers
+                                .elementAt(counter)
+                                .infoUser
+                                .toJson();
+                      }
+                      return _getColumn(
+                        Question.fromJson(data['payload']),
+                        context,
+                      );
+                    }
+                  }
+                  return _getColumn(question, context);
+                });
           }),
     );
   }
@@ -76,7 +95,8 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
                     question: question,
                     index: index,
                     isLast: question.answers.length == index,
-                    isPushed: index == 1 ? widget.isPushed : false);
+                    isPushed: index == 1 ? widget.isPushed : false,
+                    notifyParent: _refresh);
               },
               itemCount: question.answers.length + 1,
             ),
@@ -84,5 +104,9 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
         ],
       ),
     );
+  }
+
+  _refresh() {
+    setState(() {});
   }
 }

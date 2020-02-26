@@ -10,7 +10,14 @@ class User {
   String title;
   String avatar;
 
-  User(this.id, this.name, this.email, this.title, this.avatar);
+  @JsonKey(name: 'question_count')
+  int questionCount;
+
+  @JsonKey(name: 'answer_count')
+  int answerCount;
+
+  User(this.id, this.name, this.email, this.title, this.avatar,
+      this.questionCount, this.answerCount);
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

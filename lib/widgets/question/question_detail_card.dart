@@ -13,6 +13,7 @@ class QuestionDetailCard extends StatefulWidget {
   final int index;
   final bool isLast;
   final bool isPushed;
+  final Function notifyParent;
 
   const QuestionDetailCard({
     Key key,
@@ -20,6 +21,7 @@ class QuestionDetailCard extends StatefulWidget {
     @required this.index,
     @required this.isLast,
     this.isPushed = false,
+    @required this.notifyParent,
   }) : super(key: key);
 
   @override
@@ -165,10 +167,20 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                           ),
                         ),
                         QuestionToolbar(
+                          notifyParent: widget.notifyParent,
                           modalCall: showCommentModal,
                           isQuestion: _isQuestion,
                           commentsCount:
-                              _isQuestion ? null : _answer.commentsCount,
+                              _isQuestion ? 0 : _answer.commentsCount,
+                          upvotes: _isQuestion
+                              ? widget.question.upvoteCount
+                              : _answer.upvoteCount,
+                          views: _isQuestion
+                              ? widget.question.viewCount
+                              : _answer.viewCount,
+                          infoUser: _isQuestion
+                              ? widget.question.infoUser
+                              : _answer.infoUser,
                         )
                       ],
                     ),
@@ -244,7 +256,14 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                     -0.9,
                     -1,
                   ),
-                  child: CircleAvatar(),
+                  child: CircleAvatar(
+                      backgroundImage: _isQuestion
+                          ? widget.question.user.avatar == null
+                              ? AssetImage('assets/images/profile-avatar.jpg')
+                              : NetworkImage(widget.question.user.avatar)
+                          : _answer.user.avatar == null
+                              ? AssetImage('assets/images/profile-avatar.jpg')
+                              : NetworkImage(_answer.user.avatar)),
                 ),
               ),
             ),
@@ -264,9 +283,12 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
           topRight: Radius.circular(15),
         ),
       ),
-      builder: (context) => CommentModal(
-        comments: widget.question.answers[widget.index - 1].comments,
-        upvotes: upvotes,
+      builder: (context) => StatefulBuilder(
+        builder: (BuildContext context, StateSetter setModalState) =>
+            CommentModal(
+                answer: widget.question.answers[widget.index - 1],
+                comments: widget.question.answers[widget.index - 1].comments,
+                upvotes: upvotes),
       ),
     );
   }

@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.light,
       ),
     );
-    openConnection();
     return Provider(
       create: (_) => AppDB(),
       child: MaterialApp(
@@ -57,11 +56,8 @@ class CurrentRoute extends StatelessWidget {
             setToken(snapshot.data.token);
             return ScreenController();
           }
-          return LoginScreen();
         }
-        return Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
+        return LoginScreen();
       },
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:knctu/api/api.dart';
 
 import 'package:knctu/screens/add_question.dart';
 import 'package:knctu/screens/feed_screen.dart';
@@ -62,6 +62,7 @@ class ScreenControllerState extends State<ScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    openConnection();
     final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         endDrawer: CustomDrawer(

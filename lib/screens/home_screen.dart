@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           FutureBuilder(
-            future: getQuestions(),
+            future: getHomeQuestions(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var questions = List<Question>();
@@ -63,11 +63,7 @@ class HomeScreen extends StatelessWidget {
                     top: deviceHeight * 0.23,
                   ),
                   child: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Color(0xFF19b7c6),
-                      ),
-                    ),
+                    child: CircularProgressIndicator()
                   ),
                 ),
               );

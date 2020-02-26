@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/models/comment.dart';
+import 'package:knctu/screens/profile_screen.dart';
 
 class CommentCard extends StatelessWidget {
   final Comment comment;
@@ -71,7 +72,9 @@ class CommentCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        function(comment);
+                      },
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.reply),
@@ -157,7 +160,7 @@ class CommentCard extends StatelessWidget {
                     )
                   : InkWell(
                       onTap: () {
-                        function();
+                        function(comment);
                       },
                       child: Padding(
                         padding: EdgeInsets.only(

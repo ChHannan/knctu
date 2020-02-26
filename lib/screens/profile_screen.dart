@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                             FittedBox(
                               child: IconButton(
                                 icon: Icon(
-                                  KnctUIcon.chat,
+                                  KnctUIcon.questions,
                                   color: Colors.black,
                                 ),
                                 iconSize: 30,
@@ -86,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                '0',
+                                user.questionCount.toString(),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22,
@@ -110,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             FittedBox(
                               child: Text(
-                                '0',
+                                user.answerCount.toString(),
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 22,
@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                             FittedBox(
                               child: IconButton(
                                 icon: Icon(
-                                  KnctUIcon.questions,
+                                  KnctUIcon.chat,
                                   color: Colors.black,
                                 ),
                                 iconSize: 30,
