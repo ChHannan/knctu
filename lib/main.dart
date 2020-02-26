@@ -8,7 +8,9 @@ import 'package:knctu/api/api.dart';
 import 'package:knctu/db/db.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       create: (_) => AppDB(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: CurrentRoute(),
+        home: LoginScreen(),
         theme: ThemeData(
           primaryColor: Color(0xFF19b7c6),
           pageTransitionsTheme: PageTransitionsTheme(
@@ -49,7 +51,7 @@ class CurrentRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     final db = Provider.of<AppDB>(context);
     return FutureBuilder(
-      future: db.userDao.getLoggedInUser(),
+      future: db.userDao.getLoggedInUser().timeout(Duration(seconds: 5)),
       builder: (context, snapshot) {
         if (snapshot.hasData && !snapshot.hasError) {
           if (snapshot.data?.id != null) {
