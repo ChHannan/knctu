@@ -46,6 +46,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
     final _isQuestion = widget.index == 0;
     final _answer =
         _isQuestion ? null : widget.question.answers[widget.index - 1];
+    print(_size.height);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -99,12 +100,15 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => ProfileScreen(
-                                                id: _isQuestion
-                                                    ? widget.question.user.id
-                                                    : _answer.user.id)));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProfileScreen(
+                                          id: _isQuestion
+                                              ? widget.question.user.id
+                                              : _answer.user.id,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Column(
                                     crossAxisAlignment:
@@ -165,6 +169,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                           ),
                         ),
                         QuestionToolbar(
+                          answerModal: showAnswerModal,
                           modalCall: showCommentModal,
                           isQuestion: _isQuestion,
                           commentsCount:
@@ -230,12 +235,15 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfileScreen(
-                            id: _isQuestion
-                                ? widget.question.user.id
-                                : _answer.user.id)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                      id: _isQuestion
+                          ? widget.question.user.id
+                          : _answer.user.id,
+                    ),
+                  ),
+                );
               },
               child: SizedBox(
                 width: _size.width * 0.9,
@@ -267,6 +275,126 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
       builder: (context) => CommentModal(
         comments: widget.question.answers[widget.index - 1].comments,
         upvotes: upvotes,
+      ),
+    );
+  }
+
+  void showAnswerModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return AnswerModal();
+      },
+    );
+  }
+}
+
+class AnswerModal extends StatelessWidget {
+  const AnswerModal({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final deviceHeight = MediaQuery.of(context).size.height;
+    return Container(
+      height: deviceHeight * 0.85,
+      color: Colors.white,
+      child: Column(
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(
+                  top: 10.0,
+                  left: 10,
+                ),
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.close)),
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.only(
+                  top: 10.0,
+                ),
+                child: Text(
+                  'Answer',
+                  style: TextStyle(fontSize: 16, color: Color(0xFF19b7c6)),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.only(
+                  top: 10.0,
+                  right: 10,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(
+                        0xFF19b7c6,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Divider(),
+          Container(
+            height: deviceHeight * 0.775,
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      8.0,
+                      0.0,
+                      8.0,
+                      8.0,
+                    ),
+                    child: Text(
+                      'Can we win HackFair 2020?Can we win HackFair 2020?Can '
+                      'we win HackFair 2020?Can we win HackFair 2020?Can '
+                      'we win HackFair 2020?Can we win HackFair 2020?',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  color: Colors.white,
+                ),
+                Container(
+                  height: 7,
+                  color: Colors.grey[300],
+                ),
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Write Your Answer',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

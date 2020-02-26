@@ -4,7 +4,7 @@ import 'package:knctu/icons/knctu_icons.dart';
 class QuestionToolbar extends StatelessWidget {
   final bool isQuestion;
   final Function modalCall;
-
+  final Function answerModal;
   final upvotes;
   final commentsCount;
   final shares;
@@ -20,6 +20,7 @@ class QuestionToolbar extends StatelessWidget {
     this.shares,
     this.answers,
     this.views,
+    @required this.answerModal,
   }) : super(key: key);
 
   @override
@@ -49,7 +50,9 @@ class QuestionToolbar extends StatelessWidget {
                 ? QuestionToolbarOption(
                     icon: KnctUIcon.answers,
                     text: 'Answer',
-                    function: null,
+                    function: () {
+                      answerModal();
+                    },
                   )
                 : QuestionToolbarOption(
                     icon: KnctUIcon.chat,
