@@ -10,7 +10,6 @@ class QuestionToolbar extends StatefulWidget {
   final Function answerModal;
   final InfoUser infoUser;
   final Function notifyParent;
-
   final upvotes;
   final commentsCount;
   final shares;
@@ -21,17 +20,12 @@ class QuestionToolbar extends StatefulWidget {
     Key key,
     @required this.modalCall,
     this.isQuestion = false,
-    this.upvotes,
-    this.commentsCount,
-    this.shares,
-    this.answers,
-    this.views,
-    @required this.answerModal,
     this.upvotes = 0,
     this.commentsCount = 0,
     this.shares = 0,
     this.answers = 0,
     this.views = 0,
+    @required this.answerModal,
     @required this.infoUser,
     @required this.notifyParent,
   }) : super(key: key);
@@ -84,7 +78,7 @@ class _QuestionToolbarState extends State<QuestionToolbar> {
                     icon: KnctUIcon.answers,
                     text: 'Answer',
                     function: () {
-                      answerModal();
+                      widget.answerModal();
                     },
                   )
                 : QuestionToolbarOption(

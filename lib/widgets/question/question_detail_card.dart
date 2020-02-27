@@ -284,9 +284,10 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
       builder: (context) => StatefulBuilder(
         builder: (BuildContext context, StateSetter setModalState) =>
             CommentModal(
-                answer: widget.question.answers[widget.index - 1],
-                comments: widget.question.answers[widget.index - 1].comments,
-                upvotes: upvotes),
+          answer: widget.question.answers[widget.index - 1],
+          comments: widget.question.answers[widget.index - 1].comments,
+          upvotes: upvotes,
+        ),
       ),
     );
   }
@@ -301,4 +302,3 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
     );
   }
 }
-
