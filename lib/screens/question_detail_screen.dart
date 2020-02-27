@@ -60,6 +60,9 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
                   if (snapshot.hasData && !snapshot.hasError) {
                     final data = jsonDecode(snapshot.data);
                     if (data['type'] == 'UPDATE_QUESTION') {
+                      print(Question.fromJson(data['payload'])
+                          .answers[0]
+                          .comments.last.toJson());
                       data['payload']['info_user'] = question.infoUser.toJson();
                       for (int counter = 0;
                           counter < question.answers.length;
@@ -106,7 +109,7 @@ class _QuestionDetailScreenState extends State<QuestionDetailScreen> {
     );
   }
 
-  _refresh() {
-    setState(() {});
+  _refresh(fn) {
+    setState(fn);
   }
 }

@@ -316,7 +316,6 @@ class _LoginScreenState extends State<LoginScreen> {
             _userResponse.body,
           ),
         );
-        loggedInUserId = user.id;
         db.userDao.insertUser(
           UserTableData(
             id: user.id,

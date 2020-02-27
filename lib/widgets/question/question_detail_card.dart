@@ -261,7 +261,14 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                     -0.9,
                     -1,
                   ),
-                  child: CircleAvatar(),
+                  child: CircleAvatar(
+                      backgroundImage: _isQuestion
+                          ? widget.question.user.avatar == null
+                              ? AssetImage('assets/images/profile-avatar.jpg')
+                              : NetworkImage(widget.question.user.avatar)
+                          : _answer.user.avatar == null
+                              ? AssetImage('assets/images/profile-avatar.jpg')
+                              : NetworkImage(_answer.user.avatar)),
                 ),
               ),
             ),
@@ -273,23 +280,20 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
 
   void showCommentModal() {
     showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
         ),
-      ),
-      builder: (context) => StatefulBuilder(
-        builder: (BuildContext context, StateSetter setModalState) =>
-            CommentModal(
-          answer: widget.question.answers[widget.index - 1],
-          comments: widget.question.answers[widget.index - 1].comments,
-          upvotes: upvotes,
-        ),
-      ),
-    );
+        builder: (context) => StatefulBuilder(
+              builder: (context, setModalState) => CommentModal(
+                  answer: widget.question.answers[widget.index - 1],
+                  comments: widget.question.answers[widget.index - 1].comments,
+                  upvotes: upvotes),
+            ));
   }
 
   void showAnswerModal() {

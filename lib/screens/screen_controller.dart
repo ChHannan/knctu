@@ -40,6 +40,7 @@ class ScreenControllerState extends State<ScreenController> {
     setState(
       () => _screenIndex = index,
     );
+    Navigator.of(context).pop();
   }
 
   _indexAssigner() {

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:knctu/api/api.dart';
 import 'package:knctu/icons/knctu_icons.dart';
 import 'package:knctu/models/answer.dart';
 import 'package:knctu/models/comment.dart';
+import 'package:knctu/models/reply.dart';
 import 'package:knctu/widgets/question/comment_card.dart';
 
 class CommentModal extends StatefulWidget {
@@ -10,9 +13,12 @@ class CommentModal extends StatefulWidget {
   final List<Comment> comments;
   final String upvotes;
 
-  const CommentModal(
-      {Key key, this.comments, this.upvotes = '10', @required this.answer})
-      : super(key: key);
+  const CommentModal({
+    Key key,
+    @required this.comments,
+    this.upvotes = '10',
+    @required this.answer,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CommentModalState();
@@ -45,7 +51,6 @@ class CommentModalState extends State<CommentModal>
     setState(() {
       _currentComment = comment;
     });
-    print('asd');
     _tabController.animateTo(1);
   }
 
@@ -173,21 +178,25 @@ class CommentModalState extends State<CommentModal>
                         iconSize: _size.width * 0.069,
                         color: Theme.of(context).primaryColor,
                         onPressed: () {
-                          setState(() {
-                            if (_textController.text != '') {
-                              if (_tabController.index == 0) {
-                                postComment({
-                                  'text': _textController.text,
-                                  'answer': widget.answer.id
-                                });
-                              } else {
-                                postReply({
-                                  'text': _textController.text,
-                                  'comment': _currentComment.id
-                                });
-                              }
+                          if (_textController.text != '') {
+                            if (_tabController.index == 0) {
+                              postComment({
+                                'text': _textController.text,
+                                'answer': widget.answer.id
+                              }).then((response) => setState(() {
+                                    widget.comments.add(Comment.fromJson(
+                                        jsonDecode(response.body)));
+                                  }));
+                            } else {
+                              postReply({
+                                'text': _textController.text,
+                                'comment': _currentComment.id
+                              }).then((response) => setState(() {
+                                    _currentComment.replies.add(Reply.fromJson(
+                                        jsonDecode(response.body)));
+                                  }));
                             }
-                          });
+                          }
                           _textController.text = '';
                           FocusScope.of(context).unfocus();
                         },

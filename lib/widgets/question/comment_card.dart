@@ -41,7 +41,11 @@ class CommentCard extends StatelessWidget {
                         left: 8,
                         top: 8,
                       ),
-                      child: CircleAvatar(),
+                      child: CircleAvatar(
+                        backgroundImage: comment.user.avatar == null
+                            ? AssetImage('assets/images/profile-avatar.jpg')
+                            : NetworkImage(comment.user.avatar),
+                      ),
                     ),
                     Expanded(
                       child: Padding(
@@ -122,6 +126,13 @@ class CommentCard extends StatelessWidget {
                                   children: <Widget>[
                                     CircleAvatar(
                                       radius: 15,
+                                      backgroundImage: comment
+                                                  .replies[index].user.avatar ==
+                                              null
+                                          ? AssetImage(
+                                              'assets/images/profile-avatar.jpg')
+                                          : NetworkImage(comment
+                                              .replies[index].user.avatar),
                                     ),
                                     Expanded(
                                       child: Padding(
@@ -173,6 +184,12 @@ class CommentCard extends StatelessWidget {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 15,
+                              backgroundImage:
+                                  comment.replies[0].user.avatar == null
+                                      ? AssetImage(
+                                          'assets/images/profile-avatar.jpg')
+                                      : NetworkImage(
+                                          comment.replies[0].user.avatar),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 8),

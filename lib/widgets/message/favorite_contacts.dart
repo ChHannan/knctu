@@ -24,7 +24,7 @@ class FavoriteContacts extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => ChatScreen(
-                        user: favorites[index], // Room Id in the real app
+                        // TODO: PARAMETER PASS HERE
                       ),
                     ),
                   ),

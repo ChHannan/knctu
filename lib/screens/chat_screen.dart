@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:knctu/api/api.dart';
 import 'package:knctu/icons/knctu_icons.dart';
-import 'package:knctu/models/message_model.dart';
-import 'package:knctu/models/user_model.dart';
+import 'package:knctu/models/chat_room.dart';
+import 'package:knctu/models/message.dart';
+import 'package:knctu/models/user.dart';
 
 class ChatScreen extends StatefulWidget {
-  final User user;
-  ChatScreen({this.user});
+  final ChatRoom chatRoom;
+  final User otherUser;
+
+  const ChatScreen({Key key, @required this.chatRoom, @required this.otherUser})
+      : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -13,6 +20,19 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   var _width, _height;
+  TextEditingController textController;
+
+  @override
+  initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
+
+  @override
+  dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 
   _buildMessageComposer() {
     return Container(
@@ -24,8 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: TextField(
               textCapitalization: TextCapitalization.sentences,
-              // To capitalize the first letter
-              onChanged: (value) {},
+              controller: textController,
               decoration: InputDecoration.collapsed(
                 hintText: 'Enter a message',
               ),
@@ -35,14 +54,23 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: Icon(KnctUIcon.answers),
             iconSize: _width * 0.069,
             color: Theme.of(context).primaryColor,
-            onPressed: () {},
+            onPressed: () {
+              subscribe({
+                'model': 'chat.chat_room',
+                'info': 'CREATE_MESSAGE',
+                'id': widget.chatRoom.id,
+                'payload': {'text': textController.text}
+              });
+              textController.text = '';
+              FocusScope.of(context).unfocus();
+            },
           ),
         ],
       ),
     );
   }
 
-  _buildMessage(Message1 message, bool isMe) {
+  _buildMessage(Message message, bool isMe) {
     return Container(
       margin: isMe
           ? EdgeInsets.only(
@@ -87,14 +115,16 @@ class _ChatScreenState extends State<ChatScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                message.time,
+                message.createdAt.toIso8601String(),
                 style: TextStyle(
-                  color: Colors.blueGrey,
+                  color: Colors.white70,
                   fontSize: _width * 0.0331,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              !message.unread
+              message.messageUsers
+                      .singleWhere((ele) => ele.user.id == widget.otherUser.id)
+                      .isRead
                   ? Icon(
                       Icons.done_all,
                       color: Colors.blueGrey,
@@ -120,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> {
           color: Colors.white,
         ),
         title: Text(
-          widget.user.name,
+          widget.otherUser.name,
           style: TextStyle(
             fontSize: _width * 0.0553,
             fontWeight: FontWeight.bold,
@@ -159,19 +189,43 @@ class _ChatScreenState extends State<ChatScreen> {
                     topLeft: Radius.circular(_width * 0.0553),
                     topRight: Radius.circular(_width * 0.0553),
                   ),
-                  child: ListView.builder(
-                      reverse: true,
-                      //messages start from the bottom and then rises up
-                      padding: EdgeInsets.only(top: _height * 0.025),
-                      itemCount: messages.length,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        final Message1 message = messages[index];
-                        final bool isMe = message.sender.id == currentUser.id;
-                        return _buildMessage(
-                          message,
-                          isMe,
-                        );
+                  child: StreamBuilder(
+                      stream: socketStream,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData && !snapshot.hasError) {
+                          final data = jsonDecode(snapshot.data);
+                          if (data['type'] == 'UPDATE_CHAT_ROOM') {
+                            final chatRoom = ChatRoom.fromJson(data['payload']);
+                            return ListView.builder(
+                                reverse: true,
+                                padding: EdgeInsets.only(top: _height * 0.025),
+                                itemCount: widget.chatRoom.messages.length,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  final bool isMe =
+                                      chatRoom.messages[index].user.id !=
+                                          widget.otherUser.id;
+                                  return _buildMessage(
+                                    chatRoom.messages[index],
+                                    isMe,
+                                  );
+                                });
+                          }
+                        }
+                        return ListView.builder(
+                            reverse: true,
+                            padding: EdgeInsets.only(top: _height * 0.025),
+                            itemCount: widget.chatRoom.messages.length,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) {
+                              final bool isMe =
+                                  widget.chatRoom.messages[index].user.id !=
+                                      widget.otherUser.id;
+                              return _buildMessage(
+                                widget.chatRoom.messages[index],
+                                isMe,
+                              );
+                            });
                       }),
                 ),
               ),
