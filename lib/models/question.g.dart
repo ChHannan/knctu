@@ -20,13 +20,20 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
     json['user'] == null
         ? null
         : User.fromJson(json['user'] as Map<String, dynamic>),
-  );
+    json['upvote_count'] as int,
+    json['view_count'] as int,
+  )..infoUser = json['info_user'] == null
+      ? null
+      : InfoUser.fromJson(json['info_user'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
+      'upvote_count': instance.upvoteCount,
+      'view_count': instance.viewCount,
       'created_at': instance.createdAt?.toIso8601String(),
+      'info_user': instance.infoUser?.toJson(),
       'answers': instance.answers?.map((e) => e?.toJson())?.toList(),
       'user': instance.user?.toJson(),
     };

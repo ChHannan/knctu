@@ -14,17 +14,25 @@ const String _contentType = 'application/json';
 void setToken(String token) => _rawToken = token;
 
 IOWebSocketChannel subscribeChannel;
+StreamController _streamController;
 
 void openConnection() {
   subscribeChannel =
       IOWebSocketChannel.connect('$wsURL?authorization=$_rawToken');
+  _streamController = StreamController.broadcast();
+  _streamController.addStream(subscribeChannel.stream);
 }
 
 Stream subscribe(data) {
   subscribeChannel.sink.add(jsonEncode(data));
-  return subscribeChannel
-      .changeStream((Stream stream) => StreamController.broadcast().stream)
-      .stream;
+  return _streamController.stream;
+}
+
+Future<http.Response> getQuestionFromId(String id) {
+  return http.get('${apiUrl}forum/question/$id/', headers: {
+    HttpHeaders.authorizationHeader: _token,
+    HttpHeaders.contentTypeHeader: _contentType
+  });
 }
 
 Future<http.Response> getQuestions() {
@@ -32,6 +40,58 @@ Future<http.Response> getQuestions() {
     HttpHeaders.authorizationHeader: _token,
     HttpHeaders.contentTypeHeader: _contentType
   });
+}
+
+Future<http.Response> getHomeQuestions() {
+  return http.get('${apiUrl}forum/home/question/', headers: {
+    HttpHeaders.authorizationHeader: _token,
+    HttpHeaders.contentTypeHeader: _contentType
+  });
+}
+
+Future<http.Response> postQuestion(data) {
+  return http.post('${apiUrl}forum/question/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
+}
+
+Future<http.Response> postAnswer(data) {
+  return http.post('${apiUrl}forum/answer/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
+}
+
+Future<http.Response> postComment(data) {
+  return http.post('${apiUrl}forum/comment/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
+}
+
+Future<http.Response> postReply(data) {
+  return http.post('${apiUrl}forum/reply/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
+}
+
+Future<http.Response> patchInfoUser(String id, data) {
+  return http.patch('${apiUrl}forum/info/user/$id/',
+      headers: {
+        HttpHeaders.authorizationHeader: _token,
+        HttpHeaders.contentTypeHeader: _contentType
+      },
+      body: jsonEncode(data));
 }
 
 Future<http.Response> login(email, pass) {

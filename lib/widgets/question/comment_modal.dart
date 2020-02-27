@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/api/api.dart';
 import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/models/answer.dart';
 import 'package:knctu/models/comment.dart';
 import 'package:knctu/widgets/question/comment_card.dart';
 
 class CommentModal extends StatefulWidget {
+  final Answer answer;
   final List<Comment> comments;
   final String upvotes;
 
-  const CommentModal({
-    Key key,
-    this.comments, this.upvotes = '10',
-  }) : super(key: key);
+  const CommentModal(
+      {Key key, this.comments, this.upvotes = '10', @required this.answer})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => CommentModalState();
@@ -19,6 +21,8 @@ class CommentModal extends StatefulWidget {
 class CommentModalState extends State<CommentModal>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  TextEditingController _textController;
+  Comment _currentComment;
   int replyIndex = 0;
 
   @override
@@ -28,6 +32,7 @@ class CommentModalState extends State<CommentModal>
       length: 2,
       vsync: this,
     );
+    _textController = TextEditingController();
   }
 
   @override
@@ -36,10 +41,12 @@ class CommentModalState extends State<CommentModal>
     super.dispose();
   }
 
-  replyTab() {
+  replyTab(comment) {
     setState(() {
-      _tabController.animateTo(1);
+      _currentComment = comment;
     });
+    print('asd');
+    _tabController.animateTo(1);
   }
 
   @override
@@ -129,7 +136,7 @@ class CommentModalState extends State<CommentModal>
                     ),
                     replyIndex < widget.comments.length
                         ? CommentCard(
-                            comment: widget.comments[replyIndex],
+                            comment: _currentComment,
                             canExpand: true,
                           )
                         : Container(),
@@ -150,6 +157,7 @@ class CommentModalState extends State<CommentModal>
                       Expanded(
                         child: TextField(
                           autofocus: true,
+                          controller: _textController,
                           textCapitalization: TextCapitalization.sentences,
                           // To capitalize the first letter
                           onChanged: (value) {},
@@ -164,7 +172,25 @@ class CommentModalState extends State<CommentModal>
                         icon: Icon(KnctUIcon.answers),
                         iconSize: _size.width * 0.069,
                         color: Theme.of(context).primaryColor,
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            if (_textController.text != '') {
+                              if (_tabController.index == 0) {
+                                postComment({
+                                  'text': _textController.text,
+                                  'answer': widget.answer.id
+                                });
+                              } else {
+                                postReply({
+                                  'text': _textController.text,
+                                  'comment': _currentComment.id
+                                });
+                              }
+                            }
+                          });
+                          _textController.text = '';
+                          FocusScope.of(context).unfocus();
+                        },
                       ),
                     ],
                   ),

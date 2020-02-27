@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.light,
       ),
     );
-    openConnection();
     return Provider(
       create: (_) => AppDB(),
       child: MaterialApp(
@@ -52,18 +51,15 @@ class CurrentRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     final db = Provider.of<AppDB>(context);
     return FutureBuilder(
-      future: db.userDao.getLoggedInUser().timeout(Duration(seconds: 5)),
+      future: db.userDao.getLoggedInUser(),
       builder: (context, snapshot) {
         if (snapshot.hasData && !snapshot.hasError) {
           if (snapshot.data?.id != null) {
             setToken(snapshot.data.token);
             return ScreenController();
           }
-          return LoginScreen();
         }
-        return Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
+        return LoginScreen();
       },
     );
   }

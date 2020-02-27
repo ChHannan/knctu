@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/icons/knctu_icons.dart';
+import 'package:knctu/models/info_user.dart';
 
-class QuestionToolbar extends StatelessWidget {
+import 'package:knctu/api/api.dart';
+
+class QuestionToolbar extends StatefulWidget {
   final bool isQuestion;
   final Function modalCall;
   final Function answerModal;
+  final InfoUser infoUser;
+  final Function notifyParent;
+
   final upvotes;
   final commentsCount;
   final shares;
@@ -21,19 +27,39 @@ class QuestionToolbar extends StatelessWidget {
     this.answers,
     this.views,
     @required this.answerModal,
+    this.upvotes = 0,
+    this.commentsCount = 0,
+    this.shares = 0,
+    this.answers = 0,
+    this.views = 0,
+    @required this.infoUser,
+    @required this.notifyParent,
   }) : super(key: key);
+
+  @override
+  _QuestionToolbarState createState() => _QuestionToolbarState();
+}
+
+class _QuestionToolbarState extends State<QuestionToolbar> {
+  bool hasUpvoted;
+
+  @override
+  void initState() {
+    super.initState();
+    hasUpvoted = widget.infoUser.hasUpvoted;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         InfoPanel(
-            upvotes: upvotes,
-            commentsCount: commentsCount,
-            shares: shares,
-            views: views,
-            answers: answers,
-            isQuestion: isQuestion),
+            upvotes: widget.upvotes,
+            commentsCount: widget.commentsCount,
+            shares: widget.shares,
+            views: widget.views,
+            answers: widget.answers,
+            isQuestion: widget.isQuestion),
         Container(
           color: Colors.grey.withAlpha(30),
           height: 1,
@@ -42,11 +68,18 @@ class QuestionToolbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             QuestionToolbarOption(
-              icon: Icons.star_border,
-              text: 'Upvote',
-              function: null,
+              icon: hasUpvoted ? Icons.star : Icons.star_border,
+              iconColor: hasUpvoted ? Colors.amber : Colors.black38,
+              text: hasUpvoted ? 'Upvoted' : 'Upvote',
+              function: () async {
+                setState(() {
+                  hasUpvoted = !widget.infoUser.hasUpvoted;
+                });
+                patchInfoUser(widget.infoUser.id, {'has_upvoted': hasUpvoted});
+                widget.notifyParent();
+              },
             ),
-            isQuestion
+            widget.isQuestion
                 ? QuestionToolbarOption(
                     icon: KnctUIcon.answers,
                     text: 'Answer',
@@ -58,7 +91,7 @@ class QuestionToolbar extends StatelessWidget {
                     icon: KnctUIcon.chat,
                     text: 'Comments',
                     function: () {
-                      modalCall();
+                      widget.modalCall();
                     },
                   ),
             QuestionToolbarOption(
@@ -127,26 +160,26 @@ class InfoPanel extends StatelessWidget {
 
   const InfoPanel(
       {Key key,
-      this.upvotes,
-      this.commentsCount,
+      this.upvotes = 0,
+      this.commentsCount = 0,
       this.isQuestion = false,
-      this.shares,
-      this.answers,
-      this.views})
+      this.shares = 0,
+      this.answers = 0,
+      this.views = 0})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _noInfo = upvotes == null &&
+    final _noInfo = upvotes == 0 &&
         commentsCount == 0 &&
-        shares == null &&
-        answers == null &&
-        views == null;
+        shares == 0 &&
+        answers == 0 &&
+        views == 0;
     return Column(
       children: <Widget>[
         Container(
           color: Colors.grey.withAlpha(30),
-          height: (_noInfo || isQuestion) ? 0 : 1,
+          height: (_noInfo) ? 0 : 1,
         ),
         _noInfo
             ? Container()
@@ -155,7 +188,7 @@ class InfoPanel extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    upvotes != null
+                    upvotes != 0
                         ? Text(
                             '$upvotes upvotes',
                             style: _infoTextStyle,
@@ -164,39 +197,36 @@ class InfoPanel extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         isQuestion
-                            ? answers != null
+                            ? answers != 0
                                 ? Text(
                                     '$answers answers',
                                     style: _infoTextStyle,
                                   )
                                 : Container()
-                            : commentsCount != null
+                            : commentsCount != 0
                                 ? Text(
                                     '$commentsCount comments',
                                     style: _infoTextStyle,
                                   )
                                 : Container(),
-                        (commentsCount != null || answers != null) &&
-                                shares != null
+                        (commentsCount != 0 || answers != 0) && shares != 0
                             ? Text(
                                 ' · $shares shares',
                                 style: _infoTextStyle,
                               )
-                            : shares != null
+                            : shares != 0
                                 ? Text(
                                     '$shares shares',
                                     style: _infoTextStyle,
                                   )
                                 : Container(),
-                        (commentsCount != null ||
-                                    answers != null ||
-                                    shares != null) &&
-                                views != null
+                        (commentsCount != 0 || answers != 0 || shares != 0) &&
+                                views != 0
                             ? Text(
                                 ' · $views views',
                                 style: _infoTextStyle,
                               )
-                            : views != null
+                            : views != 0
                                 ? Text(
                                     '$views views',
                                     style: _infoTextStyle,
