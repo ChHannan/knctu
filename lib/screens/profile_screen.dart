@@ -296,15 +296,28 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getUserFromId(id),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && !snapshot.hasError) {
-            return _buildProfile(User.fromJson(jsonDecode(snapshot.data.body)));
-          } else {
-            return Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-        });
+      future: getUserFromId(id),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && !snapshot.hasError) {
+          return _buildProfile(
+            User.fromJson(
+              jsonDecode(
+                snapshot.data.body,
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Color(0xFF19b7c6),
+                ),
+              ),
+            ),
+          );
+        }
+      },
+    );
   }
 }

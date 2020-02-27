@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: TextFormField(
                                     validator: (value) => validPassword(value),
                                     onSaved: (value) => password = value,
-                                    //obscureText: true,
+                                    obscureText: true,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Enter password",
