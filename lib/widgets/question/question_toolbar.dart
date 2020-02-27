@@ -7,9 +7,9 @@ import 'package:knctu/api/api.dart';
 class QuestionToolbar extends StatefulWidget {
   final bool isQuestion;
   final Function modalCall;
+  final Function answerModal;
   final InfoUser infoUser;
   final Function notifyParent;
-
   final upvotes;
   final commentsCount;
   final shares;
@@ -25,6 +25,7 @@ class QuestionToolbar extends StatefulWidget {
     this.shares = 0,
     this.answers = 0,
     this.views = 0,
+    @required this.answerModal,
     @required this.infoUser,
     @required this.notifyParent,
   }) : super(key: key);
@@ -76,7 +77,9 @@ class _QuestionToolbarState extends State<QuestionToolbar> {
                 ? QuestionToolbarOption(
                     icon: KnctUIcon.answers,
                     text: 'Answer',
-                    function: null,
+                    function: () {
+                      widget.answerModal();
+                    },
                   )
                 : QuestionToolbarOption(
                     icon: KnctUIcon.chat,

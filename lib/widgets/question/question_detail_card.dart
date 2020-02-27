@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:knctu/icons/knctu_icons.dart';
 import 'package:knctu/models/question.dart';
 import 'package:knctu/screens/profile_screen.dart';
+import 'package:knctu/widgets/answer/answer-modal.dart';
 import 'package:knctu/widgets/question/comment_modal.dart';
 import 'package:knctu/widgets/question/question_toolbar.dart';
 
@@ -101,12 +102,15 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => ProfileScreen(
-                                                id: _isQuestion
-                                                    ? widget.question.user.id
-                                                    : _answer.user.id)));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProfileScreen(
+                                          id: _isQuestion
+                                              ? widget.question.user.id
+                                              : _answer.user.id,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   child: Column(
                                     crossAxisAlignment:
@@ -168,6 +172,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                         ),
                         QuestionToolbar(
                           notifyParent: widget.notifyParent,
+                          answerModal: showAnswerModal,
                           modalCall: showCommentModal,
                           isQuestion: _isQuestion,
                           commentsCount:
@@ -256,14 +261,7 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                     -0.9,
                     -1,
                   ),
-                  child: CircleAvatar(
-                      backgroundImage: _isQuestion
-                          ? widget.question.user.avatar == null
-                              ? AssetImage('assets/images/profile-avatar.jpg')
-                              : NetworkImage(widget.question.user.avatar)
-                          : _answer.user.avatar == null
-                              ? AssetImage('assets/images/profile-avatar.jpg')
-                              : NetworkImage(_answer.user.avatar)),
+                  child: CircleAvatar(),
                 ),
               ),
             ),
@@ -286,10 +284,21 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
       builder: (context) => StatefulBuilder(
         builder: (BuildContext context, StateSetter setModalState) =>
             CommentModal(
-                answer: widget.question.answers[widget.index - 1],
-                comments: widget.question.answers[widget.index - 1].comments,
-                upvotes: upvotes),
+          answer: widget.question.answers[widget.index - 1],
+          comments: widget.question.answers[widget.index - 1].comments,
+          upvotes: upvotes,
+        ),
       ),
+    );
+  }
+
+  void showAnswerModal() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return AnswerModal();
+      },
     );
   }
 }

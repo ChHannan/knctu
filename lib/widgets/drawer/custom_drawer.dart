@@ -39,6 +39,7 @@ class CustomDrawer extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
+                                Navigator.pop(context);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
