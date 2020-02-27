@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/api/api.dart';
+import 'package:knctu/models/chat_room.dart';
 import 'package:knctu/models/message_model.dart';
 import 'package:knctu/screens/chat_screen.dart';
 
 class RecentChats extends StatelessWidget {
+  final List<ChatRoom> chatRooms;
+
+  const RecentChats({Key key, this.chatRooms}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -14,16 +20,27 @@ class RecentChats extends StatelessWidget {
             color: Colors.white,
           ),
           child: ListView.builder(
-            itemCount: chats.length,
+            itemCount: chatRooms.length,
             itemBuilder: (BuildContext context, int index) {
-              final Message1 chat = chats[index];
+              final ChatRoom chatRoom = chatRooms[index];
+              final otherUser =
+                  chatRoom.users.singleWhere((ele) => ele.id != loggedInUserId);
+              bool isMessageRead = true;
+              final lastMessage = chatRoom.messages[0];
+              if (lastMessage.user.id == loggedInUserId) {
+                lastMessage.text = 'You: ${lastMessage.text}';
+              } else {
+                isMessageRead = chatRoom.messages[0].messageUsers
+                    .singleWhere((ele) => ele.user.id == otherUser.id)
+                    .isRead;
+              }
               return GestureDetector(
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => ChatScreen(
-                      user: chat.sender, // Room Id in the real app
-                    ),
+                        // TODO: PARAMETER PASS HERE
+                        ),
                   ),
                 ),
                 child: Container(
@@ -38,7 +55,7 @@ class RecentChats extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     // 0x7CA8D611 a pretty green
-                    color: chat.unread ? Color(0x7CA8D6EE) : Colors.white,
+                    color: isMessageRead ? Colors.white : Color(0x7CA8D6EE),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(
                         _width * 0.05532,
@@ -55,9 +72,9 @@ class RecentChats extends StatelessWidget {
                         children: <Widget>[
                           CircleAvatar(
                             radius: _width * 0.083,
-                            backgroundImage: AssetImage(
-                              chat.sender.imageUrl,
-                            ),
+                            backgroundImage: otherUser.avatar == null
+                                ? AssetImage('assets/image/profile-avatar.jpg')
+                                : NetworkImage(otherUser.avatar),
                           ),
                           SizedBox(
                             width: _width * 0.027,
@@ -67,7 +84,7 @@ class RecentChats extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                chat.sender.name,
+                                otherUser.name,
                                 style: TextStyle(
                                   fontSize: _width * 0.041,
                                   fontWeight: FontWeight.bold,
@@ -80,7 +97,7 @@ class RecentChats extends StatelessWidget {
                                 // for overflow //width restriction
                                 width: MediaQuery.of(context).size.width * 0.45,
                                 child: Text(
-                                  chat.text,
+                                  lastMessage.text,
                                   style: TextStyle(
                                     color: Colors.blueGrey,
                                     fontSize: _width * 0.035,
@@ -97,7 +114,7 @@ class RecentChats extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(height: _height * 0.034),
                           Text(
-                            chat.time,
+                            lastMessage.createdAt.toIso8601String(),
                             style: TextStyle(
                               color: Colors.blueGrey,
                               fontSize: _width * 0.0314,

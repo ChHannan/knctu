@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       create: (_) => AppDB(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: CurrentRoute(),
         theme: ThemeData(
           primaryColor: Color(0xFF19b7c6),
           pageTransitionsTheme: PageTransitionsTheme(
@@ -53,13 +53,16 @@ class CurrentRoute extends StatelessWidget {
     return FutureBuilder(
       future: db.userDao.getLoggedInUser(),
       builder: (context, snapshot) {
-        if (snapshot.hasData && !snapshot.hasError) {
-          if (snapshot.data?.id != null) {
-            setToken(snapshot.data.token);
-            return ScreenController();
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasData && !snapshot.hasError) {
+            if (snapshot.data?.id != null) {
+              setToken(snapshot.data.token);
+              return ScreenController();
+            }
           }
+          return LoginScreen();
         }
-        return LoginScreen();
+        return Scaffold(body: Container());
       },
     );
   }

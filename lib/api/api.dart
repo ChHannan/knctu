@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:web_socket_channel/io.dart';
 
 var apiUrl = 'http://api.knctu.com/api/';
+var loggedInUserId = '';
 var wsURL = 'ws://api.knctu.com/ws/subscribe/';
 var _rawToken = '';
 var _token = 'Token $_rawToken';

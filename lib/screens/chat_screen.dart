@@ -4,7 +4,7 @@ import 'package:knctu/models/message_model.dart';
 import 'package:knctu/models/user_model.dart';
 
 class ChatScreen extends StatefulWidget {
-  final User user; // chat room id when applying backend
+  final User user;
   ChatScreen({this.user});
 
   @override
