@@ -10,8 +10,6 @@ import 'package:knctu/utils/constants.dart';
 import 'package:knctu/widgets/drawer/custom_drawer.dart';
 import 'package:knctu/widgets/drawer/drawer_slider.dart';
 
-
-
 class ScreenController extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => ScreenControllerState();

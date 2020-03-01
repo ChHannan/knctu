@@ -8,9 +8,7 @@ import 'package:knctu/api/api.dart';
 import 'package:knctu/db/db.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
