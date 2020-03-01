@@ -20,12 +20,12 @@ class HeaderBar extends StatelessWidget {
 //          ),
 //        ),
         Container(
-          height: 60,
+          height: 30,
+          padding: EdgeInsets.only(top: 10),
           child: Image(
             image: AssetImage(
-              'assets/images/appbar.png',
+              'assets/images/appbar1.png',
             ),
-            height: 60,
             alignment: Alignment.centerLeft,
             //fit: BoxFit.contain,
           ),
