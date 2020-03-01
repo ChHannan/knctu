@@ -123,11 +123,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               message.messageUsers
-                      .singleWhere((ele) => ele.user.id == widget.otherUser.id)
+                      .singleWhere((ele) => ele.user.id != widget.otherUser.id)
                       .isRead
                   ? Icon(
                       Icons.done_all,
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       size: _width * 0.0553,
                     )
                   : SizedBox.shrink(),
