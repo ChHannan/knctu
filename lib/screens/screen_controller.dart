@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:knctu/api/api.dart';
-
 import 'package:knctu/screens/add_question.dart';
+import 'package:knctu/screens/chatlist_screen.dart';
 import 'package:knctu/screens/feed_screen.dart';
 import 'package:knctu/screens/home_screen.dart';
-import 'package:knctu/screens/chatlist_screen.dart';
-
 import 'package:knctu/utils/constants.dart';
 import 'package:knctu/widgets/drawer/custom_drawer.dart';
 import 'package:knctu/widgets/drawer/drawer_slider.dart';
@@ -62,7 +60,14 @@ class ScreenControllerState extends State<ScreenController> {
   Widget build(BuildContext context) {
     openConnection();
     final deviceHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        setState(() {
+          _screenIndex = 0;
+        });
+        return false;
+      },
+      child: Scaffold(
         endDrawer: CustomDrawer(
           deviceHeight: deviceHeight,
           drawerOptions: drawerOptions,
@@ -85,6 +90,8 @@ class ScreenControllerState extends State<ScreenController> {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
