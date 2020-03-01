@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-
 class AnswerModal extends StatelessWidget {
+  final String answer;
   const AnswerModal({
     Key key,
+    this.answer,
   }) : super(key: key);
 
   @override
@@ -80,13 +81,13 @@ class AnswerModal extends StatelessWidget {
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(
-                        8.0,
-                        0.0,
-                        8.0,
                         10.0,
+                        7.0,
+                        10.0,
+                        15.0,
                       ),
                       child: Text(
-                        'Can we win HackFair 2020? Can we win HackFair 2020?',
+                        answer,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -103,9 +104,9 @@ class AnswerModal extends StatelessWidget {
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(
+                        10.0,
                         8.0,
-                        8.0,
-                        8.0,
+                        10.0,
                         MediaQuery.of(context).viewInsets.bottom,
                       ),
                       child: TextField(

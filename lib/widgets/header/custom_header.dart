@@ -21,15 +21,18 @@ class _CustomHeaderState extends State<CustomHeader> {
       ),
       color: Color(0xFF19b7c6),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           HeaderBar(),
-          Text(
-            'Trending',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              'Trending',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           ),
           Padding(
@@ -48,21 +51,24 @@ class _CustomHeaderState extends State<CustomHeader> {
               },
               items: <Widget>[
                 const TrendingBox(
-                    question:
-                        'I want to be an entreprenuer, which field do I choose?',
-                    answer: 'Software Engineering',
-                    tagName: 'UET',
-                    name: 'Maaz Bin Tahir'),
+                  question:
+                      'I want to be an entreprenuer, which field do I choose?',
+                  answer: 'Software Engineering',
+                  tagName: 'UET',
+                  name: 'Maaz Bin Tahir',
+                ),
                 const TrendingBox(
-                    tagName: 'GIKI',
-                    question: 'Which field is the most profitable in 2020?',
-                    answer: 'The field you are interested in.',
-                    name: 'Eesha Arif'),
+                  tagName: 'GIKI',
+                  question: 'Which field is the most profitable in 2020?',
+                  answer: 'The field you are interested in.',
+                  name: 'Eesha Arif',
+                ),
                 const TrendingBox(
-                    tagName: 'NUST',
-                    question: 'What is the acceptance rate in NUST?',
-                    answer: 'Less than 10%',
-                    name: 'Harris Amir'),
+                  tagName: 'NUST',
+                  question: 'What is the acceptance rate in NUST?',
+                  answer: 'Less than 10%',
+                  name: 'Harris Amir',
+                ),
               ],
             ),
           ),
@@ -95,24 +101,25 @@ class DotsIndicator extends StatelessWidget {
       height: 30,
       width: 50,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          itemBuilder: (context, index) {
-            return Container(
-              width: 8.0,
-              height: 8.0,
-              margin: EdgeInsets.symmetric(
-                vertical: 10.0,
-                horizontal: 2.0,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _current == index
-                    ? Color.fromRGBO(255, 255, 255, 0.8)
-                    : Color.fromRGBO(0, 0, 0, 0.2),
-              ),
-            );
-          }),
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Container(
+            width: 8.0,
+            height: 8.0,
+            margin: EdgeInsets.symmetric(
+              vertical: 10.0,
+              horizontal: 2.0,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: _current == index
+                  ? Color.fromRGBO(255, 255, 255, 0.8)
+                  : Color.fromRGBO(0, 0, 0, 0.2),
+            ),
+          );
+        },
+      ),
     );
   }
 }

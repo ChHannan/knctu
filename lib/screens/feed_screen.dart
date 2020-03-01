@@ -10,14 +10,17 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'KnctU',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
+        title: Container(
+          height: 30,
+          padding: EdgeInsets.only(top: 10),
+          child: Image(
+            image: AssetImage(
+              'assets/images/appbar1.png',
+            ),
+            alignment: Alignment.centerLeft,
+            //fit: BoxFit.contain,
           ),
         ),
-        automaticallyImplyLeading: false,
         elevation: 0,
       ),
       body: FutureBuilder(

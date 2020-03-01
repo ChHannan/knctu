@@ -247,12 +247,15 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfileScreen(
-                            id: _isQuestion
-                                ? widget.question.user.id
-                                : _answer.user.id)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                      id: _isQuestion
+                          ? widget.question.user.id
+                          : _answer.user.id,
+                    ),
+                  ),
+                );
               },
               child: SizedBox(
                 width: _size.width * 0.9,
@@ -262,13 +265,16 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
                     -1,
                   ),
                   child: CircleAvatar(
-                      backgroundImage: _isQuestion
-                          ? widget.question.user.avatar == null
-                              ? AssetImage('assets/images/profile-avatar.jpg')
-                              : NetworkImage(widget.question.user.avatar)
-                          : _answer.user.avatar == null
-                              ? AssetImage('assets/images/profile-avatar.jpg')
-                              : NetworkImage(_answer.user.avatar)),
+                    backgroundImage: _isQuestion
+                        ? widget.question.user.avatar == null
+                            ? AssetImage('assets/images/profile-avatar.jpg')
+                            : NetworkImage(widget.question.user.avatar)
+                        : _answer.user.avatar == null
+                            ? AssetImage('assets/images/profile-avatar.jpg')
+                            : NetworkImage(
+                                _answer.user.avatar,
+                              ),
+                  ),
                 ),
               ),
             ),
@@ -301,7 +307,9 @@ class _QuestionDetailCardState extends State<QuestionDetailCard> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return AnswerModal();
+        return AnswerModal(
+          answer: widget.question.text.toString(),
+        );
       },
     );
   }

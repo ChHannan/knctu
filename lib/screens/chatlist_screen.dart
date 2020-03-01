@@ -18,16 +18,18 @@ class _ChatListScreenState extends State<ChatListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Image(
-          image: AssetImage(
-            'assets/images/appbar.png',
+        title: Container(
+          height: 30,
+          padding: EdgeInsets.only(top: 10),
+          child: Image(
+            image: AssetImage(
+              'assets/images/appbar1.png',
+            ),
+            alignment: Alignment.centerLeft,
+            //fit: BoxFit.contain,
           ),
-          height: 60,
-          alignment: Alignment.centerLeft,
         ),
         elevation: 0,
-        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
         future: getChatRooms(),
