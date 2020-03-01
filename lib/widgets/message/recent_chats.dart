@@ -27,13 +27,14 @@ class RecentChats extends StatelessWidget {
                 itemCount: chatRooms.length,
                 itemBuilder: (BuildContext context, int index) {
                   final ChatRoom chatRoom = chatRooms[index];
+                  var text = '';
                   if (snapshot.hasData && !snapshot.hasError) {
                     final otherUser =
                     chatRoom.users.singleWhere((ele) => ele.id != snapshot.data.id);
                     bool isMessageRead = true;
                     final lastMessage = chatRoom.messages[0];
                     if (lastMessage.user.id == snapshot.data.id) {
-                      lastMessage.text = 'You: ${lastMessage.text}';
+                      text = 'You: ${lastMessage.text}';
                     } else {
                       isMessageRead = chatRoom.messages[0].messageUsers
                           .singleWhere((ele) => ele.user.id == otherUser.id)
@@ -103,7 +104,7 @@ class RecentChats extends StatelessWidget {
                                       // for overflow //width restriction
                                       width: MediaQuery.of(context).size.width * 0.45,
                                       child: Text(
-                                        lastMessage.text,
+                                        text,
                                         style: TextStyle(
                                           color: Colors.blueGrey,
                                           fontSize: _width * 0.035,
