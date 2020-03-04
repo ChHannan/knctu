@@ -30,6 +30,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
           ),
         ),
         elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
         future: getChatRooms(),

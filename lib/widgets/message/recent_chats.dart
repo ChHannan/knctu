@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Screens/chat_screen.dart';
 import 'package:knctu/db/db.dart';
 import 'package:knctu/models/chat_room.dart';
 import 'package:knctu/models/message.dart';
-import 'package:knctu/screens/chat_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -29,7 +29,7 @@ class RecentChats extends StatelessWidget {
                   itemCount: chatRooms.length,
                   itemBuilder: (BuildContext context, int index) {
                     final ChatRoom chatRoom = chatRooms[index];
-                    var text  = '';
+                    var text = '';
                     if (snapshot.hasData && !snapshot.hasError) {
                       final otherUser = chatRoom.users
                           .singleWhere((ele) => ele.id != snapshot.data.id);
@@ -45,6 +45,7 @@ class RecentChats extends StatelessWidget {
                           isMessageRead = chatRoom.messages[0].messageUsers
                               .singleWhere((ele) => ele.user.id != otherUser.id)
                               .isRead;
+                          text = lastMessage.text;
                         }
                       }
                       return GestureDetector(

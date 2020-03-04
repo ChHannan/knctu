@@ -11,29 +11,26 @@ class HeaderBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-//        Text(
-//          'knctU',
-//          style: TextStyle(
-//            fontWeight: FontWeight.bold,
-//            fontSize: 30,
-//            color: Colors.white,
-//          ),
-//        ),
         Container(
-          height: 30,
-          padding: EdgeInsets.only(top: 10),
-          child: Image(
-            image: AssetImage(
-              'assets/images/appbar1.png',
+          height: 40,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 15, 0, 5),
+            child: Image(
+              image: AssetImage(
+                'assets/images/appbar1.png',
+              ),
+              alignment: Alignment.centerLeft,
+              //fit: BoxFit.contain,
             ),
-            alignment: Alignment.centerLeft,
-            //fit: BoxFit.contain,
           ),
         ),
-        Icon(
-          Icons.search,
-          color: Colors.white,
-          size: 24,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 15, 0, 5),
+          child: Icon(
+            Icons.search,
+            color: Colors.white,
+            size: 24,
+          ),
         ),
       ],
     );

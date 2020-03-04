@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:knctu/Screens/chat_screen.dart';
 import 'package:knctu/models/message_model.dart';
-import 'package:knctu/screens/chat_screen.dart';
 
 class FavoriteContacts extends StatelessWidget {
   @override
@@ -24,8 +24,8 @@ class FavoriteContacts extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => ChatScreen(
-                        // TODO: PARAMETER PASS HERE
-                      ),
+                          // TODO: PARAMETER PASS HERE
+                          ),
                     ),
                   ),
                   child: Padding(
